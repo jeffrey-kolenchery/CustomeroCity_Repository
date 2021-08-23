@@ -1,0 +1,46 @@
+{
+  "name": "it-project-team-50",
+  "version": "1.0.0",
+  "description": "CRM Software for Everybody! (Capstone Project Team 50)",
+  "main": "index.js",
+  "scripts": {
+    "frontend-dev": "cd frontend/ && npm start",
+    "backend-dev": "cd backend/ && npm start",
+    "start-dev": "npm-run-all --parallel frontend-dev backend-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffrey-kolenchery/IT-PROJECT-TEAM-50.git"
+  },
+  "contributors": [
+    {
+      "name": "Tae-gyu Yun",
+      "email": "taegyuy@student.unimelb.edu.au"
+    },
+    {
+      "name": "Kelvin Du",
+      "email": "bingkund@student.unimelb.edu.au"
+    },
+    {
+      "name": "Sanskar Bhatia",
+      "email": "sanskarb@student.unimelb.edu.au"
+    },
+    {
+      "name": "Thomas Siby",
+      "email": "tsiby@student.unimelb.edu.au"
+    },
+    {
+      "name": "Jeffrey Kolenchery",
+      "email": "jkolenchery@student.unimelb.edu.au"
+    }
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffrey-kolenchery/IT-PROJECT-TEAM-50/issues"
+  },
+  "homepage": "https://github.com/jeffrey-kolenchery/IT-PROJECT-TEAM-50#readme",
+  
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
