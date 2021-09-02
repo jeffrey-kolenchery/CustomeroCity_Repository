@@ -5,7 +5,15 @@ const UserController = require("../controllers/UserController");
 const AuthController = require("../controllers/authController");
 const Validator = require("../validators/formValidator");
 
-userRouter.post("/register", Validator, UserController.register);
-userRouter.post("/login", Validator, UserController.login);
+userRouter.post(
+  "/register",
+  Validator.signupValidator,
+  UserController.register
+);
+userRouter.post("/login", Validator.signinValidator, UserController.login);
+
+userRouter.get("/test", AuthController.requireSignin, (req, res) => {
+  res.send("yep");
+});
 
 module.exports = userRouter;
