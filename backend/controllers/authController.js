@@ -1,3 +1,5 @@
+const expressJwt = require("express-jwt"); // For authorization check
+
 // 1.
 /*******************************************************************************************************************/
 // Middleware for checking if user is using a valid jwt.
@@ -39,3 +41,5 @@ const isAdmin = (req, res, next) => {
   }
   next();
 };
+
+module.exports = { requireSignin, isAuth, isAdmin };

@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { errorHandler } = require("../validators/dbErrorHandler");
 
 const register = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
@@ -19,7 +20,9 @@ const register = (req, res, next) => {
         res.status(200).send("User Added Successfully!");
       })
       .catch((error) => {
-        res.status(400).send("An error occured!");
+        res.status(400).send({
+          error: errorHandler(error),
+        });
       });
   });
 };
