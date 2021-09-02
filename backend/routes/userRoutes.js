@@ -13,7 +13,7 @@ userRouter.post(
 userRouter.post("/login", Validator.signinValidator, UserController.login);
 
 userRouter.get("/test", AuthController.requireSignin, (req, res) => {
-  res.send("yep");
+  res.send(req.auth);
 });
 
 module.exports = userRouter;
