@@ -30,5 +30,7 @@ mongoose.set('useFindAndModify', false);
 
 const userRouter = require('./routes/userRoutes');
 app.use('/api/user', userRouter);
+const customerRouter = require('./routes/customerRoutes');
+app.use('/api/customer', customerRouter);
 
 module.exports = app;
