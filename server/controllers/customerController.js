@@ -3,13 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const registerCustomer  = (req, res, next) => {
-    // var givenName = req.body.givenName;
-    // var designation = req.body.designation;
-    // var company = req.body.company;
-    // var email = req.body.email;
-    // var phoneNo = req.body.phoneNo;
-    // var age = req.body.age;
-    // var interests = req.body.interests;
 
 
     let customer = new Customer ({
@@ -34,11 +27,13 @@ const registerCustomer  = (req, res, next) => {
 
 const deleteCustomer = (req, res, next) => {
     var customerName = req.body.givenName;
+    var email = req.body.email;
     
     try {
-        Customer.findOneAndDelete(
+        Customer.remove(
             {
-                givenName : customerName
+                givenName : customerName,
+                email : email
             }
         );
         res.status(200).send("customer deleted successfully");
@@ -82,5 +77,4 @@ const deleteCustomer = (req, res, next) => {
 module.exports = {
     registerCustomer,
     deleteCustomer
-//     login
 }
