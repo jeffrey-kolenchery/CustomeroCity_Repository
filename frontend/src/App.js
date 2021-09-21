@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {BrowserRouter, Switch, Route} from 'react-router-dom'; 
 import styled from "styled-components";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 //add thomas part here
 
 class App extends Component {
@@ -15,8 +16,9 @@ class App extends Component {
               <Switch>
                 <Route path = "/" component={SignUp} />
                 <Route path = "/SignUp" component={SignUp} />
+                <Route path="/login" component={Login} />
               </Switch>
-              </BrowserRouter>
+            </BrowserRouter>
           </div>
         </Wrapper>
      </Container>
