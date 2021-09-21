@@ -2,6 +2,15 @@ const Customer = require("../models/customerModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const searchCustomers = async (req, res) => {
+  try {
+    let customers = await Customer.find({ user: req.profile._id });
+    res.send(customers);
+  } catch (err) {
+    res.error(400);
+  }
+};
+
 const registerCustomer = (req, res, next) => {
   let customer = new Customer({
     givenName: req.body.givenName,
@@ -72,4 +81,5 @@ const deleteCustomer = (req, res, next) => {
 module.exports = {
   registerCustomer,
   deleteCustomer,
+  searchCustomers,
 };

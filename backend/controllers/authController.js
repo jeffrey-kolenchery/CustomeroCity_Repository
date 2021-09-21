@@ -18,6 +18,8 @@ const requireSignin = expressJwt({
 /*******************************************************************************************************************/
 // E.g. To check if the token that is being used to access some user's data, is actually that person's token.
 const isAuth = (req, res, next) => {
+  console.log(req.profile._id, req.auth._id);
+  console.log(req.auth);
   // req.profile to access the _id of the username that was used for the login attempt.
   // req.profile was saved using the findByUserId middleware in userController.
   // req.auth is the data from the decrypated authentication token saved by expressJwt() middleware.

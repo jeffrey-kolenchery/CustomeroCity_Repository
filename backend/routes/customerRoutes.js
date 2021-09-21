@@ -11,11 +11,17 @@ const { isAuth, requireSignin } = require("../controllers/authController");
 // the callback function findUserById is being called.
 customerRouter.param("userId", findUserById);
 
-customerRouter.get("/test/:userId", requireSignin, (req, res) => {
+customerRouter.get("/test/:userId", requireSignin, isAuth, (req, res) => {
   console.log(req.profile);
   console.log(req.auth);
+  res.send(req.auth);
 });
 
+// Sending a request to create a customer for :userId will require the request
+// to include an authorization token where the decrypted userId matches the
+// userId in the params.
+// When registering a customer for :userId, we make sure that the person sending
+// the request is logged in by that same userId.
 customerRouter.post(
   "/registerCustomer/:userId",
   requireSignin,
@@ -27,6 +33,12 @@ customerRouter.post(
   requireSignin,
   isAuth,
   CustomerController.deleteCustomer
+);
+customerRouter.get(
+  "/searchCustomers/:userId",
+  requireSignin,
+  isAuth,
+  CustomerController.searchCustomers
 );
 
 module.exports = customerRouter;

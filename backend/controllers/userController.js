@@ -54,7 +54,7 @@ const loginUser = (req, res, next) => {
           }
           if (result) {
             console.log(user);
-            const token = jwt.sign({ name: user._id }, "verysecretValue", {
+            const token = jwt.sign({ _id: user._id }, "verysecretValue", {
               expiresIn: "1hr",
             });
 
