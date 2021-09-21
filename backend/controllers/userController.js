@@ -3,6 +3,19 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { errorHandler } = require("../validators/dbErrorHandler");
 
+const findUserById = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User not found",
+      });
+    } else {
+      req.profile = user;
+      next();
+    }
+  });
+};
+
 const registerUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
     if (err) {
@@ -40,9 +53,11 @@ const loginUser = (req, res, next) => {
             });
           }
           if (result) {
-            let token = jwt.sign({ name: user.name }, "verysecretValue", {
+            console.log(user);
+            const token = jwt.sign({ name: user._id }, "verysecretValue", {
               expiresIn: "1hr",
             });
+
             // Persist the token as 't' in cookie with expiry date
             res.cookie("t", token, { expire: new Date() + 9999 });
             res.json({
@@ -71,7 +86,8 @@ const signoutUser = (req, res) => {
 };
 
 module.exports = {
-    registerUser,
-    loginUser,
-    signoutUser,
+  registerUser,
+  loginUser,
+  signoutUser,
+  findUserById,
 };

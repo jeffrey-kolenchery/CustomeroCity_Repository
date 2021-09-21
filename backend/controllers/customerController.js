@@ -1,46 +1,41 @@
-const Customer = require('../models/customerModel');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const Customer = require("../models/customerModel");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-const registerCustomer  = (req, res, next) => {
-
-
-    let customer = new Customer ({
-        givenName: req.body.givenName,
-        designation: req.body.designation,
-        company: req.body.comapany,
-        email: req.body.email,
-        age: req.body.age,
-        phoneNo: req.body.phoneNo,
-        interests: req.body.interests
+const registerCustomer = (req, res, next) => {
+  let customer = new Customer({
+    givenName: req.body.givenName,
+    designation: req.body.designation,
+    company: req.body.comapany,
+    email: req.body.email,
+    age: req.body.age,
+    phoneNo: req.body.phoneNo,
+    interests: req.body.interests,
+    user: req.profile._id,
+  });
+  customer
+    .save()
+    .then((customer) => {
+      res.status(200).send("Customer Added Successfully!");
     })
-    customer.save()
-        .then(customer => {
-            res.status(200).send('Customer Added Successfully!');
-        })
-    .catch(error=> {
-        res.status(400).send('An error occured!');
-    })
-
-
+    .catch((error) => {
+      res.status(400).send("An error occured!");
+    });
 };
 
 const deleteCustomer = (req, res, next) => {
-    var customerName = req.body.givenName;
-    var email = req.body.email;
-    
-    try {
-        Customer.remove(
-            {
-                givenName : customerName,
-                email : email
-            }
-        );
-        res.status(200).send("customer deleted successfully");
-    } catch (error) {
-        res.status(404).send("customer does not exist in database");
-    }
+  var customerName = req.body.givenName;
+  var email = req.body.email;
 
+  try {
+    Customer.remove({
+      givenName: customerName,
+      email: email,
+    });
+    res.status(200).send("customer deleted successfully");
+  } catch (error) {
+    res.status(404).send("customer does not exist in database");
+  }
 };
 //     var username = req.body.username;
 //     var password = req.body.password;
@@ -57,12 +52,12 @@ const deleteCustomer = (req, res, next) => {
 //                 if(result) {
 //                     let token = jwt.sign({name: user.name}, 'verysecretValue', {expiresIn: '1hr'})
 //                     res.json({
-//                         message: 'Login Successful!', 
+//                         message: 'Login Successful!',
 //                         token
 //                     })
 //                 }else {
 //                     res.json({
-//                         message: 'Password does not match!', 
+//                         message: 'Password does not match!',
 //                     })
 //                 }
 //             })
@@ -75,6 +70,6 @@ const deleteCustomer = (req, res, next) => {
 // };
 
 module.exports = {
-    registerCustomer,
-    deleteCustomer
-}
+  registerCustomer,
+  deleteCustomer,
+};

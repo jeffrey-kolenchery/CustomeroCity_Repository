@@ -7,7 +7,7 @@ const expressJwt = require("express-jwt"); // For authorization check
 // It then decrypts the jwt token, then places it in whatever parameter we put for userProperty.
 // E.g. In this case, request.auth.
 const requireSignin = expressJwt({
-  secret: process.env.JWT_SECRET,
+  secret: "verysecretValue",
   algorithms: ["HS256"], // added later
   userProperty: "auth",
 });
