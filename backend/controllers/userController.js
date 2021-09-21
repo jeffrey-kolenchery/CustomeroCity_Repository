@@ -155,4 +155,5 @@ module.exports = {
   signoutUser,
   resetPassword,
   newPassword,
+  findUserById,
 };
