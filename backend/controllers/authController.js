@@ -7,7 +7,7 @@ const expressJwt = require("express-jwt"); // For authorization check
 // It then decrypts the jwt token, then places it in whatever parameter we put for userProperty.
 // E.g. In this case, request.auth.
 const requireSignin = expressJwt({
-  secret: process.env.JWT_SECRET,
+  secret: "verysecretValue",
   algorithms: ["HS256"], // added later
   userProperty: "auth",
 });
@@ -18,6 +18,8 @@ const requireSignin = expressJwt({
 /*******************************************************************************************************************/
 // E.g. To check if the token that is being used to access some user's data, is actually that person's token.
 const isAuth = (req, res, next) => {
+  console.log(req.profile._id, req.auth._id);
+  console.log(req.auth);
   // req.profile to access the _id of the username that was used for the login attempt.
   // req.profile was saved using the findByUserId middleware in userController.
   // req.auth is the data from the decrypated authentication token saved by expressJwt() middleware.

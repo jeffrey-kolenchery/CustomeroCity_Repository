@@ -3,16 +3,31 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { errorHandler } = require("../validators/dbErrorHandler");
 
+const findUserById = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User not found",
+      });
+    } else {
+      req.profile = user;
+      next();
+    }
+  });
+};
 //NodeMailer Modules + func
-const crypto = require('crypto');
-const nodemailer = require('nodemailer')
-const sendgridTransport = require('nodemailer-sendgrid-transport')
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
 
-const transporter = nodemailer.createTransport(sendgridTransport({
-  auth:{
-      api_key:'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'
-  }
-}))
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key:
+        "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",
+    },
+  })
+);
 
 const registerUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
@@ -50,9 +65,11 @@ const loginUser = (req, res, next) => {
             });
           }
           if (result) {
-            let token = jwt.sign({ name: user.name }, "verysecretValue", {
+            console.log(user);
+            const token = jwt.sign({ _id: user._id }, "verysecretValue", {
               expiresIn: "1hr",
             });
+
             // Persist the token as 't' in cookie with expiry date
             res.cookie("t", token, { expire: new Date() + 9999 });
             res.json({
@@ -132,9 +149,10 @@ const newPassword = (req,res)=>{
 };
 
 module.exports = {
-    registerUser,
-    loginUser,
-    signoutUser,
-    resetPassword,
-    newPassword
+  registerUser,
+  loginUser,
+  signoutUser,
+  resetPassword,
+  newPassword,
+  findUserById,
 };
