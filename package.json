@@ -4,9 +4,9 @@
   "description": "CRM Software for Everybody! (Capstone Project Team 50)",
   "main": "index.js",
   "scripts": {
-    "frontend-dev": "cd frontend/ && npm start",
-    "backend-dev": "cd backend/ && npm start",
-    "start-dev": "npm-run-all --parallel frontend-dev backend-dev"
+    "frontend": "cd frontend/ && npm start",
+    "backend": "cd backend/ && npm start",
+    "start": "npm-run-all --parallel frontend backend"
   },
   "repository": {
     "type": "git",
