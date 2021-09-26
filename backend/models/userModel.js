@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-const {Schema} = mongoose;
+
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
   givenName: {
@@ -22,12 +23,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  resetToken:String,
-  expireToken:Date
+  resetToken: String,
+  expireToken: Date,
 });
 
-const User = mongoose.model("users", userSchema);
+const User = mongoose.model('users', userSchema);
 
-export {
-  User
-};
+export { User };

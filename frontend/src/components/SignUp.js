@@ -14,7 +14,7 @@ const SignUp = () => {
         <button onClick="window.location.href='https://w3docs.com';"> Login </button>
         
       </LogoWrapper>
-      <img class="bottomRight" src="signup.png" height="220px" width="560px" style={{position: "absolute", bottom: 0, right: 0}}/>
+      <img class="bottomRight" src="signup.png" height="220px" width="560px" style={{position: "absolute", bottom: 0, right: 0}} alt="signUpPic" />
       <BoxContainer>
         <Form>
           <h3>Sign Up</h3>
