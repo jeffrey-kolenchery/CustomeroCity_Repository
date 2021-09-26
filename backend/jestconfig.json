@@ -1,6 +1,5 @@
 {
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-    "preset": "react-native",
     "testEnvironment": "jsdom",
     "testPathIgnorePatterns": [
         "<rootDir>/dist/",

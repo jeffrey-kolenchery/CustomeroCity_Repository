@@ -1,9 +1,15 @@
-const express = require("express");
+// const express = require("express");
+import * as express from "express";
 const customerRouter = express.Router();
 
-const CustomerController = require("../controllers/customerController");
-const { findUserById } = require("../controllers/userController");
-const { isAuth, requireSignin } = require("../controllers/authController");
+import * as CustomerController from "../controllers/customerController.js";
+
+// const CustomerController = require("../controllers/customerController");
+import { findUserById } from "../controllers/userController.js";
+// const { findUserById } = require("../controllers/userController");
+// const { isAuth, requireSignin } = require("../controllers/authController");
+import { isAuth, requireSignin } from "../controllers/authController.js";
+
 
 // Calls callback function every time "userId" is in the parameter.
 // E.g. if /secret/6128965fd267fe25743bfec2 is called,
@@ -41,4 +47,5 @@ customerRouter.get(
   CustomerController.searchCustomers
 );
 
-module.exports = customerRouter;
+// module.exports = customerRouter;
+export {customerRouter}

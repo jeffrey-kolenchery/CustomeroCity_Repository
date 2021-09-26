@@ -1,4 +1,5 @@
-const expressJwt = require("express-jwt"); // For authorization check
+// const expressJwt = require("express-jwt"); 
+import expressJwt from "express-jwt"; // For authorization check
 
 // 1.
 /*******************************************************************************************************************/
@@ -44,4 +45,8 @@ const isAdmin = (req, res, next) => {
   next();
 };
 
-module.exports = { requireSignin, isAuth, isAdmin };
+export {
+  requireSignin,
+  isAuth, 
+  isAdmin
+};

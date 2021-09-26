@@ -1,9 +1,12 @@
-const express = require("express");
+// const express = require("express");
+import express from 'express';
 
-jest.useFakeTimers();
+// jest.useFakeTimers();
 
-var controller = require("../controllers/userController");
-var User= require("../models/userModel");
+// var controller = require("../controllers/userController");
+import * as controller from "../controllers/userController";
+// var User= require("../models/userModel");
+import { User } from "../models/userModel";
 
 const TEST_USER_GIVEN_NAME = "Test User"
 const TEST_EMAIL = "testuser@email.com"

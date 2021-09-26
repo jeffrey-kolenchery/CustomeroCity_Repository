@@ -53,4 +53,7 @@ const signinValidator = (req, res, next) => {
   next();
 };
 
-module.exports = { signupValidator, signinValidator };
+export {
+  signupValidator, 
+  signinValidator
+};

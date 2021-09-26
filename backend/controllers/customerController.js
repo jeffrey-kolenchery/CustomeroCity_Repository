@@ -1,6 +1,10 @@
-const Customer = require("../models/customerModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+// const Customer = require("../models/customerModel");
+import {Customer} from "../models/customerModel.js";
+import * as bcrypt from "bcrypt";
+import * as jwt from "jsonwebtoken";
+
+// const bcrypt = require("bcryptjs");
+// const jwt = require("jsonwebtoken");
 
 const searchCustomers = async (req, res) => {
   try {
@@ -78,7 +82,7 @@ const deleteCustomer = (req, res, next) => {
 //     })
 // };
 
-module.exports = {
+export {
   registerCustomer,
   deleteCustomer,
   searchCustomers,

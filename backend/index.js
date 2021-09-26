@@ -1,11 +1,24 @@
-const cors = require("cors");
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const expressValidator = require("express-validator");
+// const cors = require("cors");
+import cors from "cors";
+import express from "express"
+// const express = require("express");
+import mongoose  from "mongoose";
+// const mongoose = require("mongoose");
+import bodyParser from "body-parser";
+// const bodyParser = require("body-parser");
+import expressValidator from "express-validator";
+// const expressValidator = require("express-validator");
+
+// const customerRouter = import("./routes/customerRoutes");
+import {customerRouter} from "./routes/customerRoutes.js";
+// const userRouter = require("./routes/userRoutes");
+import {userRouter} from "./routes/userRoutes.js";
+
 
 // Saves the variables in .env file to process.env.
-require("dotenv").config();
+import * as dotenv from "dotenv";
+dotenv.config();
+// require("dotenv").config();
 
 const app = express();
 
@@ -33,9 +46,11 @@ mongoose
 
 mongoose.set("useFindAndModify", false);
 
-const userRouter = require("./routes/userRoutes");
-const customerRouter = require("./routes/customerRoutes");
+// const userRouter = require("./routes/userRoutes");
+// const customerRouter = require("./routes/customerRoutes");
 app.use("/api/user", userRouter);
 app.use("/api/customer", customerRouter);
 
-module.exports = app;
+export {
+  app
+};

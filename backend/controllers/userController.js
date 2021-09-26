@@ -1,7 +1,14 @@
-const User = require("../models/userModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { errorHandler } = require("../validators/dbErrorHandler");
+// const User = require("../models/userModel");
+import {User} from "../models/userModel.js"
+
+import * as bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import * as crpyto from "crypto";
+import * as nodemailer from "nodemailer";
+import sendgridTransport from "nodemailer-sendgrid-transport";
+
+import { errorHandler } from "../validators/dbErrorHandler.js";
+
 
 const findUserById = (req, res, id) => {
   User.findById(id).exec((err, user) => {
@@ -16,9 +23,7 @@ const findUserById = (req, res, id) => {
   });
 };
 //NodeMailer Modules + func
-const crypto = require("crypto");
-const nodemailer = require("nodemailer");
-const sendgridTransport = require("nodemailer-sendgrid-transport");
+
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
@@ -29,28 +34,39 @@ const transporter = nodemailer.createTransport(
   })
 );
 
-const registerUser = (req, res) => {
-  bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
-    if (err) {
-      res.status(403).send("Forbidden");
-    }
-    let user = new User({
-      givenName: req.body.givenName,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: hashedPass,
-    });
-    user
-      .save()
-      .then((user) => {
-        res.status(200).send("User Added Successfully!");
-      })
-      .catch((error) => {
-        res.status(400).send({
-          error: errorHandler(error),
-        });
+const registerUser = async (req, res) => {
+
+  
+  try {
+    const salt = await bcrypt.genSalt(10);
+    await bcrypt.hash(req.body.password, salt, function (err, hashedPass) {
+      if (err) {
+        res.status(403).send("Forbidden");
+      }
+      let user = new User({
+        givenName: req.body.givenName,
+        email: req.body.email,
+        phone: req.body.phone,
+        password: hashedPass,
       });
-  });
+      user
+        .save()
+        .then((user) => {
+          res.status(200).send("User Added Successfully!");
+        })
+        .catch((error) => {
+          res.status(400).send({
+            error: errorHandler(error),
+          });
+        });
+    });
+  }
+
+  catch (error){
+    console.log(error);
+  }
+
+  
 };
 const loginUser = (req, res) => {
   var username = req.body.username;
@@ -66,7 +82,7 @@ const loginUser = (req, res) => {
           }
           if (result) {
             console.log(user);
-            const token = jwt.sign({ _id: user._id }, "verysecretValue", {
+            const token = jwt.sign({_id:user._id}, "verysecretValue", {
               expiresIn: "1hr",
             });
 
@@ -148,11 +164,11 @@ const newPassword = (req,res)=>{
    })
 };
 
-module.exports = {
+export {
   registerUser, //tested
   loginUser,    //tested
   signoutUser,
   resetPassword,
   newPassword,
-  findUserById,
+  findUserById
 };
