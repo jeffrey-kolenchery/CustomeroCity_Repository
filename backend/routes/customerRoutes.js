@@ -1,13 +1,13 @@
 // const express = require("express");
-import * as express from "express"
+import * as express from 'express'
 
-import * as CustomerController from "../controllers/customerController.js"
+import * as CustomerController from '../controllers/customerController.js'
 
 // const CustomerController = require("../controllers/customerController");
-import { findUserById } from "../controllers/userController.js"
+import { findUserById } from '../controllers/userController.js'
 // const { findUserById } = require("../controllers/userController");
 // const { isAuth, requireSignin } = require("../controllers/authController");
-import { isAuth, requireSignin } from "../controllers/authController.js"
+import { isAuth, requireSignin } from '../controllers/authController.js'
 
 const customerRouter = express.Router()
 
@@ -15,12 +15,12 @@ const customerRouter = express.Router()
 // E.g. if /secret/6128965fd267fe25743bfec2 is called,
 // Because: /secret/:userId this route is getting called,
 // the callback function findUserById is being called.
-customerRouter.param("userId", findUserById)
+customerRouter.param('userId', findUserById)
 
-customerRouter.get("/test/:userId", requireSignin, isAuth, (req, res) => {
-	console.log(req.profile)
-	console.log(req.auth)
-	res.send(req.auth)
+customerRouter.get('/test/:userId', requireSignin, isAuth, (req, res) => {
+    console.log(req.profile)
+    console.log(req.auth)
+    res.send(req.auth)
 })
 
 // Sending a request to create a customer for :userId will require the request
@@ -29,22 +29,22 @@ customerRouter.get("/test/:userId", requireSignin, isAuth, (req, res) => {
 // When registering a customer for :userId, we make sure that the person sending
 // the request is logged in by that same userId.
 customerRouter.post(
-	"/registerCustomer/:userId",
-	requireSignin,
-	isAuth,
-	CustomerController.registerCustomer
+    '/registerCustomer/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.registerCustomer
 )
 customerRouter.post(
-	"/deleteCustomer/:userId",
-	requireSignin,
-	isAuth,
-	CustomerController.deleteCustomer
+    '/deleteCustomer/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.deleteCustomer
 )
 customerRouter.get(
-	"/searchCustomers/:userId",
-	requireSignin,
-	isAuth,
-	CustomerController.searchCustomers
+    '/searchCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.searchCustomers
 )
 
 // module.exports = customerRouter;
