@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start-dev": "nodemon index.js",
+    "build": "npm install && npm start",
     "start": "index.js",
     "test": "jest"
   },
