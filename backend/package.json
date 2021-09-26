@@ -21,7 +21,7 @@
   "scripts": {
     "start-dev": "nodemon index.js",
     "build": "npm install && npm start",
-    "start": "index.js",
+    "start": "node index.js",
     "test": "jest"
   },
   "keywords": [],
