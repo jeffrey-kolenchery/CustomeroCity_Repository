@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { errorHandler } = require("../validators/dbErrorHandler");
 
-const findUserById = (req, res, next, id) => {
+const findUserById = (req, res, id) => {
   User.findById(id).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport(
   })
 );
 
-const registerUser = (req, res, next) => {
+const registerUser = (req, res) => {
   bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
     if (err) {
       res.status(403).send("Forbidden");
@@ -52,7 +52,7 @@ const registerUser = (req, res, next) => {
       });
   });
 };
-const loginUser = (req, res, next) => {
+const loginUser = (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
   User.findOne({ $or: [{ email: username }, { phone: username }] }).then(
@@ -72,18 +72,18 @@ const loginUser = (req, res, next) => {
 
             // Persist the token as 't' in cookie with expiry date
             res.cookie("t", token, { expire: new Date() + 9999 });
-            res.json({
+            res.status(200).json({
               message: "Login Successful!",
               token,
             });
           } else {
-            res.json({
+            res.status(400).json({
               message: "Password does not match!",
             });
           }
         });
       } else {
-        res.json({
+        res.status(404).json({
           message: "No user found",
         });
       }
@@ -149,8 +149,8 @@ const newPassword = (req,res)=>{
 };
 
 module.exports = {
-  registerUser,
-  loginUser,
+  registerUser, //tested
+  loginUser,    //tested
   signoutUser,
   resetPassword,
   newPassword,
