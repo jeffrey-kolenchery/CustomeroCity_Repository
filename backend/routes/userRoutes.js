@@ -10,15 +10,15 @@ import * as Validator from '../validators/formValidator.js'
 const userRouter = express.Router()
 
 userRouter.post(
-    '/register',
-    Validator.signupValidator,
-    UserController.registerUser
+  '/register',
+  Validator.signupValidator,
+  UserController.registerUser
 )
 userRouter.post('/login', Validator.signinValidator, UserController.loginUser)
 userRouter.get('/signout', UserController.signoutUser)
 
 userRouter.get('/test', AuthController.requireSignin, (req, res) => {
-    res.send(req.auth)
+  res.send(req.auth)
 })
 
 userRouter.post('/resetPassword', UserController.resetPassword)

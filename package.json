@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "frontend": "cd frontend/ && npm start",
     "backend": "cd backend/ && npm start",
     "frontend-build": "cd frontend/ && npm run build",
     "backend-build": "cd backend/ && npm run build",
     "start-dev": "npm-run-all --parallel frontend backend",
-    "start": "npm-run-all --parallel frontend-build backend-build"
+    "start": "npm-run-all --parallel frontend-build backend-build",
+    "backend-test": "cd backend/ && npm test",
+    "frontend-test": "cd frontend/ && npm test",
+    "test": "npm-run-all --parallel backend-test frontend-test"
+
   },
   "repository": {
     "type": "git",
