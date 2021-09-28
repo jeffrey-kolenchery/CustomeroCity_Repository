@@ -5,13 +5,14 @@ on: push
 jobs:
     super-lint:
         name: Lint code base
-        runs-on: ubuntu-latest
+        runs-on: windows-latest
         steps: 
             - name: Checkout code
               uses: actions/checkout@v2
             
-            - name: Run Super-Linter --fix
-              uses: github/super-linter@v4
+            - name: Run Super-Linter
+              uses: github/super-linter:slim-v4
               env:
                 DEFAULT_BRANCH: main
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Run standard --fix
+              uses: github/super-linter:slim-v4

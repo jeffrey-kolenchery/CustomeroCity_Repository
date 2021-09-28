@@ -13,7 +13,7 @@
     "start": "npm-run-all --parallel frontend-build backend-build",
     "backend-test": "cd backend/ && npm test",
     "frontend-test": "cd frontend/ && npm test",
-    "test": "npm-run-all --parallel backend-test frontend-test"
+    "test": "backend-test"
 
   },
   "repository": {

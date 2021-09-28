@@ -1,25 +1,25 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true,
-    'node': true
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
   },
-  'extends': [
+  extends: [
     'eslint:recommended',
     'plugin:react/recommended'
   ],
-  'parserOptions': {
-    'ecmaFeatures': {
-      'jsx': true
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     },
-    'ecmaVersion': 12,
-    'sourceType': 'module'
+    ecmaVersion: 12,
+    sourceType: 'module'
   },
-  'plugins': [
+  plugins: [
     'react'
   ],
-  'rules': {
-    'indent': [
+  rules: {
+    indent: [
       'error',
       2
     ],
@@ -27,11 +27,11 @@ module.exports = {
       'error',
       'windows'
     ],
-    'quotes': [
+    quotes: [
       'error',
       'single'
     ],
-    'semi': [
+    semi: [
       'error',
       'never'
     ]
