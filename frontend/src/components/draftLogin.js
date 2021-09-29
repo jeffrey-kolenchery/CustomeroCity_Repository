@@ -1,45 +1,46 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import React from "react"
+import { useForm } from "react-hook-form"
 
-import { userLogin } from "../api";
+import history from '../history'
+import { userLogin } from '../api'
+import './Login.css'
 
-// Api calls
-//import { APIloginUser } from "../../../app/apiCalls";
+class UserLogin extends React.Component {
 
-function Login() {
-  return (
-    // this centers the page contents
-    <div
-      id="page-container"
-      className="container-center-horizontal red-background"
-    >
-      <div id="login__contents" className="container-center-vertical">
-        <div className="login__bottom-panel">
-          <LoginPanel />
-        </div>
-      </div>
-    </div>
-  );
+    constructor(props) {
+        super(props) 
+        this.state = {
+            username : '',
+            password : ''
+        }
+    }
+
+    handleUsernameChange = (event) => {
+        this.setState({
+            username: event.target.value
+        })
+    }
+
+    render() {
+        return (
+            // this centers the page contents
+            <div id="page-container" className="container-center-horizontal red-background" >
+                <div id="login__contents" className="container-center-vertical">
+                    <div className="login__bottom-panel">
+                        <LoginPanel />
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
-export default Login;
+export default UserLogin;
 
 // FUNCTIONAL COMPONENTS
 // Handles the Login form
 function LoginPanel() {
-  const history = useHistory();
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
 
-  // async function onSubmit(data) {
-  //   await APIloginUser(
-  //     {
-  //       email: data.email,
-  //       password: data.password,
-  //     },
-  //     history
-  //   );
-  // }
   return (
     <div className="login-panel">
       <h1 className="login-panel__heading heading">
@@ -51,6 +52,8 @@ function LoginPanel() {
         <input
           type="email"
           className="form-item"
+          value={this.state.username}
+          onChange={this.handleUsernameChange}
           name="email"
           {...register("email", { required: true })}
         />
@@ -58,6 +61,7 @@ function LoginPanel() {
         <input
           type="password"
           className="login-panel__form-item"
+          value={this.state.password}
           name="password"
           {...register("password", { required: true })}
         />
@@ -69,14 +73,14 @@ function LoginPanel() {
           Login
         </button>
       </form>
-      <Link to={"/register/"}>
+      {/* <Link to={"/register/"}>
         <div
           id="login-panel__submitbtn"
           className="login-panel__form-item subheading"
         >
           Register
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 }
