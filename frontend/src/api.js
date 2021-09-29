@@ -7,7 +7,7 @@ function userLogin(username, password) {
     const endpoint = `${BASE_URL}/user/login`
     return axios.patch(endpoint, {username, password}).then(
         (response) => {
-            console.log(response)
+            console.log("user logged in")
         },
         (error) => {
             console.log(error)
