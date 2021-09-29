@@ -64,9 +64,11 @@ a {
 .padding {
   padding: 1vh;
 }
+
 .margin-top {
   margin-top: 10px;
 }
+
 .space-around {
   justify-content: space-around;
 }
@@ -108,6 +110,7 @@ a {
 }
 
 .container-center-horizontal,
+
 .container-center-vertical {
   pointer-events: auto;
   width: 100%;
@@ -120,16 +123,19 @@ a {
   flex-direction: row;
   justify-content: center;
 }
+
 .container-center-vertical {
   flex-direction: column;
   align-content: center;
   height: 100%;
 }
+
 .login-panel {
   display: flex;
-  max-width: 40%;
   flex-direction: column;
-  max-width: 75%;
+  /* max-width: 40%; */
+  /* max-width: 75%; */
+  max-width: 30vw;
   margin-top: 7%;
   padding-top: 3%;
 }
@@ -138,9 +144,6 @@ a {
   padding-bottom: 7%;
   line-height: 20pt;
   width: 100%;
-}
-.login-panel {
-  max-width: 30vw;
 }
 
 .login__bottom-panel {
@@ -174,7 +177,9 @@ a {
 }
 
 .login-panel__form-header,
+
 .profile__panel-form-item,
+
 .register__form-header {
   margin-bottom: 3%;
 }
@@ -212,6 +217,7 @@ a {
   #login__contents {
     flex-direction: row;
   }
+  
   .login__bottom-panel {
     position: initial;
     bottom: initial;

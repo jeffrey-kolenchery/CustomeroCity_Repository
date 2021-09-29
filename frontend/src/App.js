@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import styled from "styled-components";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import draftLogin from "./components/draftLogin"
 //add thomas part here
 
 class App extends Component {
@@ -14,9 +15,9 @@ class App extends Component {
           <div className = "container-fluid">
             <BrowserRouter>
               <Switch>
-                <Route path = "/" component={SignUp} />
-                <Route path = "/SignUp" component={SignUp} />
-                <Route path="/login" component={Login} />
+                <Route exact path = "/" component={SignUp} />
+                <Route exact path = "/SignUp" component={SignUp} />
+                <Route exact path="/login" component={draftLogin} />
               </Switch>
             </BrowserRouter>
           </div>

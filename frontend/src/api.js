@@ -4,14 +4,14 @@ import axios from "axios"
 var BASE_URL = "http://localhost:5000/api"
 
 function userLogin(username, password) {
-    const endpoint = `${BASE_URL}/login`
+    const endpoint = `${BASE_URL}/user/login`
     return axios.patch(endpoint, {username, password}).then(
         (response) => {
             console.log(response)
         },
         (error) => {
-            alert("enter valid username and password")
             console.log(error)
+            alert("enter valid username and password")
         }
     )
 }
