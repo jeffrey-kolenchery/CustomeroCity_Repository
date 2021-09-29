@@ -1,34 +1,34 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 //import logo from ".assets/logo.svg";
-import Input from "./Input";
+import Input from './Input'
 
 const SignUp = () => {
-  return (
-    <Container>
-      <LogoWrapper>
-        <h3>
+    return (
+        <Container>
+            <LogoWrapper>
+                <h3>
           CRM Tools
-        </h3>
-        <hr></hr>
-        <button onClick="window.location.href='https://w3docs.com';"> Login </button>
+                </h3>
+                <hr></hr>
+                <button onClick="window.location.href='https://w3docs.com';"> Login </button>
         
-      </LogoWrapper>
-      <img class="bottomRight" src="signup.png" height="220px" width="560px" style={{position: "absolute", bottom: 0, right: 0}} alt="signUpPic" />
-      <BoxContainer>
-        <Form>
-          <h3>Sign Up</h3>
-          <Input placeholder="Full Name" />
-          <Input type="email" placeholder="Email" />
-          <Input type="phonenumber" placeholder="Phone Number" />
-          <Input type="password" placeholder="Password" />
-          <Input type="password" placeholder="Confirm Password" />
-          <button>Sign Up</button>
-        </Form>
-      </BoxContainer>
-    </Container>
-  );
-};
+            </LogoWrapper>
+            <img className="bottomRight" src="signup.png" height="220px" width="560px" style={{position: 'absolute', bottom: 0, right: 0}} alt="signUpPic" />
+            <BoxContainer>
+                <Form>
+                    <h3>Sign Up</h3>
+                    <Input placeholder="Full Name" />
+                    <Input type="email" placeholder="Email" />
+                    <Input type="phonenumber" placeholder="Phone Number" />
+                    <Input type="password" placeholder="Password" />
+                    <Input type="password" placeholder="Confirm Password" />
+                    <button>Sign Up</button>
+                </Form>
+            </BoxContainer>
+        </Container>
+    )
+}
 
 const Form = styled.form`
   width: 100%;
@@ -60,7 +60,7 @@ const Form = styled.form`
       transform: translateY(-3px);
     }
   }
-`;
+`
 
 const BoxContainer = styled.div`
   width: 506px;
@@ -75,7 +75,7 @@ const BoxContainer = styled.div`
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
-`;
+`
 
 const LogoWrapper = styled.div`
   img {
@@ -118,7 +118,7 @@ const LogoWrapper = styled.div`
       transform: translateY(-3px);
     }
   }
-`;
+`
 
 const Container = styled.div`
   min-width: 400px;
@@ -146,6 +146,6 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
-`;
+`
 
-export default SignUp;
+export default SignUp

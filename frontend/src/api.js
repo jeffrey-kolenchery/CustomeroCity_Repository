@@ -1,17 +1,18 @@
-import axios from "axios"
+import axios from 'axios'
 // import history from "./history"
 
-var BASE_URL = "https://customerocity.herokuapp.com/api"
+var BASE_URL = 'https://customerocity.herokuapp.com/api'
 
-function userLogin(username, password) {
+async function userLogin(username, password) {
     const endpoint = `${BASE_URL}/user/login`
-    return axios.patch(endpoint, {username, password}).then(
+    return await axios.patch(endpoint, {username, password}).then(
+        // eslint-disable-next-line no-unused-vars
         (response) => {
-            console.log("user logged in")
+            console.log('user logged in')
         },
         (error) => {
             console.log(error)
-            alert("enter valid username and password")
+            alert('enter valid username and password')
         }
     )
 }

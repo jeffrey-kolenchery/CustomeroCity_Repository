@@ -1,19 +1,20 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
+// eslint-disable-next-line react/prop-types
 const Input = ({ type, placeholder }) => {
-  return (
-    <Container>
-      <StyledInput
-        placeholder={placeholder && placeholder}
-        type={type ? type : "text"}
-        required
-        autocomplete="off"
-      />
-      <Status />
-    </Container>
-  );
-};
+    return (
+        <Container>
+            <StyledInput
+                placeholder={placeholder && placeholder}
+                type={type ? type : 'text'}
+                required
+                autocomplete="off"
+            />
+            <Status />
+        </Container>
+    )
+}
 
 const StyledInput = styled.input`
   width: 80%;
@@ -27,13 +28,13 @@ const StyledInput = styled.input`
   border-radius: 8px;
   padding: 0 1rem;
   transition: all 0.2s ease-in;
-`;
+`
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const Status = styled.div`
   height: 10px;
@@ -50,6 +51,6 @@ const Status = styled.div`
   ${StyledInput}:valid + & {
     background: #70edb9;
   }
-`;
+`
 
-export default Input;
+export default Input
