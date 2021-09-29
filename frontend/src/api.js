@@ -1,7 +1,7 @@
 import axios from "axios"
 // import history from "./history"
 
-var BASE_URL = "http://localhost:5000/api"
+var BASE_URL = "https://customerocity.herokuapp.com/api"
 
 function userLogin(username, password) {
     const endpoint = `${BASE_URL}/user/login`
