@@ -7,12 +7,9 @@ import './Login.css'
 
 class UserLogin extends React.Component {
 
-    constructor(props) {
-        super(props) 
-        this.state = {
-            username : '',
-            password : ''
-        }
+    state = {
+        username : '',
+        password : ''
     }
 
     handleUsernameChange = (event) => {
@@ -29,8 +26,9 @@ class UserLogin extends React.Component {
 
     handleSubmitButton = (event) => {
         try {
-            userLogin(event.target.username, event.target.password)
+            userLogin(this.state.username, this.state.password)
             console.log("user attempted to log in")
+            // history.push("/user/register")
         }
         catch (error) {
             console.log("user login failed")
