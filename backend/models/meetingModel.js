@@ -1,0 +1,33 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
+
+const meetingSchema = new Schema({
+  location: {
+    type: "Point",
+    coordinates: [0, 0],
+  },
+  calendar: {
+    type: ObjectId,
+    ref: "Calendar",
+    required: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  user: {
+    type: ObjectId,
+    ref: "User",
+    required: true,
+  },
+  user: {
+    type: ObjectId,
+    ref: "Customer",
+    required: true,
+  },
+  expireToken: Date,
+});
+
+const Meeting = mongoose.model("meetings", meetingSchema);
+module.exports = Meeting;
