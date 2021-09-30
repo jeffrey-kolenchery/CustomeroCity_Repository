@@ -5,11 +5,11 @@ const { ObjectId } = mongoose.Schema;
 const calendarSchema = new Schema({
   user: {
     type: ObjectId,
-    ref: "Customer",
+    ref: "User",
     required: true,
   },
   expireToken: Date,
 });
 
-const Calendar = mongoose.model("Calendars", calendarSchema);
+const Calendar = mongoose.model("calendars", calendarSchema);
 module.exports = Calendar;
