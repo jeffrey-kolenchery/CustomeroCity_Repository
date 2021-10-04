@@ -2,9 +2,9 @@
 import React, {Component} from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom' 
 import styled from 'styled-components'
-import SignUp from './components/SignUp'
-import Login from './components/Login'
-import draftLogin from './components/draftLogin'
+import SignUp from './components/SignUp.js'
+import Login from './components/Login.js'
+import UserLogin from './components/draftLogin.js'
 //add thomas part here
 
 class App extends Component {
@@ -17,8 +17,8 @@ class App extends Component {
                         <BrowserRouter>
                             <Switch>
                                 <Route exact path = "/" component={SignUp} />
-                                <Route exact path = "/SignUp" component={SignUp} />
-                                <Route exact path="/login" component={draftLogin} />
+                                <Route exact path = "/signup" component={SignUp} />
+                                <Route exact path="/login" component={UserLogin} />
                             </Switch>
                         </BrowserRouter>
                     </div>

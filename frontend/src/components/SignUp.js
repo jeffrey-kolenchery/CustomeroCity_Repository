@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import {Container, LogoWrapper, BoxContainer, InputContainer, Form, StyledInput} from './SignUp-styling'
@@ -5,40 +6,65 @@ import {Container, LogoWrapper, BoxContainer, InputContainer, Form, StyledInput}
 import { userSignUp } from '../api'
 // import history from '../history'
 
-class signUp extends React.Component {
+class SignUp extends React.Component {
+
+
+
+    state = {
+        givenName : "",
+        email : "",
+        phone : "",
+        password : ""
+    }
 
   handleLoginButton = () => {
       window.location.assign('/login')
   }
 
-  onSubmit = (data) => {
+  dataForming = (data) => {
+      this.setState(
+          {
+              givenName : data.givenName,
+              email : data.email,
+              phone : data.phone,
+              password : data.password
+          }
+      )
+      console.log(typeof(data.phone))
+  }
+
+  onSubmit = () => {
       try {
-          userSignUp(data)
+          userSignUp(this.state)
       
       } catch (error) {
-          console.log('user login failed')
+          console.log('user signup failed')
           console.log(error)
       }
   }
-
 
   signUpPanel = () => {
 
       const { register, handleSubmit, formState: {errors} } = useForm()
 
       return (
-          <Form onSubmit={handleSubmit(this.onSubmit)}>
+          <Form 
+              onSubmit = {handleSubmit((data) => {
+                  this.dataForming(data)
+                  this.onSubmit()
+              })}
+          >
               <h3>Sign Up</h3><InputContainer>
-                  <StyledInput type="fullName" placeholder="Full Name" {...register('givenName', { required: true })} />
+                  <StyledInput type="fullName" placeholder="Full Name" {...register("givenName", { required: true })} />
+                  {errors.givenName && <p>This field is required</p>}
+              </InputContainer><InputContainer>
+                  <StyledInput type="email" placeholder="Email" {...register("email", { required: true })} />
                   {errors.email && <p>This field is required</p>}
               </InputContainer><InputContainer>
-                  <StyledInput type="email" placeholder="Email" {...register('email', { required: true })} />
-                  {errors.email && <p>This field is required</p>}
-              </InputContainer><InputContainer>
-                  <StyledInput type="phonenumber" placeholder="Phone Number" {...register('phone', { required: true })} />
+                  <StyledInput type="phonenumber" placeholder="Phone Number" {...register("phone", { required: true })} />
                   {errors.phone && <p>This field is required</p>}
               </InputContainer><InputContainer>
-                  <StyledInput type="password" placeholder="Password" {...register('password', { required: true })} />
+                  <StyledInput type="password" placeholder="Password" {...register("password", { required: true })} />
                   {errors.password && <p>This field is required</p>}
               </InputContainer>
               <button type="submit">Sign Up</button>
@@ -70,4 +96,4 @@ class signUp extends React.Component {
 }
 
 
-export default signUp
+export default SignUp

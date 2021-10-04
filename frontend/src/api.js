@@ -22,7 +22,7 @@ async function userLogin(username, password) {
 
 async function userSignUp(data) {
     console.log(data)
-    const endpoint = `${BASE_URL}/user/signup`
+    const endpoint = `${BASE_URL}/user/register`
     return await axios.post(endpoint, data).then(
         (response) => {
             console.log('user signed up')
@@ -30,7 +30,7 @@ async function userSignUp(data) {
         },
         (error) => {
             console.log(error)
-            alert('enter valid lol and password')
+            alert('enter valid data in fields')
         }
     )
 }

@@ -54,9 +54,9 @@ const registerUser = async (req, res) => {
                 .catch((error) => {
                     res.status(400).send(
                         'not able to add user for some error pls check dbErrorHandlin.js'
-                        //   {
-                        //   error: errorHandler(error),
-                        // }
+                    //   {
+                    //   error: errorHandler(error),
+                    // }
                     )
                 })
         })
@@ -77,7 +77,6 @@ const loginUser = (req, res) => {
                         })
                     }
                     if (result) {
-                        console.log(user)
                         const token = jwt.sign({ _id: user._id }, 'verysecretValue', {
                             expiresIn: '1hr',
                         })

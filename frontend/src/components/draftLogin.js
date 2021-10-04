@@ -1,7 +1,7 @@
 import React from 'react'
 // import { useForm } from "react-hook-form"
 
-import history from '../history'
+// import history from '../history'
 import { userLogin } from '../api'
 import './Login.css'
 
@@ -16,18 +16,23 @@ class UserLogin extends React.Component {
 
     handleUsernameChange = (event) => {
         this.setState({
-            username: event.target.value
+            username: event.value
         })
     }
 
     handlePasswordChange = (event) => {
         this.setState({
-            password: event.target.value
+            password: event.value
         })
+    }
+
+    preventDefault = () => {
+        
     }
 
     handleSubmitButton = () => {
         try {
+            this.preventDefault()
             userLogin(this.state.username, this.state.password)
             console.log('user attempted to log in')
             // history.push("/user/register")
@@ -53,7 +58,7 @@ class UserLogin extends React.Component {
                             type="email"
                             className="form-item"
                             onChange={this.handleUsernameChange}
-                            value={this.state.username}
+                            // value={this.state.username}
                             name="email"
                         />
                     </div>
@@ -63,7 +68,7 @@ class UserLogin extends React.Component {
                             type="password"
                             className="login-panel__form-item"
                             onChange={this.handlePasswordChange}
-                            value={this.state.password}
+                            // value={this.state.password}
                             name="password"
                         />
                     </div>
