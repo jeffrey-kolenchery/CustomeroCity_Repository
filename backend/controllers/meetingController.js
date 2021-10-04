@@ -1,26 +1,28 @@
 const Meeting = require("../models/meetingModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
-const createMeeting = (req, res, next) => {
+const createMeeting = async (req, res, next) => {
+  // Get time.
+  console.log(req.body.year);
+  const doo = new Date(`${req.body.year}-${req.body.month}-${req.body.day}`);
+  const date = new Date(
+    doo.getTime() + Math.abs(doo.getTimezoneOffset() * 60000)
+  );
+  // Create new meeting.
   let meeting = new Meeting({
-    givenName: req.body.givenName,
-    designation: req.body.designation,
-    company: req.body.comapany,
-    email: req.body.email,
-    age: req.body.age,
-    phoneNo: req.body.phoneNo,
-    interests: req.body.interests,
+    loc: req.body.location,
+    calendar: req.calendar,
+    date: date,
     user: req.profile._id,
+    customer: req.params.customerId,
   });
-  customer
-    .save()
-    .then((customer) => {
-      res.status(200).send("Customer Added Successfully!");
-    })
-    .catch((error) => {
-      res.status(400).send("An error occured!");
-    });
+
+  // Save to database.
+  try {
+    const meet = await meeting.save();
+    res.send(meet);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = {

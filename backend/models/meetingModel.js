@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 const { ObjectId } = mongoose.Schema;
 
 const meetingSchema = new Schema({
-  location: {
-    type: "Point",
-    coordinates: [0, 0],
+  loc: {
+    type: Array,
+    required: true,
   },
   calendar: {
     type: ObjectId,
@@ -22,6 +22,11 @@ const meetingSchema = new Schema({
     required: true,
   },
   user: {
+    type: ObjectId,
+    ref: "Customer",
+    required: true,
+  },
+  customer: {
     type: ObjectId,
     ref: "Customer",
     required: true,

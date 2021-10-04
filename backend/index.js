@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(expressValidator());
 app.use(cors());
 
-
 //connection string -> mongodb+srv://<username>:<password>@comp30022.5hadw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@comp30022.5hadw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 //const CONNECTION_URL = `mongodb://localhost:27017/testdb`;
@@ -35,7 +34,10 @@ mongoose.set("useFindAndModify", false);
 
 const userRouter = require("./routes/userRoutes");
 const customerRouter = require("./routes/customerRoutes");
+const meetingRouter = require("./routes/meetingRouter");
+
 app.use("/api/user", userRouter);
 app.use("/api/customer", customerRouter);
+app.use("/api/meeting", meetingRouter);
 
 module.exports = app;
