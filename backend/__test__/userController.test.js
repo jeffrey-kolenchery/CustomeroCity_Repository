@@ -64,7 +64,7 @@ describe(`Registering ${TEST_USER_GIVEN_NAME}'s new account using registerUser()
         } catch (e) {}
     })
 
-    // afterAll(cleanup);
+    // afterAll(cleanup)
 })
 
 const logInReq = {

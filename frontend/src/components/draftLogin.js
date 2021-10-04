@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 // import { useForm } from "react-hook-form"
 
 import history from '../history'
@@ -8,7 +8,8 @@ import './Login.css'
 class UserLogin extends React.Component {
 
 
-    state = {
+    //eslint 
+    state={
         username : '',
         password : ''
     }
@@ -25,14 +26,14 @@ class UserLogin extends React.Component {
         })
     }
 
-    handleSubmitButton = (event) => {
+    handleSubmitButton = () => {
         try {
             userLogin(this.state.username, this.state.password)
-            console.log("user attempted to log in")
+            console.log('user attempted to log in')
             // history.push("/user/register")
         }
         catch (error) {
-            console.log("user login failed")
+            console.log('user login failed')
             console.log(error)
         }
     }
@@ -40,42 +41,42 @@ class UserLogin extends React.Component {
     LoginPanel = () => {
 
         return (
-          <div className="login-panel">
-              <h1 className="login-panel__heading heading">
-                  <span>Please enter your details</span>
-              </h1>
+            <div className="login-panel">
+                <h1 className="login-panel__heading heading">
+                    <span>Please enter your details</span>
+                </h1>
       
-              <form className="login-panel__form">
-                  <div> 
-                      <label className="login-panel__form-header normaltext">Email: </label>
-                      <input
-                          type="email"
-                          className="form-item"
-                          onChange={this.handleUsernameChange}
-                          value={this.state.username}
-                          name="email"
-                      />
-                  </div>
-                  <div>
-                      <label className="login-panel__form-header normaltext">Password: </label>
-                      <input
-                          type="password"
-                          className="login-panel__form-item"
-                          onChange={this.handlePasswordChange}
-                          value={this.state.password}
-                          name="password"
-                      />
-                  </div>
-                  <button
-                  type="submit"
-                  id="login-panel__submitbtn"
-                  className="login-panel__form-item subheading"
-                  onClick = {this.handleSubmitButton}
-                  >
+                <form className="login-panel__form">
+                    <div> 
+                        <label className="login-panel__form-header normaltext">Email: </label>
+                        <input
+                            type="email"
+                            className="form-item"
+                            onChange={this.handleUsernameChange}
+                            value={this.state.username}
+                            name="email"
+                        />
+                    </div>
+                    <div>
+                        <label className="login-panel__form-header normaltext">Password: </label>
+                        <input
+                            type="password"
+                            className="login-panel__form-item"
+                            onChange={this.handlePasswordChange}
+                            value={this.state.password}
+                            name="password"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        id="login-panel__submitbtn"
+                        className="login-panel__form-item subheading"
+                        onClick = {this.handleSubmitButton}
+                    >
                   Login
-                  </button>
-              </form>
-              {/* <Link to={"/register/"}>
+                    </button>
+                </form>
+                {/* <Link to={"/register/"}>
               <div
                 id="login-panel__submitbtn"
                 className="login-panel__form-item subheading"
@@ -83,9 +84,9 @@ class UserLogin extends React.Component {
                 Register
               </div>
               </Link> */}
-          </div>
-        );
-      }
+            </div>
+        )
+    }
 
     render() {
         return (
@@ -102,4 +103,4 @@ class UserLogin extends React.Component {
 }
 
 
-export default UserLogin;
+export default UserLogin

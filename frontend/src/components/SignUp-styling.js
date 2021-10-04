@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 export const Form = styled.form`
   width: 100%;
   display: flex;
@@ -29,7 +29,7 @@ export const Form = styled.form`
       transform: translateY(-3px);
     }
   }
-`;
+`
 
 export const BoxContainer = styled.div`
   width: 506px;
@@ -44,7 +44,7 @@ export const BoxContainer = styled.div`
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
-`;
+`
 
 export const LogoWrapper = styled.div`
   img {
@@ -87,7 +87,7 @@ export const LogoWrapper = styled.div`
       transform: translateY(-3px);
     }
   }
-`;
+`
 
 export const Container = styled.div`
   min-width: 400px;
@@ -115,7 +115,7 @@ export const Container = styled.div`
       cursor: pointer;
     }
   }
-`;
+`
 
 export const StyledInput = styled.input`
   width: 80%;
@@ -129,13 +129,13 @@ export const StyledInput = styled.input`
   border-radius: 8px;
   padding: 0 1rem;
   transition: all 0.2s ease-in;
-`;
+`
 
 export const InputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const Status = styled.div`
   height: 10px;
@@ -152,7 +152,7 @@ export const Status = styled.div`
   ${StyledInput}:valid + & {
     background: #70edb9;
   }
-`;
+`
 
 
 
