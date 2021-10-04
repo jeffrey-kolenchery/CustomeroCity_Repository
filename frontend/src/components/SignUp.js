@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form'
 import {Container, LogoWrapper, BoxContainer, InputContainer, Form, StyledInput} from './SignUp-styling'
 
 import { userSignUp } from '../api'
-import history from '../history'
+// import history from '../history'
 
 class signUp extends React.Component {
 
   handleLoginButton = () => {
-      history.push('/login')
+      window.location.assign('/login')
   }
 
   onSubmit = (data) => {
