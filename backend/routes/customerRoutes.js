@@ -1,15 +1,13 @@
-const express = require("express");
-const customerRouter = express.Router();
+// const express = require("express");
+import * as express from 'express'
 
-const CustomerController = require("../controllers/customerController");
-const { findUserById } = require("../controllers/userController");
-const { isAuth, requireSignin } = require("../controllers/authController");
-const {
-  findCalendarById,
-  createCalendar,
-} = require("../controllers/calendarController");
+import * as CustomerController from '../controllers/customerController.js' 
+import { findUserById } from '../controllers/userController.js'
+import { isAuth, requireSignin } from '../controllers/authController.js'
+import { findCalendarById, createCalendar } from "../controllers/calendarController"
+import {createMeeting } from "../controllers/meetingController"
 
-const { createMeeting } = require("../controllers/meetingController");
+const customerRouter = express.Router()
 
 // Calls callback function every time "userId" is in the parameter.
 // E.g. if /secret/6128965fd267fe25743bfec2 is called,
@@ -24,22 +22,23 @@ customerRouter.param("userId", findCalendarById);
 // When registering a customer for :userId, we make sure that the person sending
 // the request is logged in by that same userId.
 customerRouter.post(
-  "/registerCustomer/:userId",
-  requireSignin,
-  isAuth,
-  CustomerController.registerCustomer
-);
+    '/registerCustomer/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.registerCustomer
+)
 customerRouter.post(
-  "/deleteCustomer/:userId",
-  requireSignin,
-  isAuth,
-  CustomerController.deleteCustomer
-);
+    '/deleteCustomer/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.deleteCustomer
+)
 customerRouter.get(
-  "/searchCustomers/:userId",
-  requireSignin,
-  isAuth,
-  CustomerController.searchCustomers
-);
+    '/searchCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.searchCustomers
+)
 
-module.exports = customerRouter;
+// module.exports = customerRouter;
+export { customerRouter }
