@@ -1,28 +1,32 @@
-import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import styled from "styled-components";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
+/* eslint-disable no-unused-vars */
+import React, {Component} from 'react'
+import {BrowserRouter, Switch, Route} from 'react-router-dom' 
+import styled from 'styled-components'
+import SignUp from './components/SignUp.js'
+import Login from './components/Login.js'
+import UserLogin from './components/draftLogin.js'
 //add thomas part here
 
 class App extends Component {
-  render() {
-    return (
-      <Container>
-        <Wrapper>
-          <div className="container-fluid">
-            <BrowserRouter>
-              <Switch>
-                {/* <Route path = "/" component={SignUp} /> */}
-                {/* <Route path = "/SignUp" component={SignUp} /> */}
-                <Route path="/login" component={Login} />
-              </Switch>
-            </BrowserRouter>
-          </div>
-        </Wrapper>
-      </Container>
-    );
-  }
+  
+    render() {
+        return (
+            <Container>
+                <Wrapper>
+                    <div className = "container-fluid">
+                        <BrowserRouter>
+                            <Switch>
+                                <Route exact path = "/" component={SignUp} />
+                                <Route exact path = "/signup" component={SignUp} />
+                                <Route exact path="/login" component={UserLogin} />
+                            </Switch>
+                        </BrowserRouter>
+                    </div>
+                </Wrapper>
+            </Container>
+      
+        )
+    }
 }
 
 const Container = styled.div`
@@ -32,7 +36,7 @@ const Container = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-`;
+`
 const Wrapper = styled.div`
   background-position: center;
   background-size: cover;
@@ -40,6 +44,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-`;
+`
 
-export default App;
+export default App

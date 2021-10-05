@@ -1,3 +1,5 @@
+[![GitHub Super-Linter](https://github.com/jeffrey-kolenchery/IT-PROJECT-TEAM-50/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 # IT-PROJECT-TEAM-50
 Initiation Process:
 1) Ensure you have NPM installed

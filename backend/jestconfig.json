@@ -1,0 +1,13 @@
+{
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+        "<rootDir>/dist/",
+        "<rootDir>/node_modules/",
+        "<rootDir>/controllers/",
+        "<rootDir>/models/",
+        "<rootDir>/routes/",
+        "<rootDir>/validators/"
+    ],
+    "verbose": true
+}
