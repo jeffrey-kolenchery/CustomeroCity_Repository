@@ -8,6 +8,7 @@ import * as AuthController from '../controllers/authController.js'
 import * as Validator from '../validators/formValidator.js'
 
 const userRouter = express.Router()
+//prefix /api/user
 
 userRouter.post(
     '/register',
@@ -21,8 +22,8 @@ userRouter.get('/test', AuthController.requireSignin, (req, res) => {
     res.send(req.auth)
 })
 
-userRouter.post('/resetPassword', UserController.resetPassword)
-userRouter.post('/newPassword', UserController.newPassword)
+userRouter.post('/resetpassword', UserController.resetPassword)
+userRouter.post('/newpassword', UserController.newPassword)
 
 // module.exports = userRouter;
 export { userRouter }

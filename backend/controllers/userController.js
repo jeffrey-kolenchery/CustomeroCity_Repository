@@ -105,9 +105,11 @@ const loginUser = (req, res) => {
 const signoutUser = (req, res) => {
     // Clear token cookie.
     res.clearCookie('t')
+    res.status(200)
     res.json({ message: 'Signout success' })
 }
 
+// >>>>>>>>>>>>> remember to change email from sanskar to something else + change from local host to herokuapp
 const resetPassword = (req, res) => {
     crypto.randomBytes(32, (err, buffer) => {
         if (err) {
@@ -159,6 +161,10 @@ const newPassword = (req, res) => {
             console.log(err)
         })
 }
+
+// const editProfile = (req, res) => {
+
+// }
 
 export {
     registerUser, // tested

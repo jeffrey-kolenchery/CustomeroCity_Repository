@@ -26,6 +26,7 @@ const registerCustomer = (req, res, next) => {
         phoneNo: req.body.phoneNo,
         interests: req.body.interests,
         user: req.profile._id,
+        visitCount : 0,
     })
     customer
         .save()
@@ -51,36 +52,44 @@ const deleteCustomer = (req, res, next) => {
         res.status(404).send('customer does not exist in database')
     }
 }
-//     var username = req.body.username;
-//     var password = req.body.password;
 
-//     User.findOne({$or: [{email:username}, {phone: username}]})
-//     .then(user => {
-//         if(user){
-//             bcrypt.compare(password, user.password, function(err, result) {
-//                 if(err) {
-//                     res.json({
-//                         error: err
-//                     })
-//                 }
-//                 if(result) {
-//                     let token = jwt.sign({name: user.name}, 'verysecretValue', {expiresIn: '1hr'})
-//                     res.json({
-//                         message: 'Login Successful!',
-//                         token
-//                     })
-//                 }else {
-//                     res.json({
-//                         message: 'Password does not match!',
-//                     })
-//                 }
-//             })
-//         } else{
-//             res.json({
-//                 message: 'No user found'
-//             })
-//         }
-//     })
-// };
+const editCustomer = (req,res,next) => {
+    const customerId = req.body.customerId
 
-export { registerCustomer, deleteCustomer, searchCustomers }
+    const resultCustomer = Customer.findById(customerId)
+
+    try {
+
+        Customer.findByIdAndUpdate(customerId,
+            {
+                givenName: req.body.givenName,
+                designation: req.body.designation,
+                company: req.body.comapany,
+                email: req.body.email,
+                age: req.body.age,
+                phoneNo: req.body.phoneNo,
+                interests: req.body.interests,
+                visitCount: resultCustomer.visitCount + 1
+            },
+            function (err, docs) {
+                if (err) {
+                    console.log(err)
+                }
+                else {
+                    res.send('Updated customer: ', docs)
+                }
+            })
+
+    }
+    catch(e) {
+        res.status(404).send('Customer doesnt exist on server')
+    }
+    
+}
+
+export {
+    registerCustomer, 
+    deleteCustomer, 
+    searchCustomers, 
+    editCustomer
+}

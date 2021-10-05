@@ -39,6 +39,10 @@ const customerSchema = new Schema({
         ref: 'User',
         required: true,
     },
+    visitCount: {
+        type: Number,
+        required: true
+    }
 })
 
 const Customer = mongoose.model('customers', customerSchema)

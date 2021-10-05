@@ -1,13 +1,9 @@
-// const express = require("express");
 import * as express from 'express'
 
 import * as CustomerController from '../controllers/customerController.js'
 
 
-// const CustomerController = require("../controllers/customerController");
 import { findUserById } from '../controllers/userController.js'
-// const { findUserById } = require("../controllers/userController");
-// const { isAuth, requireSignin } = require("../controllers/authController");
 import { isAuth, requireSignin } from '../controllers/authController.js'
 
 const customerRouter = express.Router()
@@ -17,6 +13,8 @@ const customerRouter = express.Router()
 // Because: /secret/:userId this route is getting called,
 // the callback function findUserById is being called.
 customerRouter.param('userId', findUserById)
+
+// prefix /api/customer
 
 customerRouter.get('/test/:userId', requireSignin, isAuth, (req, res) => {
     console.log(req.profile)
@@ -30,23 +28,32 @@ customerRouter.get('/test/:userId', requireSignin, isAuth, (req, res) => {
 // When registering a customer for :userId, we make sure that the person sending
 // the request is logged in by that same userId.
 customerRouter.post(
-    '/registerCustomer/:userId',
+    '/registercustomer/:userId',
     requireSignin,
     isAuth,
     CustomerController.registerCustomer
 )
 customerRouter.post(
-    '/deleteCustomer/:userId',
+    '/deletecustomer/:userId',
     requireSignin,
     isAuth,
     CustomerController.deleteCustomer
 )
 customerRouter.get(
-    '/searchCustomers/:userId',
+    '/searchcustomers/:userId',
     requireSignin,
     isAuth,
     CustomerController.searchCustomers
 )
+
+customerRouter.patch(
+    '/updatecustomer/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.editCustomer
+)
+
+
 
 // module.exports = customerRouter;
 export { customerRouter }

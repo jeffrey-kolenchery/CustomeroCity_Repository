@@ -11,7 +11,7 @@ async function userLogin(username, password) {
         (response) => {
             console.log('user logged in')
             console.log(response)
-            window.location.assign('/')
+            // window.location.assign('/')
         },
         (error) => {
             console.log(error)
@@ -21,7 +21,6 @@ async function userLogin(username, password) {
 }
 
 async function userSignUp(data) {
-    console.log(data)
     const endpoint = `${BASE_URL}/user/register`
     return await axios.post(endpoint, data).then(
         (response) => {
@@ -35,7 +34,96 @@ async function userSignUp(data) {
     )
 }
 
+async function userSignOut() {
+    const endpoint = `${BASE_URL}/user/signout`
+    return await axios.get(endpoint).then(
+        (response) => {
+            console.log('user signed out')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+        }
+    )
+}
+
+async function userResetPassword(data) {
+    const endpoint = `${BASE_URL}/user/resetpassword`
+    return await axios.post(endpoint, data).then(
+        (response) => {
+            console.log('reset password link sent to user')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+            alert('email doesnt exist in server')
+        }
+    )
+}
+
+async function userNewPassword(data) {
+    const endpoint = `${BASE_URL}/user/newpassword`
+    return await axios.post(endpoint, data).then(
+        (response) => {
+            console.log('Password successfully rest')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+            alert('Password has not been rest')
+        }
+    )
+}
+
+async function customerCreate(data) {
+    const endpoint = `${BASE_URL}/customer/registercustomer/:userId`
+    return await axios.post(endpoint, data).then(
+        (response) => {
+            console.log('Customer successfully created')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+            alert('Enter all required fields with valid data')
+        }
+    )
+}
+
+async function customerDelete(data) {
+    const endpoint = `${BASE_URL}/customer/deletecustomer/:userId`
+    return await axios.post(endpoint, data).then(
+        (response) => {
+            console.log('Customer successfully deleted')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+            alert('Customer does not exist in database')
+        }
+    )
+}
+
+async function customerSearch(data) {
+    const endpoint = `${BASE_URL}/customer/searchcustomers/:userId`
+    return await axios.get(endpoint, data).then(
+        (response) => {
+            console.log('Customer search returned')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+        }
+    )
+}
+
+
 export {
     userLogin,
-    userSignUp
+    userSignUp,
+    userSignOut,
+    userResetPassword,
+    userNewPassword,
+    customerCreate,
+    customerDelete,
+    customerSearch
 }
