@@ -2,7 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+<<<<<<< HEAD
 import "./Login.css";
+=======
+
+import { userLogin } from "../api";
+
+>>>>>>> 675d0b56d6d7cff73cee440b409600a94a228b35
 // Api calls
 //import { APIloginUser } from "../../../app/apiCalls";
 

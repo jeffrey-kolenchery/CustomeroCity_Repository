@@ -40,7 +40,7 @@ const registerUser = (req, res, next) => {
 const loginUser = (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
-  User.findOne({ $or: [{ email: username }, { phone: username }] }).then(
+  User.findOne({ $or: [{ email: username }, { phone: username }] }).then( //change to only email
     (user) => {
       if (user) {
         bcrypt.compare(password, user.password, function (err, result) {
