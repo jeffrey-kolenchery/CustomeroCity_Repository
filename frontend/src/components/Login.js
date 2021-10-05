@@ -2,21 +2,26 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-
+import "./Login.css";
 // Api calls
 //import { APIloginUser } from "../../../app/apiCalls";
 
 function Login() {
   return (
     // this centers the page contents
-    <div
-      id="page-container"
-      className="container-center-horizontal red-background"
-    >
-      <div id="login__contents" className="container-center-vertical">
-        <div className="login__bottom-panel">
-          <LoginPanel />
-        </div>
+    <div id="page-container" className="container">
+      <div id="login__contents" className="header">
+        Header {/* <div className="login__bottom-panel"><LoginPanel /></div> */}
+      </div>
+      <div className="containter-vertical-left">
+        <div className="largeheading">Online Adress Book</div>
+        <img
+          src="https://images.pexels.com/photos/5676744/pexels-photo-5676744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          className="image-1"
+        ></img>
+      </div>
+      <div className="containter-vertical">
+        <LoginPanel />
       </div>
     </div>
   );

@@ -1,28 +1,26 @@
-import React, {Component} from "react";
-import {BrowserRouter, Switch, Route} from 'react-router-dom'; 
+import React, { Component } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 //add thomas part here
 
 class App extends Component {
-  
   render() {
     return (
       <Container>
         <Wrapper>
-          <div className = "container-fluid">
+          <div className="container-fluid">
             <BrowserRouter>
               <Switch>
-                <Route path = "/" component={SignUp} />
-                <Route path = "/SignUp" component={SignUp} />
+                {/* <Route path = "/" component={SignUp} /> */}
+                {/* <Route path = "/SignUp" component={SignUp} /> */}
                 <Route path="/login" component={Login} />
               </Switch>
             </BrowserRouter>
           </div>
         </Wrapper>
-     </Container>
-      
+      </Container>
     );
   }
 }
