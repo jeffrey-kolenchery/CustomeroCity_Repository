@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import SignUp from './components/SignUp.js'
 import Login from './components/Login.js'
 import UserLogin from './components/draftLogin.js'
+import UserProfile from './components/UserProfile.js'
 //add thomas part here
 
 class App extends Component {
@@ -16,9 +17,10 @@ class App extends Component {
                     <div className = "container-fluid">
                         <BrowserRouter>
                             <Switch>
-                                <Route exact path = "/" component={SignUp} />
+                                <Route exact path = "/" component={Login} />
                                 <Route exact path = "/signup" component={SignUp} />
-                                <Route exact path="/login" component={UserLogin} />
+                                <Route exact path="/login" component={Login} />
+                                <Route exact path="/UserProfile" component={UserProfile} />
                             </Switch>
                         </BrowserRouter>
                     </div>

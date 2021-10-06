@@ -1,83 +1,94 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable quotes */
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router'
+import {Container, LogoWrapper, BoxContainer, InputContainer, Form, StyledInput, Text, Text2} from './Login-styling'
 
-import { userLogin } from '../api'
+import { userSignUp, userLogin } from '../api'
+// import history from '../history'
 
-// Api calls
-//import { APIloginUser } from "../../../app/apiCalls";
+class Login extends React.Component {
 
-function Login() {
-    return (
-    // this centers the page contents
-        <div
-            id="page-container"
-            className="container-center-horizontal red-background"
-        >
-            <div id="login__contents" className="container-center-vertical">
-                <div className="login__bottom-panel">
-                    <LoginPanel />
-                </div>
-            </div>
-        </div>
-    )
+
+
+    state = {
+        username : "",
+        password : ""
+    }
+
+  handleSignUpButton = () => {
+      window.location.assign('/Signup')
+  }
+
+  dataForming = (data) => {
+      this.setState(
+          {
+              username : data.email,
+              password : data.password
+          }
+      )
+  }
+
+  onSubmit = () => {
+      try {
+          userLogin(this.state)
+      
+      } catch (error) {
+          console.log('user login failed')
+          console.log(error)
+      }
+  }
+
+  loginPanel = () => {
+
+      const { register, handleSubmit, formState: {errors} } = useForm()
+
+      return (
+          <Form 
+              onSubmit = {handleSubmit((data) => {
+                  this.dataForming(data)
+                  this.onSubmit()
+              })}
+          >
+              <h3>Log In</h3>
+              <InputContainer>
+                  <StyledInput type="username" placeholder="Username" {...register("username", { required: true })} />
+                  {errors.username && <p>This field is required</p>}
+              </InputContainer>
+              <InputContainer>
+                  <StyledInput type="password" placeholder="Password" {...register("password", { required: true })} />
+                  {errors.password && <p>This field is required</p>}
+              </InputContainer>
+              <h4>Forgot Password?</h4>
+              <button type="submit">Login</button>
+              <h5> Dont have an account? Sign Up</h5>
+          </Form>
+
+      )
+  }
+
+  render() {
+      return (
+          <Container>
+              <LogoWrapper>
+                  <h3>
+                    CRM Tools
+                  </h3>
+                  <hr></hr>
+                  <button onClick={this.handleSignUpButton}> Sign Up </button>
+              </LogoWrapper>
+              <img className="topLeft" src="login.png" height="730px" width="920px" style={{position: 'absolute', top: 85, left: 0}}/>
+              <Text>Online Address Book</Text>
+              <Text2>for great customer relationships</Text2>
+              <BoxContainer>
+                  <this.loginPanel />
+              </BoxContainer>
+          </Container>
+      )
+  
+    
+  }
+  
 }
+
+
 export default Login
-
-// FUNCTIONAL COMPONENTS
-// Handles the Login form
-function LoginPanel() {
-    const history = useHistory()
-    const { register, handleSubmit } = useForm()
-
-    // async function onSubmit(data) {
-    //   await APIloginUser(
-    //     {
-    //       email: data.email,
-    //       password: data.password,
-    //     },
-    //     history
-    //   );
-    // }
-    return (
-        <div className="login-panel">
-            <h1 className="login-panel__heading heading">
-                <span>Please enter your details</span>
-            </h1>
-
-            <form className="login-panel__form">
-                <label className="login-panel__form-header normaltext">Email</label>
-                <input
-                    type="email"
-                    className="form-item"
-                    name="email"
-                    {...register('email', { required: true })}
-                />
-                <label className="login-panel__form-header normaltext">Password</label>
-                <input
-                    type="password"
-                    className="login-panel__form-item"
-                    name="password"
-                    {...register('password', { required: true })}
-                />
-                <button
-                    type="submit"
-                    id="login-panel__submitbtn"
-                    className="login-panel__form-item subheading"
-                >
-          Login
-                </button>
-            </form>
-            <Link to={'/register/'}>
-                <div
-                    id="login-panel__submitbtn"
-                    className="login-panel__form-item subheading"
-                >
-          Register
-                </div>
-            </Link>
-        </div>
-    )
-}

@@ -3,20 +3,34 @@ export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   h3 {
     color: #222222;
-    margin-bottom: 2rem;
     font-weight: 600;
     font-size: 22px;
+    padding: 50px 60px;
+  }
+  h4 {
+    color: #5C5C5C;
+    font-weight: 200;
+    align: center;
+    padding: 10px 350px;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+  h5 {
+    color: #222222;
+    font-weight: 200;
+    padding: 10px 70px;
+    font-size: 12px;
+    text-decoration: underline;
   }
   button {
     width: 75%;
-    max-width: 350px;
+    max-width: 360px;
     min-width: 250px;
     height: 40px;
     border: none;
-    margin: 1rem 0;
+    margin: 1rem 4rem;
     box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     background-color: #885AF8;
@@ -30,16 +44,30 @@ export const Form = styled.form`
     }
   }
 `
-
+export const Text = styled.div`
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  font-size: 40px;
+  colour: #192A3E;
+  font-weight: 500;
+`
+export const Text2 = styled.div`
+  position: absolute;
+  top: 150px;
+  left: 40px;
+  font-size: 25px;
+  colour: #020202;
+  font-weight: 200;
+`
 export const BoxContainer = styled.div`
-  width: 506px;
-  height: 436px;
+  width: 500px;
+  height: 780px;
   display: flex;
   flex-direction: column;
-  padding: 30px 10px;
-  margin-bottom: 160px;
-  margin-top: 100px;
-  border-radius: 19px;
+  padding: 10px 10px;
+  margin-left: 920px;
+  margin-top: 15px;
   background-color: #F9F6FF;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
@@ -54,17 +82,21 @@ export const LogoWrapper = styled.div`
     color: #885AF8;
     text-align: left;
     font-size: 22px;
-    margin-bottom: 20px;
+    padding: 20px 0px;
     margin-left: 20px;
   }
   hr {
     margin-bottom: -55px;
-    width: 1430px;
-    border: 0.5px ridge rgb(151, 148, 148);
+    width: 1440px;
+    border: 0.5px solid rgb(151, 148, 148);
+  }
+  h7 {
+    color: #885AF8;
+    font-size: 22px;
   }
   button {
     border-radius: 8px;
-    padding: 10px 50px;
+    padding: 10px 45px;
     font-size: 14px;
     font-align: center;
     width: 140px;
@@ -75,8 +107,7 @@ export const LogoWrapper = styled.div`
     align-items: baseline;
     outline: none;
     cursor: pointer;
-    margin-bottom: -60px;
-    margin-left: 1250px;
+    margin-left: 1280px;
     border: none;
     font-weight: 600;
     box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
@@ -138,7 +169,3 @@ export const Status = styled.div`
     background: #70edb9;
   }
 `
-
-
-
-

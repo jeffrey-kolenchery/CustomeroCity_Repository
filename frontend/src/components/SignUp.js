@@ -30,7 +30,6 @@ class SignUp extends React.Component {
               password : data.password
           }
       )
-      console.log(typeof(data.phone))
   }
 
   onSubmit = () => {
