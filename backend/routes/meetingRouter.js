@@ -32,10 +32,16 @@ meetingRouter.post(
   createMeeting
 );
 
-meetingRouter.get("/getMeetings", getAllMeetings);
-meetingRouter.get("/getUserMeetings/:userId", getAllMeetings);
 meetingRouter.get(
-  "/getCustomerMeetings/:userId/:customerId",
+  "/getMeetings/:userId",
+  requireSignin,
+  isAuth,
+  getAllMeetings
+);
+meetingRouter.get(
+  "/getMeetings/:userId/:customerId",
+  requireSignin,
+  isAuth,
   getMeetingsByCustomer
 );
 
