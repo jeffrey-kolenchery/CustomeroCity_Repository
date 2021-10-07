@@ -7,7 +7,11 @@ import {
   findCalendarById,
   createCalendar,
 } from "../controllers/calendarController.js";
-import { createMeeting } from "../controllers/meetingController.js";
+import {
+  createMeeting,
+  getAllMeetings,
+  getMeetingsByCustomer,
+} from "../controllers/meetingController.js";
 
 // Calls callback function every time "userId" is in the parameter.
 // E.g. if /secret/6128965fd267fe25743bfec2 is called,
@@ -26,6 +30,13 @@ meetingRouter.post(
   requireSignin,
   isAuth,
   createMeeting
+);
+
+meetingRouter.get("/getMeetings", getAllMeetings);
+meetingRouter.get("/getUserMeetings/:userId", getAllMeetings);
+meetingRouter.get(
+  "/getCustomerMeetings/:userId/:customerId",
+  getMeetingsByCustomer
 );
 
 export { meetingRouter };

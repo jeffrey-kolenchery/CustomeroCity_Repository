@@ -24,4 +24,23 @@ const createMeeting = async (req, res, next) => {
   }
 };
 
-export { createMeeting };
+const getAllMeetings = async (req, res) => {
+  try {
+    const meetings = await Meeting.find({ user: req.profile._id });
+    res.send(meetings);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getMeetingsByCustomer = async (req, res) => {
+  try {
+    const meetings = await Meeting.find({
+      user: req.profile._id,
+      customer: req.params.customerId,
+    });
+    res.send(meetings);
+  } catch (err) {}
+};
+
+export { createMeeting, getAllMeetings, getMeetingsByCustomer };

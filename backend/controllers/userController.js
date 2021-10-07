@@ -8,6 +8,7 @@ import * as crpyto from "crypto";
 import * as nodemailer from "nodemailer";
 import sendgridTransport from "nodemailer-sendgrid-transport";
 import { User } from "../models/userModel.js";
+import { Calendar } from "../models/calendarModel.js";
 
 // import { errorHandler } from '../validators/dbErrorHandler.js'
 
@@ -48,7 +49,15 @@ const registerUser = async (req, res) => {
       });
       user
         .save()
-        .then((user) => {
+        .then(async (user) => {
+          try {
+            const cal = new Calendar({
+              user: user._id,
+            });
+            const calendar = await cal.save();
+          } catch (err) {
+            console.error(err);
+          }
           res.status(200).send("User Added Successfully!");
         })
         .catch((error) => {
