@@ -1,4 +1,4 @@
-const Calendar = require("../models/calendarModel");
+import { Calendar } from "../models/calendarModel.js";
 
 const findCalendarById = async (req, res, next) => {
   try {
@@ -24,7 +24,4 @@ const createCalendar = async (req, res) => {
   }
 };
 
-module.exports = {
-  findCalendarById,
-  createCalendar,
-};
+export { findCalendarById, createCalendar };

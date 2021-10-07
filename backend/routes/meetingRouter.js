@@ -1,14 +1,13 @@
-const express = require("express");
+import express from "express";
 const meetingRouter = express.Router();
 
-const { findUserById } = require("../controllers/userController");
-const { isAuth, requireSignin } = require("../controllers/authController");
-const {
+import { findUserById } from "../controllers/userController.js";
+import { isAuth, requireSignin } from "../controllers/authController.js";
+import {
   findCalendarById,
   createCalendar,
-} = require("../controllers/calendarController");
-
-const { createMeeting } = require("../controllers/meetingController");
+} from "../controllers/calendarController.js";
+import { createMeeting } from "../controllers/meetingController.js";
 
 // Calls callback function every time "userId" is in the parameter.
 // E.g. if /secret/6128965fd267fe25743bfec2 is called,
@@ -29,4 +28,4 @@ meetingRouter.post(
   createMeeting
 );
 
-module.exports = meetingRouter;
+export { meetingRouter };

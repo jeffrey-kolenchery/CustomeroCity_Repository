@@ -1,8 +1,7 @@
-const Meeting = require("../models/meetingModel");
+import { Meeting } from "../models/meetingModel.js";
 
 const createMeeting = async (req, res, next) => {
   // Get time.
-  console.log(req.body.year);
   const doo = new Date(`${req.body.year}-${req.body.month}-${req.body.day}`);
   const date = new Date(
     doo.getTime() + Math.abs(doo.getTimezoneOffset() * 60000)
@@ -25,6 +24,4 @@ const createMeeting = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  createMeeting,
-};
+export { createMeeting };
