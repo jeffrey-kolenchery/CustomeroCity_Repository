@@ -5,6 +5,11 @@
 /.pnp
 /.vscode
 .pnp.js
+.eslintrc.json
+
+#check for issues lateron::::>>>.
+
+/package-lock.json
 
 # testing
 /coverage
