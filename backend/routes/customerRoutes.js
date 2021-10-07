@@ -1,10 +1,12 @@
 import * as express from 'express'
-
 import * as CustomerController from '../controllers/customerController.js'
-
-
 import { findUserById } from '../controllers/userController.js'
 import { isAuth, requireSignin } from '../controllers/authController.js'
+import {
+    findCalendarById,
+    createCalendar,
+} from '../controllers/calendarController.js'
+import { createMeeting } from '../controllers/meetingController.js'
 
 const customerRouter = express.Router()
 
@@ -13,14 +15,7 @@ const customerRouter = express.Router()
 // Because: /secret/:userId this route is getting called,
 // the callback function findUserById is being called.
 customerRouter.param('userId', findUserById)
-
-// prefix /api/customer
-
-customerRouter.get('/test/:userId', requireSignin, isAuth, (req, res) => {
-    console.log(req.profile)
-    console.log(req.auth)
-    res.send(req.auth)
-})
+customerRouter.param('userId', findCalendarById)
 
 // Sending a request to create a customer for :userId will require the request
 // to include an authorization token where the decrypted userId matches the
@@ -52,8 +47,6 @@ customerRouter.patch(
     isAuth,
     CustomerController.editCustomer
 )
-
-
 
 // module.exports = customerRouter;
 export { customerRouter }

@@ -2,8 +2,8 @@
 /* eslint-disable no-undef */
 // const User = require("../models/userModel");
 
-import * as bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import * as bcrypt from 'bcrypt'
 import * as crpyto from 'crypto'
 import * as nodemailer from 'nodemailer'
 import sendgridTransport from 'nodemailer-sendgrid-transport'
@@ -11,8 +11,8 @@ import { User } from '../models/userModel.js'
 
 // import { errorHandler } from '../validators/dbErrorHandler.js'
 
-const findUserById = (req, res, id) => {
-    User.findById(id).exec((err, user) => {
+const findUserById = (req, res, next) => {
+    User.findById(req.params.userId).exec((err, user) => {
         if (err || !user) {
             return res.status(400).json({
                 error: 'User not found',
@@ -48,15 +48,15 @@ const registerUser = async (req, res) => {
             })
             user
                 .save()
-                .then((user) => {
+                .then(async (user) => {
                     res.status(200).send('User Added Successfully!')
                 })
                 .catch((error) => {
                     res.status(400).send(
                         'not able to add user for some error pls check dbErrorHandlin.js'
-                    //   {
-                    //   error: errorHandler(error),
-                    // }
+                        //   {
+                        //   error: errorHandler(error),
+                        // }
                     )
                 })
         })
