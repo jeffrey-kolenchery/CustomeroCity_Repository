@@ -8,7 +8,6 @@ import * as crpyto from 'crypto'
 import * as nodemailer from 'nodemailer'
 import sendgridTransport from 'nodemailer-sendgrid-transport'
 import { User } from '../models/userModel.js'
-import { Calendar } from '../models/calendarModel.js'
 
 // import { errorHandler } from '../validators/dbErrorHandler.js'
 
