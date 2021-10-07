@@ -1,115 +1,115 @@
-import React from "react";
+import React from 'react'
 
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form'
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router'
 
-import "./Login.css";
+import './Login.css'
 
-import { userLogin } from "../api";
+import { userLogin } from '../api'
 
 // Api calls
 
 //import { APIloginUser } from "../../../app/apiCalls";
 
 function Login() {
-  return (
+    return (
     // this centers the page contents
 
-    <div id="page-container" className="container">
-      <div id="login__contents" className="header">
+        <div id="page-container" className="container">
+            <div id="login__contents" className="header">
         Header {/* <div className="login__bottom-panel"><LoginPanel /></div> */}
-      </div>
+            </div>
 
-      <div className="containter-vertical-left">
-        <div className="largeheading">Online Adress Book</div>
+            <div className="containter-vertical-left">
+                <div className="largeheading">Online Adress Book</div>
 
-        <img
-          src="https://images.pexels.com/photos/5676744/pexels-photo-5676744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          className="image-1"
-        ></img>
-      </div>
+                <img
+                    src="https://images.pexels.com/photos/5676744/pexels-photo-5676744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                    className="image-1"
+                ></img>
+            </div>
 
-      <div className="containter-vertical">
-        <LoginPanel />
-      </div>
-    </div>
-  );
+            <div className="containter-vertical">
+                <LoginPanel />
+            </div>
+        </div>
+    )
 }
 
-export default Login;
+export default Login
 
 // FUNCTIONAL COMPONENTS
 
 // Handles the Login form
 
 function LoginPanel() {
-  const history = useHistory();
+    const history = useHistory()
 
-  const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm()
 
-  // async function onSubmit(data) {
+    // async function onSubmit(data) {
 
-  //   await APIloginUser(
+    //   await APIloginUser(
 
-  //     {
+    //     {
 
-  //       email: data.email,
+    //       email: data.email,
 
-  //       password: data.password,
+    //       password: data.password,
 
-  //     },
+    //     },
 
-  //     history
+    //     history
 
-  //   );
+    //   );
 
-  // }
+    // }
 
-  return (
-    <div className="login-panel">
-      <h1 className="login-panel__heading heading">
-        <span>Please enter your details</span>
-      </h1>
+    return (
+        <div className="login-panel">
+            <h1 className="login-panel__heading heading">
+                <span>Please enter your details</span>
+            </h1>
 
-      <form className="login-panel__form">
-        <label className="login-panel__form-header normaltext">Email</label>
+            <form className="login-panel__form">
+                <label className="login-panel__form-header normaltext">Email</label>
 
-        <input
-          type="email"
-          className="form-item"
-          name="email"
-          {...register("email", { required: true })}
-        />
+                <input
+                    type="email"
+                    className="form-item"
+                    name="email"
+                    {...register('email', { required: true })}
+                />
 
-        <label className="login-panel__form-header normaltext">Password</label>
+                <label className="login-panel__form-header normaltext">Password</label>
 
-        <input
-          type="password"
-          className="login-panel__form-item"
-          name="password"
-          {...register("password", { required: true })}
-        />
+                <input
+                    type="password"
+                    className="login-panel__form-item"
+                    name="password"
+                    {...register('password', { required: true })}
+                />
 
-        <button
-          type="submit"
-          id="login-panel__submitbtn"
-          className="login-panel__form-item subheading"
-        >
+                <button
+                    type="submit"
+                    id="login-panel__submitbtn"
+                    className="login-panel__form-item subheading"
+                >
           Login
-        </button>
-      </form>
+                </button>
+            </form>
 
-      <Link to={"/register/"}>
-        <div
-          id="login-panel__submitbtn"
-          className="login-panel__form-item subheading"
-        >
+            <Link to={'/register/'}>
+                <div
+                    id="login-panel__submitbtn"
+                    className="login-panel__form-item subheading"
+                >
           Register
+                </div>
+            </Link>
         </div>
-      </Link>
-    </div>
-  );
+    )
 }
