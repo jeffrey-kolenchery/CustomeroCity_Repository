@@ -6,6 +6,7 @@ import SignUp from './components/SignUp.js'
 import Login from './components/Login.js'
 import UserLogin from './components/draftLogin.js'
 import UserProfile from './components/UserProfile.js'
+import Contacts from './components/contacts.js'
 //add thomas part here
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
                                 <Route exact path = "/signup" component={SignUp} />
                                 <Route exact path="/login" component={Login} />
                                 <Route exact path="/UserProfile" component={UserProfile} />
+                                <Route exact path="/contact" component={Contacts} />
                             </Switch>
                         </BrowserRouter>
                     </div>
