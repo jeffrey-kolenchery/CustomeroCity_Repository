@@ -80,12 +80,14 @@ const loginUser = (req, res) => {
                         const token = jwt.sign({ _id: user._id }, 'verysecretValue', {
                             expiresIn: '1hr',
                         })
+                        const userId = user._id
 
                         // Persist the token as 't' in cookie with expiry date
                         res.cookie('t', token, { expire: new Date() + 9999 })
                         res.status(200).json({
                             message: 'Login Successful!',
                             token,
+                            userId
                         })
                     } else {
                         res.status(400).json({

@@ -41,6 +41,13 @@ customerRouter.get(
     CustomerController.searchCustomers
 )
 
+customerRouter.get(
+    '/returnCustomer/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.returnCustomer
+)
+
 customerRouter.patch(
     '/updatecustomer/:userId',
     requireSignin,
