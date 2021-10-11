@@ -28,7 +28,6 @@ class App extends Component {
                     </div>
                 </Wrapper>
             </Container>
-      
         )
     }
 }

@@ -5,29 +5,32 @@ const Contacts = () => {
     const [name, setName] = useState()
     return (
         <div>
-            <div className="topnav">
-                <a className="active" href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <div className="search-container">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search"></input>
-                        <button type="submit">Submit</button>
-                    </form>
+            
+            <div className = "split right">
+                <div className="topnav" >
+                    <a className="active" href="#home">Search Contact</a>
+                    
+                    <div className="search-container">
+                        <form action="/action_page.php">
+                            <input type="text" placeholder="Search.."  name="search"></input>
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
+                <div className="btn-group">
+                    <button style={{position: 'absolute', top: 90 , left: 1040}}>Add Contacts</button>
+                    
+                </div>
+                
             </div>
+            
             
             
             <div className="Sidebar">
                 <h3>
                     CRM Tool
                 </h3>
-                
-                <div className="btn-group">
-                    <button style={{position: 'absolute', top: 10 , left: 1040}}>Add Contacts</button>
-                    
-                </div>
-                
+            
                 <ul className='SidebarList'>
                     {SidebarData.map((val, key) => {
                         return (
@@ -59,6 +62,8 @@ const Contacts = () => {
                     
                 </div>
             </div>
+        
+                
         </div>
     )
 }
