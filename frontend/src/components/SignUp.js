@@ -43,7 +43,7 @@ class SignUp extends React.Component {
       }
   }
 
-  signUpPanel = () => {
+ /* signUpPanel = () => {
 
       const { register, handleSubmit, formState: {errors} } = useForm()
 
@@ -72,6 +72,7 @@ class SignUp extends React.Component {
 
       )
   }
+  */
 
   render() {
       return (

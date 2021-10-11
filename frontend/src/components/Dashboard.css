@@ -1,0 +1,83 @@
+.Sidebar {
+    height: 50%;
+    width: 377px;
+    background-color: #D8C9FE;
+    border-bottom: 3px solid white;
+  }
+  
+  .Sidebar h3 {
+    color: #885AF8;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    margin-bottom: 5rem;
+    font-size: 22px;
+  }
+  
+  .SidebarList {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .SidebarList .row {
+    width: 100%;
+    height: 50px;
+    list-style-type: none;
+    display:flex;
+    flex-direction: row;
+    color: #334D6E;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+  }
+  
+  .SidebarList .row:hover {
+    cursor: pointer;
+    background-color: #885AF8;
+  }
+  .SidebarList #active {
+    background-color: #885AF8;
+  }
+  .row #icon {
+    flex:30%;
+    display: grid;
+    place-items: center;
+  }
+  
+  .row #title {
+    flex: 70%
+  }
+  
+  .SidebarContacts {
+    height: 50%;
+    width: 377px;
+    background-color: #D8C9FE;
+  }
+  
+  .SidebarContacts h3 {
+    color: #334D6E;
+    margin-bottom: 1rem;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    font-size: 22px;
+  }
+  
+  .RecentContacts {
+    height: 8vh;
+    width: 15vw;
+    padding: 1rem 1rem;
+    margin-bottom: 10px;
+    margin-left: 2rem;
+    background-color: #5D5FEF;
+  }
+  
+  .DataGrid {
+    width: 60vw;
+    height: 30vh;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #5D5FEF;
+    display: flex;
+    text-align: center;
+    border-radius: 8px;
+  }

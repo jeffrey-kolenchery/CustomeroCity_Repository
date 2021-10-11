@@ -6,10 +6,10 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import draftLogin from './components/draftLogin'
 import UserProfile from './components/UserProfile'
+import Dashboard from './components/Dashboard'
 //add thomas part here
 
 class App extends Component {
-  
     render() {
         return (
             <Container>
@@ -17,7 +17,7 @@ class App extends Component {
                     <div className = "container-fluid">
                         <BrowserRouter>
                             <Switch>
-                                <Route exact path = "/" component={UserProfile} />
+                                <Route exact path = "/dashboard" component={Dashboard} />
                                 <Route exact path="/login" component={draftLogin} />
                                 <Route exact path="/profile" component={UserProfile} />
                             </Switch>
