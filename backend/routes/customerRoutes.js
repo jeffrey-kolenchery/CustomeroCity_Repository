@@ -1,5 +1,6 @@
 import * as express from 'express'
 import * as CustomerController from '../controllers/customerController.js'
+import {scanBusinessCard} from '../AzureFormRecognizer/businessCardScanner.js'
 import { findUserById } from '../controllers/userController.js'
 import { isAuth, requireSignin } from '../controllers/authController.js'
 import {
@@ -42,7 +43,7 @@ customerRouter.get(
 )
 
 customerRouter.get(
-    '/returnCustomer/:userId',
+    '/returncustomer/:userId',
     requireSignin,
     isAuth,
     CustomerController.returnCustomer
@@ -53,6 +54,13 @@ customerRouter.patch(
     requireSignin,
     isAuth,
     CustomerController.editCustomer
+)
+
+customerRouter.post(
+    '/scanbusinesscard/:userId',
+    requireSignin,
+    isAuth,
+    scanBusinessCard
 )
 
 // module.exports = customerRouter;

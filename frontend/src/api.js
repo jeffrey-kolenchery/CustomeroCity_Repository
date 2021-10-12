@@ -4,6 +4,7 @@ import axios from 'axios'
 var BASE_URL = 'http://localhost:5000/api'
 //var BASE_URL = 'https://customerocity.herokuapp.com/api'
 
+
 async function userLogin(username, password) {
     const endpoint = `${BASE_URL}/user/login`
     return await axios.patch(endpoint, {username, password}).then(
@@ -11,6 +12,7 @@ async function userLogin(username, password) {
         (response) => {
             console.log('user logged in')
             console.log(response)
+            window.sessionStorage.setItem('userId',response.data.userId)
             // window.location.assign('/')
         },
         (error) => {
@@ -76,7 +78,7 @@ async function userNewPassword(data) {
 }
 
 async function customerCreate(data) {
-    const endpoint = `${BASE_URL}/customer/registercustomer/:userId`
+    const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
     return await axios.post(endpoint, data).then(
         (response) => {
             console.log('Customer successfully created')
@@ -90,7 +92,7 @@ async function customerCreate(data) {
 }
 
 async function customerDelete(data) {
-    const endpoint = `${BASE_URL}/customer/deletecustomer/:userId`
+    const endpoint = `${BASE_URL}/customer/deletecustomer/${window.sessionStorage.getItem('userId')}`
     return await axios.post(endpoint, data).then(
         (response) => {
             console.log('Customer successfully deleted')
@@ -103,11 +105,25 @@ async function customerDelete(data) {
     )
 }
 
+//data = searchText
 async function customerSearch(data) {
-    const endpoint = `${BASE_URL}/customer/searchcustomers/:userId`
+    const endpoint = `${BASE_URL}/customer/searchcustomers/${window.sessionStorage.getItem('userId')}`
     return await axios.get(endpoint, data).then(
         (response) => {
             console.log('Customer search returned')
+            console.log(response)
+        },
+        (error) => {
+            console.log(error)
+        }
+    )
+}
+
+async function customerReturn(data) {
+    const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
+    return await axios.get(endpoint, data).then(
+        (response) => {
+            console.log('Customer returned')
             console.log(response)
         },
         (error) => {
@@ -125,5 +141,6 @@ export {
     userNewPassword,
     customerCreate,
     customerDelete,
-    customerSearch
+    customerSearch,
+    customerReturn
 }

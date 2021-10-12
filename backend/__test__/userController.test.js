@@ -1,13 +1,10 @@
 /* eslint-disable no-empty */
 /* eslint-disable no-undef */
-// const express = require("express");
 import express from 'express'
 
 // jest.useFakeTimers();
 
-// var controller = require("../controllers/userController");
 import * as controller from '../controllers/userController'
-// var User= require("../models/userModel");
 import { User } from '../models/userModel'
 
 const TEST_USER_GIVEN_NAME = 'Test User'
