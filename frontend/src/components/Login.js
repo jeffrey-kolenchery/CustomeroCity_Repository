@@ -22,7 +22,7 @@ class Login extends React.Component {
   dataForming = (data) => {
       this.setState(
           {
-              username : data.email,
+              username : data.username,
               password : data.password
           }
       )
@@ -58,9 +58,10 @@ class Login extends React.Component {
                   <StyledInput type="password" placeholder="Password" {...register("password", { required: true })} />
                   {errors.password && <p>This field is required</p>}
               </InputContainer>
-              <h4>Forgot Password?</h4>
               <button type="submit">Login</button>
-              <h5> Dont have an account? Sign Up</h5>
+              
+              <a onClick={this.handleSignUpButton}> &emsp;&emsp;&emsp;&emsp;Don&apos;t have an account? Sign Up</a>
+              {/* <a >&emsp;&emsp;&emsp;&emsp;Forgot Password?</a> */}
           </Form>
 
       )
@@ -84,10 +85,7 @@ class Login extends React.Component {
               </BoxContainer>
           </Container>
       )
-  
-    
   }
-  
 }
 
 

@@ -4,9 +4,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
 import SignUp from './components/SignUp.js'
 import Login from './components/Login.js'
-import UserLogin from './components/draftLogin.js'
 import UserProfile from './components/UserProfile.js'
-//add thomas part here
+import eMailGenerator from './components/eMailGenerator.js'
 
 class App extends Component {
   
@@ -21,6 +20,8 @@ class App extends Component {
                                 <Route exact path = "/signup" component={SignUp} />
                                 <Route exact path="/login" component={Login} />
                                 <Route exact path="/UserProfile" component={UserProfile} />
+                                <Route exact path="/email" component={eMailGenerator} />
+                                {/*to send an email use window.sessionstorage to transfer info between pages. transfer currentCustomer = customerId info*/}
                             </Switch>
                         </BrowserRouter>
                     </div>

@@ -56,6 +56,13 @@ customerRouter.patch(
     CustomerController.editCustomer
 )
 
+// customerRouter.get(
+//     'emailCustomer/:userId/:customerId',
+//     requireSignin,
+//     isAuth,
+//     CustomerController.emailCustomer
+// )
+
 customerRouter.post(
     '/scanbusinesscard/:userId',
     requireSignin,
