@@ -5,9 +5,9 @@ import styled from 'styled-components'
 import { motion } from "framer-motion"
 import { Navbar } from "../navbar"
 import {
-    InnerPageContainer,
     PageContainer,
 } from '../pageContainer'
+import {InnerPageContainer} from '../pageContainer/pagecontainer'
 import { userSignUp} from '../../api'
 import { useForm } from 'react-hook-form'
 import {

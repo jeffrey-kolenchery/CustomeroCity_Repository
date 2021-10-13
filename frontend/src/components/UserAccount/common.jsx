@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import {
-    InnerPageContainer,
-} from '../pageContainer'
+import {InnerPageContainer} from '../pageContainer/pagecontainer'
 
 export const Container = styled.div`
   width: 100%;
