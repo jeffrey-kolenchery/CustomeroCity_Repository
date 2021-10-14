@@ -5,13 +5,15 @@ import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
+
+
 const DataTable = () => {
 
   
   //Hard coded data for checking validity
   const contactList = [
       {name: "Toyota", email: "Celica", company: "FB", role: "Developer"},
-      {name: "Ford", email: "Mondeo", company: "FB", role: "Developer"},
+      {name: "Ford", email: "Mondeo@GMAILLLLLLLLLLLLLLLLLLL.com", company: "FB", role: "Developer"},
       {name: "Porsche", email: "Boxter", company: "FB", role: "Developer"}
   ];
   
@@ -35,7 +37,7 @@ const DataTable = () => {
   
 
   return (
-      <div className="ag-theme-alpine" style={{height: '40vh', width: '100vh'}}>
+      <div className="ag-theme-alpine" style={{ width: '60vw', height: '100vh'}} >
           
           <AgGridReact
             rowData={contactList}

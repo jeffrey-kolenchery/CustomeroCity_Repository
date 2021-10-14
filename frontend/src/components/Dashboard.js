@@ -40,11 +40,10 @@ const Dashboard = () => {
             <div className="RecentContacts">
 
             </div>
-        </div>
-        <div>
-            <DataTable/>
-        </div>
-        
+        </div> 
+        <div className="DataGrid right">
+            <DataTable />
+        </div> 
         
     </div>
   );

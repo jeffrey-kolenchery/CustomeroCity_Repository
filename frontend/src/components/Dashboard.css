@@ -1,5 +1,5 @@
 .Sidebar {
-    height: 50%;
+    height: 50vh;
     width: 377px;
     background-color: #D8C9FE;
     border-bottom: 3px solid white;
@@ -49,7 +49,7 @@
   }
   
   .SidebarContacts {
-    height: 50%;
+    height: 50vh;
     width: 377px;
     background-color: #D8C9FE;
   }
@@ -72,12 +72,10 @@
   }
   
   .DataGrid {
-    width: 60vw;
-    height: 30vh;
-    font-size: 14px;
-    background: white;
-    border: 1px solid #5D5FEF;
-    display: flex;
+    position: relative;
+    left: 25vw;
+    bottom: 90vh;
+    display: inline-grid;
     text-align: center;
     border-radius: 8px;
   }
