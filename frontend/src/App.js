@@ -7,6 +7,7 @@ import Login from './components/Login'
 import draftLogin from './components/draftLogin'
 import UserProfile from './components/UserProfile'
 import Dashboard from './components/Dashboard'
+import MeetingPage from './components/MeetingPage'
 //add thomas part here
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
                                 <Route exact path = "/dashboard" component={Dashboard} />
                                 <Route exact path="/login" component={draftLogin} />
                                 <Route exact path="/profile" component={UserProfile} />
+                                <Route exact path = "/meetings" component={MeetingPage} />
                             </Switch>
                         </BrowserRouter>
                     </div>
