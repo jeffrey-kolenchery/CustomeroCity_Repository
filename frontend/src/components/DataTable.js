@@ -7,15 +7,15 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 
 
-const DataTable = () => {
+class DataTable extends React.Component {
 
+  //ag-Grid hook ready
+  onGridReady = params => {
+    this.gridApi = params.api;
+    params.api.sizeColumnsToFit(); 
+    
+  };
   
-  //Hard coded data for checking validity
-  const contactList = [
-      {name: "Toyota", email: "Celica", company: "FB", role: "Developer"},
-      {name: "Ford", email: "Mondeo@GMAILLLLLLLLLLLLLLLLLLL.com", company: "FB", role: "Developer"},
-      {name: "Porsche", email: "Boxter", company: "FB", role: "Developer"}
-  ];
   
   /*
   const [rowData, setRowData] = useState([]);
@@ -33,22 +33,35 @@ const DataTable = () => {
     history.push("/profile");
   }
   */
+  render() {
+      //Hard coded data for checking validity
+    const contactList = [
+    {name: "Toyota", email: "Celica", company: "FB", role: "Developer"},
+    {name: "Ford", email: "Mondeo@GMAILLLLLLLLLLLLLLLLLLL.com", company: "FB", role: "Developer"},
+    {name: "Porsche", email: "Boxter", company: "FB", role: "Developer"}
+    ];
+  return (
+    <div>
+      <button onClick={() => this.gridApi.applyTransaction({add: [{}]})}>Add Row</button>
+      <div className="ag-theme-alpine" style={{ width: '60vw', height: '100vh'}} >
+        
+        <AgGridReact
+          onGridReady={this.onGridReady}
+          rowData={contactList}
+          rowSelection="single">
+          <AgGridColumn field="name" sortable={ true } filter={ true } editable= { true }></AgGridColumn>
+          <AgGridColumn field="email" sortable={ true } filter={ true } editable= { true }></AgGridColumn>
+          <AgGridColumn field="company" sortable={ true } filter={ true } editable= { true }></AgGridColumn>
+          <AgGridColumn field="role" sortable={ true } filter={ true } editable= { true }></AgGridColumn>
+        </AgGridReact>
+      </div>
+    </div>
+  );
+  }
 
   
 
-  return (
-      <div className="ag-theme-alpine" style={{ width: '60vw', height: '100vh'}} >
-          
-          <AgGridReact
-            rowData={contactList}
-            rowSelection="single">
-            <AgGridColumn field="name" sortable={ true } filter={ true }></AgGridColumn>
-            <AgGridColumn field="email" sortable={ true } filter={ true }></AgGridColumn>
-            <AgGridColumn field="company" sortable={ true } filter={ true }></AgGridColumn>
-            <AgGridColumn field="role" sortable={ true } filter={ true }></AgGridColumn>
-          </AgGridReact>
-      </div>
-  );
+  
 };
 
 export default DataTable;
