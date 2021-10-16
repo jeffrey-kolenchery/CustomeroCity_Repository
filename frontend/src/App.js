@@ -5,6 +5,10 @@ import React  from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import SignUp from './components/UserAccount/SignUp'
 import Login from './components/UserAccount/Login'
+import UserProfile from './components/Profile/UserProfile'
+import ClientProfile from './components/Profile/ClientProfile'
+import Meetings from './components/meetings'
+import Addcustomer from './components/Profile/Addcustomer'
 
 function App() {
     return (
@@ -14,6 +18,10 @@ function App() {
                     <Route exact path="/" component={HomePage} />
                     <Route exact path = "/Signup" component={SignUp} />
                     <Route exact path = "/Login" component={Login} />
+                    <Route exact path = "/UserProfile" component={UserProfile} />
+                    <Route exact path = "/ClientProfile" component={ClientProfile} />
+                    <Route exact path = "/Meetings" component={Meetings} />
+                    <Route exact path = "/AddCustomer" component={Addcustomer} />
                 </Switch>
             </Router>
         </div>

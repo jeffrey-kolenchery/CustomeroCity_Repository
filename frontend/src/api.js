@@ -1,14 +1,17 @@
 import axios from 'axios'
-// import history from "./history"
+import * as nodemailer from 'nodemailer'
+import * as sendgridTransport from 'nodemailer-sendgrid-transport'
+import * as dotenv from 'dotenv'
+
 
 var BASE_URL = 'http://localhost:5000/api'
 //var BASE_URL = 'https://customerocity.herokuapp.com/api'
+dotenv.config()
 
 
-async function userLogin(username, password) {
+async function userLogin(data) {
     const endpoint = `${BASE_URL}/user/login`
-    return await axios.patch(endpoint, {username, password}).then(
-        // eslint-disable-next-line no-unused-vars
+    return await axios.patch(endpoint, data).then(
         (response) => {
             console.log('user logged in')
             console.log(response)
@@ -132,6 +135,49 @@ async function customerReturn(data) {
     )
 }
 
+async function customerEmail(data) {
+    const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
+    return await axios.get(endpoint, data).then(
+        (response) => {
+            console.log('Customer email returned')
+            console.log(response.email)
+        },
+        (error) => {
+            console.log(error)
+        }
+    ) 
+}
+
+// async function customerEmail(data) {
+//     transporter.sendMail({
+//         from: data.fromEmail,
+//         to: data.toEmail,
+//         subject: data.subject,
+//         body: data.body
+//     })
+//     return alert('email sent')
+// }
+
+// const transporter = nodemailer.createTransport(
+//     sendgridTransport({
+//         auth: {
+//             api_key: process.env.SENDGRID_API_KEY,
+//         },
+//     })
+// )
+
+function escapeHtml(text) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '\'': '&#039;'
+    }
+    
+    return text.replace(/[&<>"']/g, function(m) { return map[m] })
+}
+
 
 export {
     userLogin,
@@ -142,5 +188,7 @@ export {
     customerCreate,
     customerDelete,
     customerSearch,
-    customerReturn
+    customerReturn,
+    // customerEmail,
+    escapeHtml
 }

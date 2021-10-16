@@ -7,16 +7,18 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0px;
+  margin-bottom: 40px;
 `
 
 export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: -70px;
+
   button {
     padding: 11px 40%;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
     color: #fff;
     font-size: 15px;
@@ -125,7 +127,7 @@ export const TopContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: 8em;
+  padding-bottom: 5em;
 `
 
 export const BackDrop = styled(motion.div)`

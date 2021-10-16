@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0px;
+  margin-top: 10px;
 `
 
 export const FormContainer = styled.form`
@@ -15,8 +15,8 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   button {
-    padding: 11px 40%;
-    margin-top: 40px;
+    padding: 11px 35%;
+    margin-top: 150px;
     width: 100%;
     color: #fff;
     font-size: 15px;
@@ -60,6 +60,32 @@ export const BoldLink = styled.a`
 export const Input = styled.input`
   width: 100%;
   height: 42px;
+  outline: none;
+  border: 1px solid rgba(200, 200, 200, 0.03);
+  padding: 0 10px;
+  font-size: 12px;
+  transition: all, 200ms ease-in-out;
+  box-sizing: border-box;
+  border-bottom: 1.4px solid transparent;
+  font-family: Monospace;
+
+  &::placeholder {
+    color: rgba(170, 170, 170, 1);
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1.4px solid rgba(200, 200, 200, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    //box-shadow: 0px 0px 2px rgba(200, 200, 200, 1);
+    border-bottom: 2px solid #5963c3;
+  }
+`
+export const InputBig = styled.input`
+  width: 100%;
+  height: 82px;
   outline: none;
   border: 1px solid rgba(200, 200, 200, 0.03);
   padding: 0 10px;
@@ -108,8 +134,8 @@ export const SubmitButton = styled.button`
 `
 
 export const BoxContainer = styled.div`
-  width: 450px;
-  min-height: 550px;
+  width: 500px;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   background-color: #F9F6FF;
@@ -125,7 +151,7 @@ export const TopContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: 8em;
+  padding-bottom: 5em;
 `
 
 export const BackDrop = styled(motion.div)`

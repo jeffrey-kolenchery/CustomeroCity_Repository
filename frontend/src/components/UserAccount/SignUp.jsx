@@ -14,72 +14,16 @@ import {
     Container,
     FormContainer,
     Input,
+    BoxContainer,
+    InnerContainer,
+    StyledInnerContainer,
+    TopContainer,
+    BackDrop,
+    HeaderContainer,
+    HeaderText,
+    SmallText,
+
 } from './common'
-
-const BoxContainer = styled.div`
-  width: 450px;
-  min-height: 550px;
-  display: flex;
-  flex-direction: column;
-  background-color: #F9F6FF;
-  box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
-  position: relative;
-  overflow: hidden;
-`
-const TopContainer = styled.div`
-  width: 100%;
-  height: 245px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 1.8em;
-  padding-bottom: 5em;
-`
-
-const BackDrop = styled(motion.div)`
-  position: absolute;
-  width: 160%;
-  height: 250px;
-  margin-left: -30px;
-  background-color: #F9F6FF;
-`
-
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
-
-const HeaderText = styled.h2`
-  font-weight: 600;
-  font-family: Monospace;
-  color: #22222;
-  z-index: 10;
-  margin: 0;
-  font-size: 30px;
-  line-height: 1.24;
-`
-
-const SmallText = styled.h5`
-  font-weight: 500;
-  font-family: Monospace;
-  color: #22222;
-  z-index: 10;
-  font-size: 13px;
-  line-height: 1.24;
-`
-
-const InnerContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1.7em;
-`
-const StyledInnerContainer = styled(InnerPageContainer)`
-  margin-top: 4em;
-`
 
 class SignUp extends React.Component {
       state = {
@@ -143,8 +87,6 @@ class SignUp extends React.Component {
               <StyledInnerContainer>
                   <BoxContainer>
                       <TopContainer>
-                          <BackDrop
-                          />
                           <HeaderContainer>
                               <HeaderText>Welcome</HeaderText>
                           </HeaderContainer>

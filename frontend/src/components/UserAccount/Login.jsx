@@ -1,6 +1,5 @@
 /* eslint-disable quotes */
 import React from 'react'
-
 import { Navbar } from "../navbar"
 import {
     PageContainer,
@@ -72,8 +71,6 @@ class Login extends React.Component {
               <StyledInnerContainer>
                   <BoxContainer>
                       <TopContainer>
-                          <BackDrop
-                          />
                           <HeaderContainer>
                               <HeaderText>Welcome</HeaderText>
                               <HeaderText>Back</HeaderText>
