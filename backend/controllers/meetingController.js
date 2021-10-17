@@ -45,4 +45,5 @@ const getMeetingsByCustomer = async (req, res) => {
     }
 }
 
+
 export { createMeeting, getAllMeetings, getMeetingsByCustomer }

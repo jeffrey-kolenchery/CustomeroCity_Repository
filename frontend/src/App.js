@@ -6,6 +6,9 @@ import SignUp from './components/SignUp.js'
 import Login from './components/Login.js'
 import UserLogin from './components/draftLogin.js'
 import UserProfile from './components/UserProfile.js'
+import Calendar from './components/Calendar.js'
+import Test from './components/Test.js'
+import 'devextreme/dist/css/dx.light.css'
 //add thomas part here
 
 class App extends Component {
@@ -21,6 +24,8 @@ class App extends Component {
                                 <Route exact path = "/signup" component={SignUp} />
                                 <Route exact path="/login" component={Login} />
                                 <Route exact path="/UserProfile" component={UserProfile} />
+                                <Route exact path="/Calendar" component={Calendar} />
+                                <Route exact path="/Test" component={Test} />
                             </Switch>
                         </BrowserRouter>
                     </div>
