@@ -3,6 +3,9 @@ const Schema = mongoose.Schema
 const { ObjectId } = mongoose.Schema
 
 const meetingSchema = new Schema({
+    Subject: {
+        type: String,
+    },
     loc: {
         type: String,
         required: true,
@@ -24,6 +27,12 @@ const meetingSchema = new Schema({
         type: ObjectId,
         ref: 'Customer',
         required: true,
+    },
+    description: {
+        type: String,
+    },
+    Id: {
+        type: Number,
     },
     expireToken: Date,
 })
