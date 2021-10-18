@@ -7,58 +7,30 @@ import styled from 'styled-components'
 import { deviceSize } from '../responsive'
 import { Link } from 'react-router-dom'
 
-import axios from 'axios'
-var BASE_URL = 'http://localhost:5000/api'
 
 
 // import { customerSearch } from '../../api'
-// import { customerData } from '../../api'
+import { customerData } from '../../api'
 
 
 
 const Contacts = () => {
 
-    async function customerData() {
+    var preformedData = customerData()
 
-        let config = {
-            headers: {
-                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
-            }
-        }
-    
-        const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
-        window.sessionStorage.getItem('token')
-        await axios.get(endpoint, config).then(
-            (response) => {
-                // console.log('Customers returned')
-                console.log(response.data)
-                // console.log( Object.create(response.data))
-    
-                return response.data
-            },
-            (error) => {
-                console.log(error)
-            }
-        )
-        // return await axios.get(endpoint)
-    
-    } 
+    if (preformedData) {
+        var data = preformedData
 
-    // var preformedData = customerData()
+        // console.log(datum)
+        console.log(data)
+    }
 
-    // if (preformedData) {
-    //     var data = preformedData
-
-    //     // console.log(datum)
-    //     console.log(data)
-    // }
-
-    // else {
-    //     var message = 'No Customers in the database, why not add some now?'
-    // }
+    else {
+        var message = 'No Customers in the database, why not add some now?'
+    }
 
     useEffect(() => {
-        
+
     }, [])
 
 
