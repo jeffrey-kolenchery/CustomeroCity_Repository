@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Meeting } from '../models/meetingModel.js'
 
 const createMeeting = async (req, res, next) => {

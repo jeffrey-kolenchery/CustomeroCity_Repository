@@ -21,20 +21,19 @@
     "prettier"
   ],
   "rules": {
-    "indent": [
-      "error",
-      4
-    ],
+    "indent": ["warn", 4, {
+      "ignoredNodes": ["TemplateLiteral"]
+    }],
     "linebreak-style": [
-      "warn",
+      "off",
       "windows"
     ],
     "quotes": [
-      "error",
+      "warn",
       "single"
     ],
     "semi": [
-      "error",
+      "warn",
       "never"
     ],
     "no-unused-vars": [

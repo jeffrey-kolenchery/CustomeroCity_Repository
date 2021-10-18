@@ -57,10 +57,12 @@ const searchCustomers = async (req,res) => {
                 {
                     '$project': 
                     {
-                        '_id': 1, 
+                        '_id': 1,
                         'givenName': 1, 
-                        'company': 1, 
-                        'user': 1
+                        'email': 1, 
+                        'company': 1,
+                        'designation' : 1, 
+                        'user': 1,
                     }
                 }, 
                 {
@@ -80,6 +82,36 @@ const searchCustomers = async (req,res) => {
     }
     catch (err) {
         res.error(400)
+    }
+}
+
+const customerData = async (req, res) => {
+    // const userID = req.params.userId
+    // console.log(userID)
+    try {
+        const customers = await Customer.aggregate(
+            [
+                {
+                    '$match': {
+                        'user':  new mongoose.Types.ObjectId(req.params.userId)
+                    }
+                }, {
+                    '$project': {
+                        'givenName': 1, 
+                        'email': 1, 
+                        'company': 1, 
+                        'designation': 1, 
+                        '_id': 1
+                    }
+                }
+            ]
+        )
+        if (customers) {
+            res.status(200).json(customers)
+        }
+    }
+    catch(error) {
+        res.send('No customers exist. Add some customers!').status(404)
     }
 }
 
@@ -137,5 +169,6 @@ export {
     deleteCustomer,
     returnCustomer, 
     searchCustomers, 
-    editCustomer
+    editCustomer,
+    customerData
 }

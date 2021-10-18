@@ -1,7 +1,6 @@
 .Sidebar {
     width: 377px;
     height: 50vh;
-    max-height: 50vh;
     background-color: #D8C9FE;
     border-bottom: 3px solid white;
   }
@@ -17,15 +16,18 @@
   .SidebarList {
     height: 100%;
     width: 100%;
+    margin-top: 120px;
+    margin-left: -10px;
   }
   
   .SidebarList .row {
-    width: 100%;
+    width: 50%;
     height: 50px;
+    margin-left: 30px;
     list-style-type: none;
     display:flex;
     flex-direction: row;
-    color: #334D6E;
+    color: #192A3E;
     justify-content: center;
     align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -34,10 +36,6 @@
   
   .SidebarList .row:hover {
     cursor: pointer;
-    background-color: #885AF8;
-  }
-  .SidebarList #active {
-    background-color: #885AF8;
   }
   .row #icon {
     flex:30%;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as express from 'express'
 import * as CustomerController from '../controllers/customerController.js'
 import {scanBusinessCard} from '../AzureFormRecognizer/businessCardScanner.js'
@@ -15,14 +16,16 @@ const customerRouter = express.Router()
 // E.g. if /secret/6128965fd267fe25743bfec2 is called,
 // Because: /secret/:userId this route is getting called,
 // the callback function findUserById is being called.
+
 customerRouter.param('userId', findUserById)
-customerRouter.param('userId', findCalendarById)
+// customerRouter.param('userId', findCalendarById) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // Sending a request to create a customer for :userId will require the request
 // to include an authorization token where the decrypted userId matches the
 // userId in the params.
 // When registering a customer for :userId, we make sure that the person sending
 // the request is logged in by that same userId.
+
 customerRouter.post(
     '/registercustomer/:userId',
     requireSignin,
@@ -61,6 +64,13 @@ customerRouter.post(
     requireSignin,
     isAuth,
     scanBusinessCard
+)
+
+customerRouter.get(
+    '/customerdata/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.customerData
 )
 
 // module.exports = customerRouter;
