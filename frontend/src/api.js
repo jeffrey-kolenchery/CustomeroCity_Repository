@@ -139,28 +139,24 @@ async function customerReturn(data) {
     )
 }
 
-async function customerData() {
+async function customerData(setContactList) {
 
-    let config = {
-        headers: {
-            'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            }
         }
+
+        const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
+        window.sessionStorage.getItem('token')
+        const customers = await axios.get(endpoint, config)
+        console.log(customers)
+        setContactList(customers.data)
+    } catch (err) {
+        console.error(err)
     }
-
-    const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
-    window.sessionStorage.getItem('token')
-    await axios.get(endpoint, config).then(
-        (response) => {
-            // console.log('Customers returned')
-            console.log(response.data)
-            // console.log( Object.create(response.data))
-
-            return response.data
-        },
-        (error) => {
-            console.log(error)
-        }
-    )
+    
     // return await axios.get(endpoint)
 
 } 
