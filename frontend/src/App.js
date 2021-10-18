@@ -9,6 +9,7 @@ import UserProfile from './components/Profile/UserProfile'
 import ClientProfile from './components/Profile/ClientProfile'
 import Contacts from './components/Contacts'
 import Addcustomer from './components/Profile/Addcustomer'
+import { Dashboard } from './components/Dashboard'
 
 function App() {
     return (
@@ -20,7 +21,8 @@ function App() {
                     <Route exact path = "/Login" component={Login} />
                     <Route exact path = "/UserProfile" component={UserProfile} />
                     <Route exact path = "/ClientProfile" component={ClientProfile} />
-                    <Route exact path = "/Dashboard" component={Contacts} />
+                    <Route exact path = "/Dashboard" component={Dashboard} />
+                    <Route exact path = "/Contacts" component={Contacts} />
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
                 </Switch>
             </Router>

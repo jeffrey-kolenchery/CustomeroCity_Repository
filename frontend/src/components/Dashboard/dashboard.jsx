@@ -1,6 +1,6 @@
 import React from 'react'
 import useFetch from 'react-fetch-hook'
-import ContactCards from './Cards'
+import ContactCards from '../Contacts/Cards'
 import { useEffect, useState } from 'react'
 // import data from './data.json'
 import styled from 'styled-components'
@@ -17,7 +17,7 @@ var BASE_URL = 'http://localhost:5000/api'
 
 
 
-const Contacts = () => {
+const DashboardCard = () => {
 
 
     // var preformedData = customerData()
@@ -69,7 +69,7 @@ const Contacts = () => {
 
     return (
         <>
-            <div className={'bg-gray-100'}>
+            <div className={'bg-gray-100 ml-96 -mt-96'}>
                 <section>
                     <form>
                         <input
@@ -84,7 +84,7 @@ const Contacts = () => {
                     <MainButton>Add Contact</MainButton>
                 </Link>
 
-                <section className={'grid sm:grid-cols-2 md:grid-cols-3 gap-6 p-20 -mt-14'}>
+                <section className={'grid sm:grid-cols-2 md:grid-cols-3 gap-6 p-20 -mt-14 flex-initial'}>
                     {contactList.length < 1 && (
                         <h1>No data matches your search</h1>
                     )}
@@ -124,4 +124,4 @@ export const MainButton = styled.button`
   }
 `
 
-export default Contacts
+export default DashboardCard

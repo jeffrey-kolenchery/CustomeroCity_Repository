@@ -4,6 +4,7 @@ import './UserProfile.css'
 import styled from 'styled-components'
 import { deviceSize } from '../responsive'
 import { View, TextInput } from 'react-native'
+import Sidebar from './Sidebar'
 
 const ClientProfile = () => {
     const UselessTextInput = (props) => {
@@ -140,38 +141,7 @@ const ClientProfile = () => {
             </View>
             <MainButton style={{position: 'absolute', top: 15 , left: 1200}}>Clear Fields</MainButton>
             <Title style={{position: 'absolute', top: 530 , left: 695}}>Location</Title>
-            <Container>
-                
-                <LogoTitle>CustomeroCity</LogoTitle>
-                <ul className='SidebarList'>
-                    {SidebarData.map((val, key) => {
-                        return (
-                            <li 
-                                key={key}
-                                className="row"
-                                id = {window.location.pathname == val.link ? 'active' : ''}
-                                onClick={() => {
-                                    window.location.pathname = val.link
-                                }}
-                            >
-                                <div id="icon">{val.icon}</div> <div id="title">{val.title}</div>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </Container>
-            <ContainerDown>
-                <Title> Recent Contacts</Title>
-                <ContainerInside>
-                    
-                </ContainerInside>
-                <ContainerInside>
-                    
-                </ContainerInside>
-                <ContainerInside>
-                    
-                </ContainerInside>
-            </ContainerDown>
+            <Sidebar/>
         </>
     )
 }

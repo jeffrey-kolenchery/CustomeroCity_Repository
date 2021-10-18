@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios'
-import * as nodemailer from 'nodemailer'
-import * as sendgridTransport from 'nodemailer-sendgrid-transport'
+// import * as nodemailer from 'nodemailer'
+// import * as sendgridTransport from 'nodemailer-sendgrid-transport'
 import * as dotenv from 'dotenv'
 
 
@@ -16,7 +17,10 @@ async function userLogin(data) {
             console.log('user logged in')
             console.log(response)
             window.sessionStorage.setItem('userId',response.data.userId)
-            // window.location.assign('/')
+            window.sessionStorage.setItem('token',response.data.token)
+            console.log(response.data.token)
+            
+            // window.location.assign('/Search')
         },
         (error) => {
             console.log(error)
@@ -135,6 +139,32 @@ async function customerReturn(data) {
     )
 }
 
+async function customerData() {
+
+    let config = {
+        headers: {
+            'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+        }
+    }
+
+    const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
+    window.sessionStorage.getItem('token')
+    await axios.get(endpoint, config).then(
+        (response) => {
+            // console.log('Customers returned')
+            console.log(response.data)
+            // console.log( Object.create(response.data))
+
+            return response.data
+        },
+        (error) => {
+            console.log(error)
+        }
+    )
+    // return await axios.get(endpoint)
+
+} 
+
 async function customerEmail(data) {
     const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
     return await axios.get(endpoint, data).then(
@@ -189,6 +219,7 @@ export {
     customerDelete,
     customerSearch,
     customerReturn,
+    customerData,
     // customerEmail,
     escapeHtml
 }
