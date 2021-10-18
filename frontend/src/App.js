@@ -8,7 +8,6 @@ import UserLogin from './components/draftLogin.js'
 import UserProfile from './components/UserProfile.js'
 import Calendar from './components/Calendar.js'
 import Test from './components/Test.js'
-import 'devextreme/dist/css/dx.light.css'
 //add thomas part here
 
 class App extends Component {
