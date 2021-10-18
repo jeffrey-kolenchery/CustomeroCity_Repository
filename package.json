@@ -9,7 +9,7 @@
     "frontend-build": "cd frontend/ && npm run build",
     "backend-build": "cd backend/ && npm run build",
     "start-dev": "npm-run-all --parallel frontend backend",
-    "start": "npm-run-all --parallel frontend-build backend-build",
+    "start": "backend-build",
     "backend-test": "cd backend/ && npm test",
     "frontend-test": "cd frontend/ && npm test",
     "test": "backend-test",
