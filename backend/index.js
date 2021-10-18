@@ -50,12 +50,12 @@ mongoose
 
 mongoose.set('useFindAndModify', false)
 
-/* Enable CORS */
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:5000', 'https://customerocity.herokuapp.com'],
-    credentials: true,
-    optionsSuccessStatus: 200
-}))
+// /* Enable CORS */
+// app.use(cors({
+//     origin: ['http://localhost:3000', 'http://localhost:5000', 'https://customerocity.herokuapp.com'],
+//     credentials: true,
+//     optionsSuccessStatus: 200
+// }))
 
 // const userRouter = require("./routes/userRoutes");
 // const customerRouter = require("./routes/customerRoutes");
@@ -64,10 +64,6 @@ app.use('/api/customer', customerRouter)
 app.use('/api/meeting', meetingRouter)
 
 
-/* Listen for incoming connections */
-app.listen(PORT, () => {
-    console.log(`API listening on port ${PORT}.`)
-})
 
 
 export { app }

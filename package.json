@@ -2,7 +2,6 @@
   "name": "it-project-team-50",
   "version": "1.0.0",
   "description": "CRM Software for Everybody! (Capstone Project Team 50)",
-  "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "frontend": "cd frontend/ && npm start",
