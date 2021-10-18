@@ -24,6 +24,17 @@ app.use(cors())
 // connection string -> mongodb+srv://<username>:<password>@comp30022.5hadw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@comp30022.5hadw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
+// serve static folders if in production
+
+if (process.env.NODE_ENV === 'production') {
+    //set static folder
+
+    app.use(express.static('../frontend/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
+}
+
 const PORT = process.env.PORT || 5000
 
 mongoose
@@ -52,11 +63,6 @@ app.use('/api/user', userRouter)
 app.use('/api/customer', customerRouter)
 app.use('/api/meeting', meetingRouter)
 
-/* Serve the React app */
-app.use(express.static(path.join(__dirname, '../../frontend/build')))
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/build', 'index.html'))
-})
 
 /* Listen for incoming connections */
 app.listen(PORT, () => {
