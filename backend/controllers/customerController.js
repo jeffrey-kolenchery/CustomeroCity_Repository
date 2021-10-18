@@ -9,7 +9,7 @@ import { Customer } from '../models/customerModel.js'
 
 const searchCustomers = async (req, res) => {
     try {
-        const customers = await Customer.find({ user: req.profile._id })
+        const customers = await Customer.find({ user: req.params.userId })
         res.send(customers)
     } catch (err) {
         res.error(400)

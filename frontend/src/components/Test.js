@@ -6,22 +6,39 @@ import { ScheduleComponent, ViewsDirective, ViewDirective, Day, Week, WorkWeek, 
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars'
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import './Test.css'
+import axios from 'axios'
 
 const Test = () => {
 
     const [customers, setCustomers] = useState([])
+    const [userId, setUserId] = useState('')
 
-    const findAllCustomers = () => {
+    const findAllCustomers = async (userId) => {
+        const customers = await axios.get(`http://localhost:5000/api/customer/searchcustomers/${userId}`)
+        let array = customers.data
+        let nameArray = array.map(data=>data.email)
+        console.log(nameArray)
+        setCustomers(nameArray)
     }
 
     useEffect(()=>{
-
+        if(localStorage.getItem('userId')){
+            setUserId(localStorage.getItem('userId'))
+            findAllCustomers(localStorage.getItem('userId'))
+        }
+        else{
+            window.alert('pls login')
+        }
     },[])
+
+    useEffect(()=>{
+        console.log(customers)
+    },[customers])
 
     const scheduleComponent = new ScheduleComponent({})
     const dataManager = new DataManager({
-        url: 'http://localhost:5000/api/meeting/GetData/613044d2c5f237832f73f826',
-        crudUrl: 'http://localhost:5000/api/meeting/BatchData/613044d2c5f237832f73f826',
+        url: `http://localhost:5000/api/meeting/GetData/${userId}`,
+        crudUrl: `http://localhost:5000/api/meeting/BatchData/${userId}`,
         adaptor: new UrlAdaptor(),
         crossDomain: true
     })
@@ -36,7 +53,7 @@ const Test = () => {
                 <input id="Location" className="e-field e-input" type="text" name="loc" style={{ width: '100%' }} />
             </td></tr>
             <tr><td className="e-textlabel">Customer Email</td><td colSpan={4}>
-                <DropDownListComponent id="EventType" placeholder='Choose status' data-name="customer" className="e-field" style={{ width: '100%' }} dataSource={['dummy@dummy.com', 'Requested', 'Confirmed']} value={props.EventType || null}></DropDownListComponent>
+                <DropDownListComponent id="EventType" placeholder='Choose Customer' data-name="customer" className="e-field" style={{ width: '100%' }} dataSource={customers} value={props.EventType || null}></DropDownListComponent>
             </td></tr>
             <tr><td className="e-textlabel">From</td><td colSpan={4}>
                 <DateTimePickerComponent format='dd/MM/yy hh:mm a' id="StartTime" data-name="StartTime" value={new Date(props.startTime || props.StartTime)} className="e-field"></DateTimePickerComponent>
@@ -53,7 +70,7 @@ const Test = () => {
         <div className="control-section">
             <div className="schedule-control">
                 <ScheduleComponent id="schedule" ref={scheduleComponent} height="550px"
-                    selectedDate={new Date(2017, 5, 5)} currentView="Month" eventSettings={{ dataSource: dataManager }} showQuickInfo={false} editorTemplate={editorTemplate}>
+                    selectedDate={new Date()} currentView="Month" eventSettings={{ dataSource: dataManager }} showQuickInfo={false} editorTemplate={editorTemplate}>
                     <ViewsDirective>
                         <ViewDirective option="Day" />
                         <ViewDirective option="Week" />

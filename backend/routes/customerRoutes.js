@@ -36,8 +36,6 @@ customerRouter.post(
 )
 customerRouter.get(
     '/searchcustomers/:userId',
-    requireSignin,
-    isAuth,
     CustomerController.searchCustomers
 )
 

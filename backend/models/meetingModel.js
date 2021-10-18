@@ -28,7 +28,7 @@ const meetingSchema = new Schema({
         ref: 'Customer',
         required: true,
     },
-    description: {
+    Description: {
         type: String,
     },
     Id: {

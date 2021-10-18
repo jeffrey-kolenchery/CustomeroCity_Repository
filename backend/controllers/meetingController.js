@@ -60,6 +60,7 @@ const updateMeetings =  async (req,res) => {
                 eventData[a].user = req.profile._id
                 eventData[a].customer = customer._id
                 eventData[a].Id = meetings.length
+                console.log(eventData[a])
                 const newMeeting = new Meeting (eventData[a])
                 newMeeting.save()
             }
