@@ -44,7 +44,7 @@ class Login extends React.Component {
             console.log('user login failed')
             console.log(error)
         }
-        // window.location.assign('/Search')
+        //window.location.assign('/Contacts')
     }
 
   LoginPanel = () => {

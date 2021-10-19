@@ -20,7 +20,7 @@ async function userLogin(data) {
             window.sessionStorage.setItem('token',response.data.token)
             console.log(response.data.token)
             
-            window.location.assign('/Search')
+            window.location.assign('/Dashboard')
         },
         (error) => {
             console.log(error)

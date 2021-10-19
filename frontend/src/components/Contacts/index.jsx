@@ -1,5 +1,4 @@
 import React from 'react'
-import useFetch from 'react-fetch-hook'
 import ContactCards from './Cards'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -11,11 +10,7 @@ const Contacts = () => {
 
     const [contactList, setContactList] = useState([])
     const [filterQuery, setFilterQuery] = useState()
-
-
-    useEffect(() => {
-        customerData(setContactList)
-    }, [])
+    customerData(setContactList)
 
     // useEffect(() => {
     //     console.log('here', contactList)
@@ -64,7 +59,8 @@ const Contacts = () => {
                         <h1>No data matches your search</h1>
                     )}
                     {contactList.length >= 1 && (
-                        <ContactCards contactList={contactList} />
+                        <ContactCards contactList={contactList} 
+                        />
                     )}
                 </section>
             </div>

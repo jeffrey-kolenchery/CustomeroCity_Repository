@@ -84,7 +84,7 @@ const DashboardCard = () => {
                     <MainButton>Add Contact</MainButton>
                 </Link>
 
-                <section className={'grid sm:grid-cols-2 md:grid-cols-3 gap-6 p-20 -mt-14 flex-initial'}>
+                <section className={'grid sm:grid-cols-2 md:grid-cols-3 gap-6 p-20 -mt-14'}>
                     {contactList.length < 1 && (
                         <h1>No data matches your search</h1>
                     )}
