@@ -20,7 +20,7 @@ async function userLogin(data) {
             window.sessionStorage.setItem('token',response.data.token)
             console.log(response.data.token)
             
-            // window.location.assign('/Search')
+            window.location.assign('/Search')
         },
         (error) => {
             console.log(error)
@@ -85,17 +85,23 @@ async function userNewPassword(data) {
 }
 
 async function customerCreate(data) {
-    const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
-    return await axios.post(endpoint, data).then(
-        (response) => {
-            console.log('Customer successfully created')
-            console.log(response)
-        },
-        (error) => {
-            console.log(error)
-            alert('Enter all required fields with valid data')
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            }
         }
-    )
+
+        const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
+        window.sessionStorage.getItem('token')
+        const customers = await axios.post(endpoint,data, config)
+        console.log(customers)
+        console.log('Customer successfully created')
+    } catch (err) {
+        console.error(err)
+        alert('Enter all required fields with valid data')
+    }
+
 }
 
 async function customerDelete(data) {
@@ -127,16 +133,24 @@ async function customerSearch(data) {
 }
 
 async function customerReturn(data) {
-    const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
-    return await axios.get(endpoint, data).then(
-        (response) => {
-            console.log('Customer returned')
-            console.log(response)
-        },
-        (error) => {
-            console.log(error)
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            },
+            body: {
+                'customerId': data
+            }
         }
-    )
+
+        const endpoint = `${BASE_URL}/customer/returncustomer/${window.sessionStorage.getItem('userId')}`
+        const customer = await axios.get(endpoint, config)
+        console.log(customer)
+        console.log('Customer successfully returned')
+    } catch (err) {
+        console.error(err)
+        alert('Unauthorized')
+    }
 }
 
 async function customerData(setContactList) {
@@ -156,8 +170,6 @@ async function customerData(setContactList) {
     } catch (err) {
         console.error(err)
     }
-    
-    // return await axios.get(endpoint)
 
 } 
 

@@ -5,7 +5,11 @@ import styled from 'styled-components'
 import { deviceSize } from '../responsive'
 import { View, TextInput } from 'react-native'
 
+import { customerReturn } from '../../api'
+
 const ClientProfile = () => {
+    console.log('url search params::::::'+window.URLSearchParams)
+    console.log(customerReturn(window.URLSearchParams))
     const UselessTextInput = (props) => {
         return (
             <TextInput

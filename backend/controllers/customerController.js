@@ -12,12 +12,12 @@ const registerCustomer = (req, res, next) => {
     const customer = new Customer({
         givenName: req.body.givenName,
         designation: req.body.designation,
-        company: req.body.comapany,
+        company: req.body.company,
         email: req.body.email,
         age: req.body.age,
-        phoneNo: req.body.phoneNo,
+        phoneNo: req.body.phone,
         interests: req.body.interests,
-        user: req.profile._id,
+        user: req.params.userId,
         visitCount : 0,
     })
     customer
@@ -32,7 +32,7 @@ const registerCustomer = (req, res, next) => {
 
 const returnCustomer = async (req, res) => {
     try {
-        const customer = await Customer.find({ _id : req.body.customerId})
+        const customer = await Customer.find({ _id : new mongoose.Types.ObjectId(req.body.customerId)})
         res.send(customer)
     } catch (err) {
         res.error(400)

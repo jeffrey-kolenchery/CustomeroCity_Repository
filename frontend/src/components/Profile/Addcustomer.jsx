@@ -2,7 +2,6 @@
 //import { userSignUp } from '../api'
 import React from 'react'
 import styled from 'styled-components'
-import { userSignUp} from '../../api'
 import { useForm } from 'react-hook-form'
 import {
     Container,
@@ -11,75 +10,8 @@ import {
 } from './styling-profile'
 import { deviceSize } from '../responsive'
 import { SidebarData } from './SidebarData'
+import { customerCreate } from '../../api'
 
-
-const BoxContainer = styled.div`
-  width: 450px;
-  min-height: 550px;
-  display: flex;
-  flex-direction: column;
-  background-color: #F9F6FF;
-  margin-left: 45em;
-  margin-top: -45em;
-  box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
-  position: relative;
-  overflow: hidden;
-`
-const TopContainer = styled.div`
-  width: 100%;
-  height: 245px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 1.8em;
-  padding-bottom: 8em;
-`
-
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
-
-const HeaderText = styled.h2`
-  font-weight: 600;
-  font-family: Monospace;
-  color: #22222;
-  z-index: 10;
-  margin: 0;
-  font-size: 30px;
-  line-height: 1.24;
-`
-
-const SmallText = styled.h5`
-  font-weight: 500;
-  font-family: Monospace;
-  color: #22222;
-  z-index: 10;
-  font-size: 13px;
-  line-height: 1.24;
-`
-
-const InnerContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1.7em;
-`
-const LogoTitle = styled.h2`
-  margin: 0;
-  font-size: 18px;
-  color: #885AF8;
-  font-weight: 550;
-  margin-left: -13rem;
-  margin-top: 1rem;
-  font-family: Monospace;
-  @media screen and (max-width: ${deviceSize.mobile}px) {
-    margin-left: -8rem;
-  }
-`
 
 class Addcustomer extends React.Component {
       state = {
@@ -112,10 +44,10 @@ class Addcustomer extends React.Component {
 
     onSubmit = () => {
         try {
-            userSignUp(this.state)
+            customerCreate(this.state)
         
         } catch (error) {
-            console.log('user signup failed')
+            alert('Customer creation failed')
             console.log(error)
         }
     }
@@ -200,6 +132,77 @@ class Addcustomer extends React.Component {
   }
   
 }
+
+
+const BoxContainer = styled.div`
+  width: 450px;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+  background-color: #F9F6FF;
+  margin-left: 45em;
+  margin-top: -45em;
+  box-shadow: 0px 0px 2.7px rgba(15, 15, 15, 0.28);
+  position: relative;
+  overflow: hidden;
+`
+const TopContainer = styled.div`
+  width: 100%;
+  height: 245px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 1.8em;
+  padding-bottom: 8em;
+`
+
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const HeaderText = styled.h2`
+  font-weight: 600;
+  font-family: Monospace;
+  color: #22222;
+  z-index: 10;
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.24;
+`
+
+const SmallText = styled.h5`
+  font-weight: 500;
+  font-family: Monospace;
+  color: #22222;
+  z-index: 10;
+  font-size: 13px;
+  line-height: 1.24;
+`
+
+const InnerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.7em;
+`
+const LogoTitle = styled.h2`
+  margin: 0;
+  font-size: 18px;
+  color: #885AF8;
+  font-weight: 550;
+  margin-left: -13rem;
+  margin-top: 1rem;
+  font-family: Monospace;
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    margin-left: -8rem;
+  }
+`
+
+
 export const ContainerList = styled.div`
   width: 430px;
   min-height: 406px;

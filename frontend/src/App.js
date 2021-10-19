@@ -19,7 +19,7 @@ function App() {
                     <Route exact path = "/Signup" component={SignUp} />
                     <Route exact path = "/Login" component={Login} />
                     <Route exact path = "/UserProfile" component={UserProfile} />
-                    <Route exact path = "/ClientProfile/:customerId" component={ClientProfile} />
+                    <Route exact path = "/CustomerProfile" component={ClientProfile} />
                     <Route exact path = "/Search" component={Contacts} />
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
                 </Switch>
