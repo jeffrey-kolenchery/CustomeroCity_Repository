@@ -7,7 +7,6 @@ import mongoose from 'mongoose'
 import { Customer } from '../models/customerModel.js'
 
 
-
 const registerCustomer = (req, res, next) => {
     const customer = new Customer({
         givenName: req.body.givenName,
@@ -32,7 +31,8 @@ const registerCustomer = (req, res, next) => {
 
 const returnCustomer = async (req, res) => {
     try {
-        const customer = await Customer.find({ _id : new mongoose.Types.ObjectId(req.body.customerId)})
+        console.log(req.body.customerId)
+        const customer = await Customer.find({ _id : new mongoose.Types.ObjectId(req.params.customerId)})
         res.send(customer)
     } catch (err) {
         res.error(400)

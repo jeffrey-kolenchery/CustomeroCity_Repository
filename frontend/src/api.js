@@ -132,24 +132,32 @@ async function customerSearch(data) {
     )
 }
 
-async function customerReturn(data) {
+async function userView() {
+    let config = {
+        headers: {
+            'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
+        }
+    }
+    const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
+    const user = await axios.get(endpoint)
+    console.log("USER DATA>>>>>>>>>>")
+    console.log(user.data)
+}
+
+async function customerReturn() {
     try {
         let config = {
             headers: {
-                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
-            },
-            body: {
-                'customerId': data
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
             }
         }
 
-        const endpoint = `${BASE_URL}/customer/returncustomer/${window.sessionStorage.getItem('userId')}`
-        const customer = await axios.get(endpoint, config)
-        console.log(customer)
-        console.log('Customer successfully returned')
+        const endpoint = `${BASE_URL}/customer/returncustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+        return await axios.get(endpoint, config).then((customer) => {
+            return customer.data
+        })
     } catch (err) {
-        console.error(err)
-        alert('Unauthorized')
+        console.log(err)
     }
 }
 
@@ -165,7 +173,7 @@ async function customerData(setContactList) {
         const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
         window.sessionStorage.getItem('token')
         const customers = await axios.get(endpoint, config)
-        console.log(customers)
+        // console.log(customers)
         setContactList(customers.data)
     } catch (err) {
         console.error(err)
@@ -223,6 +231,7 @@ export {
     userSignOut,
     userResetPassword,
     userNewPassword,
+    userView,
     customerCreate,
     customerDelete,
     customerSearch,

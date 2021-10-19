@@ -6,11 +6,12 @@ import { deviceSize } from '../responsive'
 import { View, TextInput } from 'react-native'
 import Sidebar from './Sidebar'
 
-import { customerReturn } from '../../api'
+import { customerReturn, userView } from '../../api'
 
 const ClientProfile = () => {
-    console.log('url search params::::::'+window.URLSearchParams)
-    console.log(customerReturn(window.URLSearchParams))
+    var currentCustomer = customerReturn()
+    console.log(userView())
+    console.log(currentCustomer)
     const UselessTextInput = (props) => {
         return (
             <TextInput

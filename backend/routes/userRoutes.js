@@ -25,5 +25,7 @@ userRouter.get('/test', AuthController.requireSignin, (req, res) => {
 userRouter.post('/resetpassword', UserController.resetPassword)
 userRouter.post('/newpassword', UserController.newPassword)
 
+userRouter.get('/viewuser/:userId',UserController.viewUser)
+
 // module.exports = userRouter;
 export { userRouter }

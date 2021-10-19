@@ -37,7 +37,7 @@
       "never"
     ],
     "no-unused-vars": [
-      "warn"
+      "off"
     ]
   }
 }

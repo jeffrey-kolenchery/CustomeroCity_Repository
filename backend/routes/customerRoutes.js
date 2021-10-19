@@ -46,7 +46,7 @@ customerRouter.get(
 )
 
 customerRouter.get(
-    '/returncustomer/:userId',
+    '/returncustomer/:userId/:customerId',
     requireSignin,
     isAuth,
     CustomerController.returnCustomer
