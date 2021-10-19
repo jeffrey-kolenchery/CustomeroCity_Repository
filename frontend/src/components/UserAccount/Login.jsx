@@ -30,7 +30,7 @@ class Login extends React.Component {
     dataForming = (data) => {
         this.setState(
             {
-                username : data.email,
+                username : data.username,
                 password : data.password
             }
         )
@@ -39,6 +39,7 @@ class Login extends React.Component {
     onSubmit = () => {
         try {
             userLogin(this.state)
+            window.location.assign('/Dashboard')
         
         } catch (error) {
             console.log('user login failed')

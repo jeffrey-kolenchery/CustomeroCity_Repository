@@ -51,6 +51,7 @@ class SignUp extends React.Component {
     onSubmit = () => {
         try {
             userSignUp(this.state)
+            window.location.assign('/Search')
         
         } catch (error) {
             console.log('user signup failed')

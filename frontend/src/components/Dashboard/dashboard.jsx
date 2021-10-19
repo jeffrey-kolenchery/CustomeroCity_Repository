@@ -69,7 +69,7 @@ const DashboardCard = () => {
 
     return (
         <>
-            <div className={'bg-gray-100 ml-96 -mt-96'}>
+            <div className={'bg-gray-100 ml-96 -mt-64'}>
                 <section>
                     <form>
                         <input
@@ -110,7 +110,7 @@ export const MainButton = styled.button`
   background-color: #885AF8;
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  margin-left: 60rem; 
+  margin-left: 42rem; 
   margin-top: 1.5rem;
   font-family: Monospace;
   &:hover {

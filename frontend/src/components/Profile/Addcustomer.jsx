@@ -140,9 +140,26 @@ class Addcustomer extends React.Component {
               {errors.phone && <p>This field is required</p>}
               <Input type="age" placeholder="Age" {...register("age", { required: true })} />
               {errors.age && <p>This field is required</p>}
-              <Input type="interests" placeholder="Interests" {...register("interests", { required: true })} />
-              {errors.interests && <p>This field is required</p>}
-
+              <div className="flex flex-wrap -mx-3 mb-2">
+                  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                      <div className="relative">
+                          <select className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500 mt-3" placeholder="Albuquerque" id="grid-state">
+                              <option>Category1</option>
+                              <option>Missouri</option>
+                              <option>Texas</option>
+                              <option>Texas</option>
+                              <option>Texas</option>
+                              <option>Texas</option>
+                              <option>Texas</option>
+                              <option>Texas</option>
+                              <option>Texas</option>
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                          </div>
+                      </div>
+                  </div>
+              </div>
               <button type="submit">Add</button>
           </FormContainer>
       )
