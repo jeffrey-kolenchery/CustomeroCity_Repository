@@ -9,8 +9,8 @@ import {
     Input,
 } from './styling-profile'
 import { deviceSize } from '../responsive'
-import { SidebarData } from './SidebarData'
 import { customerCreate } from '../../api'
+import Sidebar from './Sidebar'
 
 
 class Addcustomer extends React.Component {
@@ -83,37 +83,7 @@ class Addcustomer extends React.Component {
   render() {
       return (
           <>
-              <ContainerList>
-                  <LogoTitle>CustomeroCity</LogoTitle>
-                  <ul className='SidebarList'>
-                      {SidebarData.map((val, key) => {
-                          return (
-                              <li 
-                                  key={key}
-                                  className="row"
-                                  id = {window.location.pathname == val.link ? 'active' : ''}
-                                  onClick={() => {
-                                      window.location.pathname = val.link
-                                  }}
-                              >
-                                  <div id="icon">{val.icon}</div> <div id="title">{val.title}</div>
-                              </li>
-                          )
-                      })}
-                  </ul>
-              </ContainerList>
-              <ContainerDown>
-                  <Title> Recent Contacts</Title>
-                  <ContainerInside>
-                    
-                  </ContainerInside>
-                  <ContainerInside>
-                    
-                  </ContainerInside>
-                  <ContainerInside>
-                    
-                  </ContainerInside>
-              </ContainerDown>
+              <Sidebar/>
               <BoxContainer>
                   <TopContainer>
                       <HeaderContainer>
