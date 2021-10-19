@@ -22,7 +22,9 @@
         "prettier"
     ],
     "rules": {
-        
+        "react/prop-types": 
+        "off",
+
         "indent": [
             "error",
             4
@@ -41,6 +43,10 @@
         ],
         "no-unused-vars": [
             "warn"
-        ]
+        ],
+        "template-curly-spacing" : "off",
+        "indent": ["error", 4, {
+            "ignoredNodes": ["TemplateLiteral"]
+        }]
     }
 }
