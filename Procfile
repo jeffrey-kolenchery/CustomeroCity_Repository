@@ -1,0 +1,1 @@
+Web: npm run backend-build
