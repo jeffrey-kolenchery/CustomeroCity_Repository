@@ -20,21 +20,23 @@ const Calendar = () => {
             }
         }
         const customers = await axios.get(`https://customerocity.herokuapp.com/api/customer/getCustomers/${userId}`, config)
-        let array = customers.data
-        let nameArray = array.map(data => data.email)
-        console.log('asdfasdfasdfasdf', customers)
-        setCustomers(nameArray)
+        if (length(customers.data)>0) {
+            let array = customers.data
+            console.log(array)
+            let nameArray = array.map(data => data.email)
+            // console.log('asdfasdfasdfasdf', customers)
+            setCustomers(nameArray)
+        }
+        
     }
 
     useEffect(() => {
         if (window.sessionStorage.getItem('userId')) {
-            console.log(window.sessionStorage.getItem('userId'))
             findAllCustomers(window.sessionStorage.getItem('userId'))
-            console.log('asdfasdfadsf')
             setUserId(window.sessionStorage.getItem('userId'))
         }
         else {
-            window.alert('pls login')
+            window.alert('Login to access this')
         }
     }, [])
 
