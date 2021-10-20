@@ -10,86 +10,86 @@ import axios from 'axios'
 
 const Calendar = () => {
 
-  const [customers, setCustomers] = useState([])
-  const [userId, setUserId] = useState('')
+    const [customers, setCustomers] = useState([])
+    const [userId, setUserId] = useState('')
 
-  const findAllCustomers = async (userId) => {
-    let config = {
-      headers: {
-        'Authorization': `bearer ${window.sessionStorage.getItem('token')}`,
-      }
+    const findAllCustomers = async (userId) => {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}`,
+            }
+        }
+        const customers = await axios.get(`http://localhost:5000/api/customer/getCustomers/${userId}`, config)
+        let array = customers.data
+        let nameArray = array.map(data => data.email)
+        console.log('asdfasdfasdfasdf', customers)
+        setCustomers(nameArray)
     }
-    const customers = await axios.get(`http://localhost:5000/api/customer/getCustomers/${userId}`, config)
-    let array = customers.data
-    let nameArray = array.map(data => data.email)
-    console.log('asdfasdfasdfasdf', customers)
-    setCustomers(nameArray)
-  }
 
-  useEffect(() => {
-    if (window.sessionStorage.getItem('userId')) {
-      console.log(window.sessionStorage.getItem('userId'))
-      findAllCustomers(window.sessionStorage.getItem('userId'))
-      console.log('asdfasdfadsf')
-      setUserId(window.sessionStorage.getItem('userId'))
+    useEffect(() => {
+        if (window.sessionStorage.getItem('userId')) {
+            console.log(window.sessionStorage.getItem('userId'))
+            findAllCustomers(window.sessionStorage.getItem('userId'))
+            console.log('asdfasdfadsf')
+            setUserId(window.sessionStorage.getItem('userId'))
+        }
+        else {
+            window.alert('pls login')
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log('customerscustoermss', customers)
+    }, [customers])
+
+    const scheduleComponent = new ScheduleComponent({})
+    const dataManager = new DataManager({
+        url: `http://localhost:5000/api/meeting/GetData/${userId}`,
+        crudUrl: `http://localhost:5000/api/meeting/BatchData/${userId}`,
+        adaptor: new UrlAdaptor(),
+        crossDomain: true
+    })
+
+    const editorTemplate = (props) => {
+
+        return (props !== undefined ? <table className="custom-event-editor" style={{ width: '100%' }}><tbody>
+            <tr><td className="e-textlabel">Title</td><td colSpan={4}>
+                <input id="Summary" className="e-field e-input" type="text" name="Subject" style={{ width: '100%' }} />
+            </td></tr>
+            <tr><td className="e-textlabel">Location</td><td colSpan={4}>
+                <input id="Location" className="e-field e-input" type="text" name="loc" style={{ width: '100%' }} />
+            </td></tr>
+            <tr><td className="e-textlabel">Customer Email</td><td colSpan={4}>
+                <DropDownListComponent id="EventType" placeholder='Choose Customer' data-name="customer" className="e-field" style={{ width: '100%' }} dataSource={customers} value={props.EventType || null}></DropDownListComponent>
+            </td></tr>
+            <tr><td className="e-textlabel">From</td><td colSpan={4}>
+                <DateTimePickerComponent format='dd/MM/yy hh:mm a' id="StartTime" data-name="StartTime" value={new Date(props.startTime || props.StartTime)} className="e-field"></DateTimePickerComponent>
+            </td></tr>
+            <tr><td className="e-textlabel">To</td><td colSpan={4}>
+                <DateTimePickerComponent format='dd/MM/yy hh:mm a' id="EndTime" data-name="EndTime" value={new Date(props.endTime || props.EndTime)} className="e-field"></DateTimePickerComponent>
+            </td></tr>
+            <tr><td className="e-textlabel">Description</td><td colSpan={4}>
+                <textarea id="Description" className="e-field e-input" name="Description" rows={3} cols={50} style={{ width: '100%', height: '60px !important', resize: 'vertical' }}></textarea>
+            </td></tr> </tbody></table> : <div></div>)
     }
-    else {
-      window.alert('pls login')
-    }
-  }, [])
 
-  useEffect(() => {
-    console.log('customerscustoermss', customers)
-  }, [customers])
-
-  const scheduleComponent = new ScheduleComponent({})
-  const dataManager = new DataManager({
-    url: `http://localhost:5000/api/meeting/GetData/${userId}`,
-    crudUrl: `http://localhost:5000/api/meeting/BatchData/${userId}`,
-    adaptor: new UrlAdaptor(),
-    crossDomain: true
-  })
-
-  const editorTemplate = (props) => {
-
-    return (props !== undefined ? <table className="custom-event-editor" style={{ width: '100%' }}><tbody>
-      <tr><td className="e-textlabel">Title</td><td colSpan={4}>
-        <input id="Summary" className="e-field e-input" type="text" name="Subject" style={{ width: '100%' }} />
-      </td></tr>
-      <tr><td className="e-textlabel">Location</td><td colSpan={4}>
-        <input id="Location" className="e-field e-input" type="text" name="loc" style={{ width: '100%' }} />
-      </td></tr>
-      <tr><td className="e-textlabel">Customer Email</td><td colSpan={4}>
-        <DropDownListComponent id="EventType" placeholder='Choose Customer' data-name="customer" className="e-field" style={{ width: '100%' }} dataSource={customers} value={props.EventType || null}></DropDownListComponent>
-      </td></tr>
-      <tr><td className="e-textlabel">From</td><td colSpan={4}>
-        <DateTimePickerComponent format='dd/MM/yy hh:mm a' id="StartTime" data-name="StartTime" value={new Date(props.startTime || props.StartTime)} className="e-field"></DateTimePickerComponent>
-      </td></tr>
-      <tr><td className="e-textlabel">To</td><td colSpan={4}>
-        <DateTimePickerComponent format='dd/MM/yy hh:mm a' id="EndTime" data-name="EndTime" value={new Date(props.endTime || props.EndTime)} className="e-field"></DateTimePickerComponent>
-      </td></tr>
-      <tr><td className="e-textlabel">Description</td><td colSpan={4}>
-        <textarea id="Description" className="e-field e-input" name="Description" rows={3} cols={50} style={{ width: '100%', height: '60px !important', resize: 'vertical' }}></textarea>
-      </td></tr> </tbody></table> : <div></div>)
-  }
-
-  return (
-    <div className="control-section">
-      <div className="schedule-control">
-        <ScheduleComponent id="schedule" ref={scheduleComponent} height="550px"
-          selectedDate={new Date()} currentView="Month" eventSettings={{ dataSource: dataManager }} showQuickInfo={false} editorTemplate={editorTemplate}>
-          <ViewsDirective>
-            <ViewDirective option="Day" />
-            <ViewDirective option="Week" />
-            <ViewDirective option="WorkWeek" />
-            <ViewDirective option="Month" />
-            <ViewDirective option="Agenda" />
-          </ViewsDirective>
-          <Inject services={[Day, Week, WorkWeek, Month, Agenda,]} />
-        </ScheduleComponent>
-      </div>
-    </div>
-  )
+    return (
+        <div className="control-section">
+            <div className="schedule-control">
+                <ScheduleComponent id="schedule" ref={scheduleComponent} height="550px"
+                    selectedDate={new Date()} currentView="Month" eventSettings={{ dataSource: dataManager }} showQuickInfo={false} editorTemplate={editorTemplate}>
+                    <ViewsDirective>
+                        <ViewDirective option="Day" />
+                        <ViewDirective option="Week" />
+                        <ViewDirective option="WorkWeek" />
+                        <ViewDirective option="Month" />
+                        <ViewDirective option="Agenda" />
+                    </ViewsDirective>
+                    <Inject services={[Day, Week, WorkWeek, Month, Agenda,]} />
+                </ScheduleComponent>
+            </div>
+        </div>
+    )
 }
 
 export default Calendar
