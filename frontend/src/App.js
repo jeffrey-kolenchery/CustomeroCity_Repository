@@ -6,10 +6,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import SignUp from './components/UserAccount/SignUp'
 import Login from './components/UserAccount/Login'
 import UserProfile from './components/Profile/UserProfile'
-import ClientProfile from './components/Profile/ClientProfile'
+import CustomerProfile from './components/Profile/CustomerProfile'
 import Contacts from './components/Contacts'
 import Addcustomer from './components/Profile/Addcustomer'
 import { Dashboard } from './components/Dashboard'
+import ResetPassword from './components/Profile/ResetPassword'
 
 function App() {
     return (
@@ -20,9 +21,10 @@ function App() {
                     <Route exact path = "/Signup" component={SignUp} />
                     <Route ex act path = "/Login" component={Login} />
                     <Route exact path = "/UserProfile" component={UserProfile} />
-                    <Route exact path = "/CustomerProfile" component={ClientProfile} />
+                    <Route exact path = "/CustomerProfile" component={CustomerProfile} />
                     <Route exact path = "/Dashboard" component={Dashboard} />
                     <Route exact path = "/Contacts" component={Contacts} />
+                    <Route exact path = "/ResetPassword" component={ResetPassword} />
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
                 </Switch>
             </Router> 

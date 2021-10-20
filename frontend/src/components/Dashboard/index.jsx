@@ -11,7 +11,6 @@ export function Dashboard() {
         <Sidebar />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Calendar />
-          <DashboardCard />
         </div>
       </div>
 
