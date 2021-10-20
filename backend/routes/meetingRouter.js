@@ -12,6 +12,7 @@ import {
     createMeeting,
     getAllMeetings,
     getMeetingsByCustomer,
+    updateMeetings,
 } from '../controllers/meetingController.js'
 
 // Calls callback function every time "userId" is in the parameter.
@@ -45,5 +46,9 @@ meetingRouter.get(
     isAuth,
     getMeetingsByCustomer
 )
+
+meetingRouter.post('/GetData/:userId', getAllMeetings)
+
+meetingRouter.post('/BatchData/:userId', updateMeetings)
 
 export { meetingRouter }

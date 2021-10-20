@@ -18,14 +18,14 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path = "/Signup" component={SignUp} />
-                    <Route exact path = "/Login" component={Login} />
+                    <Route ex act path = "/Login" component={Login} />
                     <Route exact path = "/UserProfile" component={UserProfile} />
                     <Route exact path = "/CustomerProfile" component={ClientProfile} />
                     <Route exact path = "/Dashboard" component={Dashboard} />
                     <Route exact path = "/Contacts" component={Contacts} />
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
                 </Switch>
-            </Router>
+            </Router> 
         </div>
     )
 }

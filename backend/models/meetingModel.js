@@ -3,16 +3,18 @@ const Schema = mongoose.Schema
 const { ObjectId } = mongoose.Schema
 
 const meetingSchema = new Schema({
+    Subject: {
+        type: String,
+    },
     loc: {
-        type: Array,
+        type: String,
         required: true,
     },
-    calendar: {
-        type: ObjectId,
-        ref: 'Calendar',
+    StartTime: {
+        type: Date,
         required: true,
     },
-    date: {
+    EndTime: {
         type: Date,
         required: true,
     },
@@ -25,6 +27,12 @@ const meetingSchema = new Schema({
         type: ObjectId,
         ref: 'Customer',
         required: true,
+    },
+    Description: {
+        type: String,
+    },
+    Id: {
+        type: Number,
     },
     expireToken: Date,
 })
