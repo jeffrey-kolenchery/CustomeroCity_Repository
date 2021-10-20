@@ -20,7 +20,7 @@ const Calendar = () => {
       }
     }
     console.log(userId)
-    const customers = await axios.get(`http://localhost:5000/api/customer/getCustomers/${userId}`, config)
+    const customers = await axios.get(`https://customerocity.herokuapp.com/api/customer/getCustomers/${userId}`, config)
     if (customers.data.length > 0) {
       let array = customers.data
       console.log(array)
