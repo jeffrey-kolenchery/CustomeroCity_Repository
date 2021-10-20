@@ -19,7 +19,7 @@ const Calendar = () => {
                 'Authorization': `bearer ${window.sessionStorage.getItem('token')}`,
             }
         }
-        const customers = await axios.get(`http://localhost:5000/api/customer/getCustomers/${userId}`, config)
+        const customers = await axios.get(`https://customerocity.herokuapp.com/api/customer/getCustomers/${userId}`, config)
         let array = customers.data
         let nameArray = array.map(data => data.email)
         console.log('asdfasdfasdfasdf', customers)
@@ -44,8 +44,8 @@ const Calendar = () => {
 
     const scheduleComponent = new ScheduleComponent({})
     const dataManager = new DataManager({
-        url: `http://localhost:5000/api/meeting/GetData/${userId}`,
-        crudUrl: `http://localhost:5000/api/meeting/BatchData/${userId}`,
+        url: `https://customerocity.herokuapp.com/api/meeting/GetData/${userId}`,
+        crudUrl: `https://customerocity.herokuapp.com/api/api/meeting/BatchData/${userId}`,
         adaptor: new UrlAdaptor(),
         crossDomain: true
     })

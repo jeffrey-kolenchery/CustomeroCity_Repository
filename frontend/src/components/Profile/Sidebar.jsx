@@ -7,7 +7,7 @@ import { customerData } from '../../api.js'
 
 const Sidebar = () => {
 
-    var BASE_URL = 'http://localhost:5000/api'
+    var BASE_URL = 'https://customerocity.herokuapp.com/api'
 
     const [user, setUser] = useState('')
     const [contactList, setContactList] = useState([])
