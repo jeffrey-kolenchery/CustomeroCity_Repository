@@ -3,7 +3,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import expressValidator from 'express-validator'
-import path from 'path'
+import path from 'path' ////////////////////////////
+import { fileURLToPath } from 'url' ////////////////
 
 import * as dotenv from 'dotenv'
 import { customerRouter } from './routes/customerRoutes.js'
@@ -30,6 +31,7 @@ const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.
 
 if (process.env.NODE_ENV === 'production') {
     //set static folder
+    const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
     app.use(express.static('../frontend/build'))
     app.get('*', (req, res) => {
