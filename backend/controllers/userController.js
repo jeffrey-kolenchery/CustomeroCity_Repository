@@ -118,7 +118,7 @@ const viewUser = async (req, res) => {
                 }, {
                     '$project': {
                         'givenName': 1, 
-                        'email': 1
+                        'email': 1,
                     }
                 }
             ]

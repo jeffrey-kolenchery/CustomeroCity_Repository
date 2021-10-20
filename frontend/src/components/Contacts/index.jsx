@@ -1,6 +1,8 @@
 import React from 'react'
+import useFetch from 'react-fetch-hook'
 import ContactCards from './Cards'
 import { useEffect, useState } from 'react'
+// import data from './data.json'
 import styled from 'styled-components'
 import { deviceSize } from '../responsive'
 import { Link } from 'react-router-dom'
@@ -38,7 +40,7 @@ const Contacts = () => {
     }, [contactList, filterQuery])
 
     return (
-        <>
+        <div style={{ display: 'block' }}>
             <div className={'bg-gray-100'}>
                 <section>
                     <form>
@@ -59,12 +61,12 @@ const Contacts = () => {
                         <h1>No data matches your search</h1>
                     )}
                     {contactList.length >= 1 && (
-                        <ContactCards contactList={contactList} 
+                        <ContactCards contactList={contactList}
                         />
                     )}
                 </section>
             </div>
-        </>
+        </div>
     )
 }
 
@@ -94,6 +96,5 @@ export const MainButton = styled.button`
     margin-left: -2rem;
   }
 `
-
 
 export default Contacts

@@ -40,8 +40,6 @@ customerRouter.post(
 )
 customerRouter.get(
     '/searchcustomers/:userId',
-    requireSignin,
-    isAuth,
     CustomerController.searchCustomers
 )
 
@@ -71,6 +69,13 @@ customerRouter.get(
     requireSignin,
     isAuth,
     CustomerController.customerData
+)
+
+customerRouter.get(
+  '/getCustomers/:userId',
+  requireSignin,
+  isAuth,
+  CustomerController.searchCustomer
 )
 
 // module.exports = customerRouter;
