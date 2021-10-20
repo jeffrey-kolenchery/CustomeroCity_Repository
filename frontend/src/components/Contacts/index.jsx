@@ -10,64 +10,64 @@ import { customerData } from '../../api.js'
 
 const Contacts = () => {
 
-    const [contactList, setContactList] = useState([])
-    const [filterQuery, setFilterQuery] = useState()
-    customerData(setContactList)
+  const [contactList, setContactList] = useState([])
+  const [filterQuery, setFilterQuery] = useState()
+  customerData(setContactList)
 
-    // useEffect(() => {
-    //     console.log('here', contactList)
-    // }, [contactList])
+  // useEffect(() => {
+  //     console.log('here', contactList)
+  // }, [contactList])
 
-    useEffect(() => {
-        if (!filterQuery) {
-            setContactList(contactList)
-        } else {
-            const queryString = filterQuery.toLowerCase()
-            const filteredData = contactList?.filter(contact => {
-                const givenName = `${contact.givenName}`
+  useEffect(() => {
+    if (!filterQuery) {
+      setContactList(contactList)
+    } else {
+      const queryString = filterQuery.toLowerCase()
+      const filteredData = contactList?.filter(contact => {
+        const givenName = `${contact.givenName}`
 
-                // if it's just one letter, return all names that start with it
-                if (queryString.length === 1) {
-                    const firstLetter = givenName.charAt(0).toLowerCase()
-                    return firstLetter === queryString
-                }
-                else {
-                    return givenName.toLowerCase().includes(queryString)
-                }
-            })
-            setContactList(filteredData)
+        // if it's just one letter, return all names that start with it
+        if (queryString.length === 1) {
+          const firstLetter = givenName.charAt(0).toLowerCase()
+          return firstLetter === queryString
         }
-    }, [contactList, filterQuery])
+        else {
+          return givenName.toLowerCase().includes(queryString)
+        }
+      })
+      setContactList(filteredData)
+    }
+  }, [contactList, filterQuery])
 
-    return (
-        <div style={{ display: 'block' }}>
-            <div className={'bg-gray-100'}>
-                <section>
-                    <form>
-                        <input
-                            type={'text'}
-                            placeholder={'Search for a contact'}
-                            onChange={event => setFilterQuery(event.target.value)}
-                            className={'mt-6 rounded-md p-2 w-5/6'}
-                        />
-                    </form>
-                </section>
-                <Link to="/AddCustomer">
-                    <MainButton>Add Contact</MainButton>
-                </Link>
+  return (
+    <div style={{ display: 'block' }}>
+      <div className={'bg-gray-100'}>
+        <section>
+          <form>
+            <input
+              type={'text'}
+              placeholder={'Search for a contact'}
+              onChange={event => setFilterQuery(event.target.value)}
+              className={'mt-6 rounded-md p-2 w-5/6'}
+            />
+          </form>
+        </section>
+        <Link to="/AddCustomer">
+          <MainButton>Add Contact</MainButton>
+        </Link>
 
-                <section className={'grid sm:grid-cols-2 md:grid-cols-3 gap-6 p-20 -mt-14'}>
-                    {contactList.length < 1 && (
-                        <h1>No data matches your search</h1>
-                    )}
-                    {contactList.length >= 1 && (
-                        <ContactCards contactList={contactList}
-                        />
-                    )}
-                </section>
-            </div>
-        </div>
-    )
+        <section className={'grid sm:grid-cols-2 md:grid-cols-3 gap-6 p-20 -mt-14'}>
+          {contactList.length < 1 && (
+            <h1>No data matches your search</h1>
+          )}
+          {contactList.length != 0 && (
+            <ContactCards contactList={contactList}
+            />
+          )}
+        </section>
+      </div>
+    </div>
+  )
 }
 
 export const MainButton = styled.button`
