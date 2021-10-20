@@ -1,45 +1,75 @@
 import React from 'react'
-import ContactCards from './Cards'
+import useFetch from 'react-fetch-hook'
+import ContactCards from '../Contacts/Cards'
 import { useEffect, useState } from 'react'
+// import data from './data.json'
 import styled from 'styled-components'
 import { deviceSize } from '../responsive'
 import { Link } from 'react-router-dom'
 import { customerData } from '../../api.js'
 
-const Contacts = () => {
+import axios from 'axios'
+var BASE_URL = 'https://customerocity.herokuapp.com/api'
+
+
+// import { customerSearch } from '../../api'
+// import { customerData } from '../../api'
+
+
+
+const DashboardCard = () => {
+
+
+    // var preformedData = customerData()
+
+    // if (preformedData) {
+    //     var data = preformedData
+
+    //     // console.log(datum)
+    //     console.log(data)
+    // }
+
+    // else {
+    //     var message = 'No Customers in the database, why not add some now?'
+    // }
+
 
     const [contactList, setContactList] = useState([])
     const [filterQuery, setFilterQuery] = useState()
-    customerData(setContactList)
 
-    // useEffect(() => {
-    //     console.log('here', contactList)
-    // }, [contactList])
 
     useEffect(() => {
-        if (!filterQuery) {
-            setContactList(contactList)
-        } else {
-            const queryString = filterQuery.toLowerCase()
-            const filteredData = contactList?.filter(contact => {
-                const givenName = `${contact.givenName}`
+        customerData(setContactList)
+    }, [])
 
-                // if it's just one letter, return all names that start with it
-                if (queryString.length === 1) {
-                    const firstLetter = givenName.charAt(0).toLowerCase()
-                    return firstLetter === queryString
-                }
-                else {
-                    return givenName.toLowerCase().includes(queryString)
-                }
-            })
-            setContactList(filteredData)
-        }
-    }, [contactList, filterQuery])
+    useEffect(() => {
+        console.log('here', contactList)
+    }, [contactList])
+
+    // useEffect(() => {
+    //     if (!filterQuery) {
+    //         setContactList(data)
+    //     } else {
+    //         const queryString = filterQuery.toLowerCase()
+    //         const filteredData = data?.filter(contact => {
+    //             const givenName = `${contact.givenName}`
+
+    //             // if it's just one letter, return all names that start with it
+    //             if (queryString.length === 1) {
+    //                 const firstLetter = givenName.charAt(0).toLowerCase()
+    //                 return firstLetter === queryString
+    //             }
+    //             else {
+    //                 return givenName.toLowerCase().includes(queryString)
+    //             }
+    //         })
+    //         setContactList(filteredData)
+    //     }
+    // }, [data, filterQuery])
 
     return (
         <>
-            <div className={'bg-gray-100'}>
+            <div className={'bg-gray-100 ml-96 -mt-96'}>
                 <section>
                     <form>
                         <input
@@ -59,8 +89,7 @@ const Contacts = () => {
                         <h1>No data matches your search</h1>
                     )}
                     {contactList.length >= 1 && (
-                        <ContactCards contactList={contactList} 
-                        />
+                        <ContactCards contactList={contactList} />
                     )}
                 </section>
             </div>
@@ -95,5 +124,4 @@ export const MainButton = styled.button`
   }
 `
 
-
-export default Contacts
+export default DashboardCard

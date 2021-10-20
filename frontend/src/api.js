@@ -20,7 +20,7 @@ async function userLogin(data) {
             window.sessionStorage.setItem('token',response.data.token)
             console.log(response.data.token)
             
-            // window.location.assign('/Search')
+            window.location.assign('/Dashboard')
         },
         (error) => {
             console.log(error)
@@ -85,17 +85,23 @@ async function userNewPassword(data) {
 }
 
 async function customerCreate(data) {
-    const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
-    return await axios.post(endpoint, data).then(
-        (response) => {
-            console.log('Customer successfully created')
-            console.log(response)
-        },
-        (error) => {
-            console.log(error)
-            alert('Enter all required fields with valid data')
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            }
         }
-    )
+
+        const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
+        window.sessionStorage.getItem('token')
+        const customers = await axios.post(endpoint,data, config)
+        console.log(customers)
+        console.log('Customer successfully created')
+    } catch (err) {
+        console.error(err)
+        alert('Enter all required fields with valid data')
+    }
+
 }
 
 async function customerDelete(data) {
@@ -126,42 +132,52 @@ async function customerSearch(data) {
     )
 }
 
-async function customerReturn(data) {
-    const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
-    return await axios.get(endpoint, data).then(
-        (response) => {
-            console.log('Customer returned')
-            console.log(response)
-        },
-        (error) => {
-            console.log(error)
-        }
-    )
-}
-
-async function customerData() {
-
+async function userView() {
     let config = {
         headers: {
-            'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
         }
     }
+    const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
+    const user = await axios.get(endpoint)
+    console.log("USER DATA>>>>>>>>>>")
+    console.log(user.data)
+}
 
-    const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
-    window.sessionStorage.getItem('token')
-    await axios.get(endpoint, config).then(
-        (response) => {
-            // console.log('Customers returned')
-            console.log(response.data)
-            // console.log( Object.create(response.data))
-
-            return response.data
-        },
-        (error) => {
-            console.log(error)
+async function customerReturn() {
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
+            }
         }
-    )
-    // return await axios.get(endpoint)
+
+        const endpoint = `${BASE_URL}/customer/returncustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+        return await axios.get(endpoint, config).then((customer) => {
+            return customer.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+async function customerData(setContactList) {
+
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            }
+        }
+
+        const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
+        window.sessionStorage.getItem('token')
+        const customers = await axios.get(endpoint, config)
+        // console.log(customers)
+        setContactList(customers.data)
+    } catch (err) {
+        console.error(err)
+    }
 
 } 
 
@@ -215,6 +231,7 @@ export {
     userSignOut,
     userResetPassword,
     userNewPassword,
+    userView,
     customerCreate,
     customerDelete,
     customerSearch,

@@ -2,7 +2,6 @@
 //import { userSignUp } from '../api'
 import React from 'react'
 import styled from 'styled-components'
-import { userSignUp} from '../../api'
 import { useForm } from 'react-hook-form'
 import {
     Container,
@@ -10,7 +9,99 @@ import {
     Input,
 } from './styling-profile'
 import { deviceSize } from '../responsive'
-import { SidebarData } from './SidebarData'
+import { customerCreate } from '../../api'
+import Sidebar from './Sidebar'
+
+
+class Addcustomer extends React.Component {
+      state = {
+          givenName : "",
+          designation: "",
+          company: "",
+          email : "",
+          phone : "",
+          age: "",
+          interests: ""
+      }
+
+    handleLoginButton = () => {
+        window.location.assign('/login')
+    }
+
+    dataForming = (data) => {
+        this.setState(
+            {
+                givenName : data.givenName,
+                designation: data.designation,
+                company: data.company,
+                email : data.email,
+                phone : data.phone,
+                age : data.age,
+                interests: data.interests
+            }
+        )
+    }
+
+    onSubmit = () => {
+        try {
+            customerCreate(this.state)
+        
+        } catch (error) {
+            alert('Customer creation failed')
+            console.log(error)
+        }
+    }
+
+  addCustomer = () => {
+      const { register, handleSubmit, formState: {errors} } = useForm()
+
+      return (
+          <FormContainer onSubmit = {handleSubmit((data) => {
+              this.dataForming(data)
+              this.onSubmit()
+          })}>
+              <Input type="fullName" placeholder="Full Name" {...register("givenName", { required: true })}/>
+              {errors.givenName && <p>This field is required</p>}
+              <Input type="designation" placeholder="Designation" {...register("designation", { required: true })}/>
+              {errors.designation && <p>This field is required</p>}
+              <Input type="company" placeholder="Company" {...register("company", { required: true })}/>
+              {errors.company && <p>This field is required</p>}
+              <Input type="email" placeholder="Email" {...register("email", { required: true })}/>
+              {errors.email && <p>This field is required</p>}
+              <Input type="phonenumber" placeholder="Phone Number" {...register("phone", { required: true })} />
+              {errors.phone && <p>This field is required</p>}
+              <Input type="age" placeholder="Age" {...register("age", { required: true })} />
+              {errors.age && <p>This field is required</p>}
+              <Input type="interests" placeholder="Interests" {...register("interests", { required: true })} />
+              {errors.interests && <p>This field is required</p>}
+
+              <button type="submit">Add</button>
+          </FormContainer>
+      )
+  }
+
+  render() {
+      return (
+          <>
+              <Sidebar/>
+              <BoxContainer>
+                  <TopContainer>
+                      <HeaderContainer>
+                          <HeaderText>Add Customer</HeaderText>
+                      </HeaderContainer>
+                      <SmallText>Fill customer details</SmallText>
+                  </TopContainer>
+                  <InnerContainer>
+                      <Container>
+                          <this.addCustomer/>
+                      </Container>
+                  </InnerContainer>
+              </BoxContainer>
+          </>
+      ) 
+  }
+  
+}
 
 
 const BoxContainer = styled.div`
@@ -81,125 +172,7 @@ const LogoTitle = styled.h2`
   }
 `
 
-class Addcustomer extends React.Component {
-      state = {
-          givenName : "",
-          designation: "",
-          company: "",
-          email : "",
-          phone : "",
-          age: "",
-          interests: ""
-      }
 
-    handleLoginButton = () => {
-        window.location.assign('/login')
-    }
-
-    dataForming = (data) => {
-        this.setState(
-            {
-                givenName : data.givenName,
-                designation: data.designation,
-                company: data.company,
-                email : data.email,
-                phone : data.phone,
-                age : data.age,
-                interests: data.interests
-            }
-        )
-    }
-
-    onSubmit = () => {
-        try {
-            userSignUp(this.state)
-        
-        } catch (error) {
-            console.log('user signup failed')
-            console.log(error)
-        }
-    }
-
-  addCustomer = () => {
-      const { register, handleSubmit, formState: {errors} } = useForm()
-
-      return (
-          <FormContainer onSubmit = {handleSubmit((data) => {
-              this.dataForming(data)
-              this.onSubmit()
-          })}>
-              <Input type="fullName" placeholder="Full Name" {...register("givenName", { required: true })}/>
-              {errors.givenName && <p>This field is required</p>}
-              <Input type="designation" placeholder="Designation" {...register("designation", { required: true })}/>
-              {errors.designation && <p>This field is required</p>}
-              <Input type="company" placeholder="Company" {...register("company", { required: true })}/>
-              {errors.company && <p>This field is required</p>}
-              <Input type="email" placeholder="Email" {...register("email", { required: true })}/>
-              {errors.email && <p>This field is required</p>}
-              <Input type="phonenumber" placeholder="Phone Number" {...register("phone", { required: true })} />
-              {errors.phone && <p>This field is required</p>}
-              <Input type="age" placeholder="Age" {...register("age", { required: true })} />
-              {errors.age && <p>This field is required</p>}
-              <Input type="interests" placeholder="Interests" {...register("interests", { required: true })} />
-              {errors.interests && <p>This field is required</p>}
-
-              <button type="submit">Add</button>
-          </FormContainer>
-      )
-  }
-
-  render() {
-      return (
-          <>
-              <ContainerList>
-                  <LogoTitle>CustomeroCity</LogoTitle>
-                  <ul className='SidebarList'>
-                      {SidebarData.map((val, key) => {
-                          return (
-                              <li 
-                                  key={key}
-                                  className="row"
-                                  id = {window.location.pathname == val.link ? 'active' : ''}
-                                  onClick={() => {
-                                      window.location.pathname = val.link
-                                  }}
-                              >
-                                  <div id="icon">{val.icon}</div> <div id="title">{val.title}</div>
-                              </li>
-                          )
-                      })}
-                  </ul>
-              </ContainerList>
-              <ContainerDown>
-                  <Title> Recent Contacts</Title>
-                  <ContainerInside>
-                    
-                  </ContainerInside>
-                  <ContainerInside>
-                    
-                  </ContainerInside>
-                  <ContainerInside>
-                    
-                  </ContainerInside>
-              </ContainerDown>
-              <BoxContainer>
-                  <TopContainer>
-                      <HeaderContainer>
-                          <HeaderText>Add Customer</HeaderText>
-                      </HeaderContainer>
-                      <SmallText>Fill customer details</SmallText>
-                  </TopContainer>
-                  <InnerContainer>
-                      <Container>
-                          <this.addCustomer/>
-                      </Container>
-                  </InnerContainer>
-              </BoxContainer>
-          </>
-      ) 
-  }
-  
-}
 export const ContainerList = styled.div`
   width: 430px;
   min-height: 406px;

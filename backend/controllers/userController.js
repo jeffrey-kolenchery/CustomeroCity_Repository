@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import * as crpyto from 'crypto'
 import * as nodemailer from 'nodemailer'
+import mongoose from 'mongoose'
 import sendgridTransport from 'nodemailer-sendgrid-transport'
 import { User } from '../models/userModel.js'
 
@@ -104,6 +105,33 @@ const loginUser = (req, res) => {
     )
 }
 
+const viewUser = async (req, res) => {
+    // const userID = req.params.userId
+    // console.log(userID)
+    try {
+        const user = await User.aggregate(
+            [
+                {
+                    '$match': {
+                        '_id':  new mongoose.Types.ObjectId(req.params.userId)
+                    }
+                }, {
+                    '$project': {
+                        'givenName': 1, 
+                        'email': 1
+                    }
+                }
+            ]
+        )
+        if (user) {
+            res.status(200).json(user)
+        }
+    }
+    catch(error) {
+        res.status(404)
+    }
+}
+
 const signoutUser = (req, res) => {
     // Clear token cookie.
     res.clearCookie('t')
@@ -171,6 +199,7 @@ const newPassword = (req, res) => {
 export {
     registerUser, // tested
     loginUser, // tested
+    viewUser,
     signoutUser,
     resetPassword,
     newPassword,
