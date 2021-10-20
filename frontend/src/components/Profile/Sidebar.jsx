@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { userView } from '../../api'
 
 const Sidebar = () => {
     return (
@@ -19,7 +20,7 @@ const Sidebar = () => {
                             
                         </div>
                         <ul className="mt-12">
-                            <li className="flex w-full justify-between text-black cursor-pointer items-center mb-6">
+                            <li className="flex w-full justify-between text-black cursor-pointer items-center mb-4">
                                 <a href="javascript:void(0)" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" />
@@ -34,7 +35,7 @@ const Sidebar = () => {
                                 </a>
                             </li>
                             
-                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center mb-6">
+                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center mb-4">
                                 <a href="javascript:void(0)" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
                                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
@@ -45,7 +46,7 @@ const Sidebar = () => {
                                     
                                 </a>
                             </li>
-                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center mb-6">
+                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center mb-4">
                                 <a href="javascript:void(0)" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-card-list" viewBox="0 0 16 16">
                                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -57,7 +58,7 @@ const Sidebar = () => {
                                     
                                 </a>
                             </li>
-                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center">
+                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center mb-4">
                                 <a href="javascript:void(0)" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-settings" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" />
@@ -68,6 +69,17 @@ const Sidebar = () => {
                                         <span className="text-sm ml-2 text-black hover:text-pink-600 cursor-pointer font-mono">Settings</span>
                                     </Link>
                                     
+                                </a>
+                            </li>
+                            <li className="flex w-full justify-between text-black hover:text-pink-600 cursor-pointer items-center mb-4">
+                                <a href="javascript:void(0)" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                        <path fillRule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                        <path fillRule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                    </svg>
+                                    <Link to="/Logout">
+                                        <span className="text-sm ml-2 text-black hover:text-pink-600 cursor-pointer font-mono">Logout</span>
+                                    </Link>
                                 </a>
                             </li>
                         </ul>

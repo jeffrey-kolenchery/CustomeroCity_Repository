@@ -12,26 +12,11 @@ const ClientProfile = () => {
     var currentCustomer = customerReturn()
     console.log(userView())
     console.log(currentCustomer)
-    const UselessTextInput = (props) => {
-        return (
-            <TextInput
-                {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-                editable
-                maxLength={40}
-                onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
-            />
-        )
-    }
-    const [value, onChangeText] = useState()
-    const [value2, onChangeText2] = useState(null)
-    const [value3, onChangeText3] = useState(null)
-    const [value4, onChangeText4] = useState(null)
-    const [value5, onChangeText5] = useState(null)
     return (
         <>
-            <View
-                style={{
-                    backgroundColor: value,
+            <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet"/>
+            <label className="block text-left">
+              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Credentials" style={{
                     borderColor: '#5D5FEF',
                     borderWidth: 1,
                     position: 'absolute',
@@ -39,111 +24,51 @@ const ClientProfile = () => {
                     top: 100, 
                     left: 500,
                     width: '400px', 
-                    height: '120px'
+                    height: '120px'}}></textarea>
+              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Unique Identifiers" style={{
+                borderColor: '#5D5FEF',
+                borderWidth: 1,
+                position: 'absolute',
+                borderRadius: '8px',
+                top: 100, 
+                left: 1000,
+                width: '400px', 
+                height: '120px'}}></textarea>
+              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="3" style={{
+              borderColor: '#5D5FEF',
+              borderWidth: 1,
+              position: 'absolute',
+              borderRadius: '8px',
+              top: 250, 
+              left: 500,
+              width: '400px', 
+              height: '120px'}}>
 
-                }}>
-                <UselessTextInput
-                    multiline
-                    numberOfLines={4}
-                    onChangeText={text => onChangeText(text)}
-                    placeholder = 'Credentials'
-                    value={value}
-                    style={{padding: 10, width: '399px', 
-                        height: '118px', borderRadius: '8px', position: 'absolute'}}
-                />
-            </View>
-            <View
-                style={{
-                    backgroundColor: value2,
-                    borderColor: '#5D5FEF',
-                    borderWidth: 1,
-                    position: 'absolute',
-                    borderRadius: '8px',
-                    top: 100, 
-                    left: 1000,
-                    width: '400px', 
-                    height: '120px'
-
-                }}>
-                <UselessTextInput
-                    multiline
-                    numberOfLines={4}
-                    onChangeText={text => onChangeText2(text)}
-                    placeholder = 'UniqueIdentifiers'
-                    value={value2}
-                    style={{padding: 10, width: '399px', 
-                        height: '118px', borderRadius: '8px', position: 'absolute'}}
-                />
-            </View>
-            <View
-                style={{
-                    backgroundColor: value3,
-                    borderColor: '#5D5FEF',
-                    borderWidth: 1,
-                    position: 'absolute',
-                    borderRadius: '8px',
-                    top: 250, 
-                    left: 500,
-                    width: '400px', 
-                    height: '120px'
-
-                }}>
-                <UselessTextInput
-                    multiline
-                    numberOfLines={4}
-                    onChangeText={text => onChangeText3(text)}
-                    placeholder = '3'
-                    value={value3}
-                    style={{padding: 10, width: '399px', 
-                        height: '118px', borderRadius: '8px', position: 'absolute'}}
-                />
-            </View>
-            <View
-                style={{
-                    backgroundColor: value4,
-                    borderColor: '#5D5FEF',
-                    borderWidth: 1,
-                    position: 'absolute',
-                    borderRadius: '8px',
-                    top: 250, 
-                    left: 1000,
-                    width: '400px', 
-                    height: '120px'
-
-                }}>
-                <UselessTextInput
-                    multiline
-                    numberOfLines={4}
-                    onChangeText={text => onChangeText4(text)}
-                    placeholder = '4'
-                    value={value4}
-                    style={{padding: 10, width: '399px', 
-                        height: '118px', borderRadius: '8px', position: 'absolute'}}
-                />
-            </View>
-            <View
-                style={{
-                    backgroundColor: value5,
-                    borderColor: '#5D5FEF',
-                    borderWidth: 1,
-                    position: 'absolute',
-                    borderRadius: '8px',
-                    top: 400, 
-                    left: 500,
-                    width: '400px', 
-                    height: '120px'
-
-                }}>
-                <UselessTextInput
-                    multiline
-                    numberOfLines={4}
-                    onChangeText={text => onChangeText5(text)}
-                    placeholder = '5'
-                    value={value5}
-                    style={{padding: 10, width: '399px', 
-                        height: '118px', borderRadius: '8px', position: 'absolute'}}
-                />
-            </View>
+              </textarea>
+              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="4" style={{
+              borderColor: '#5D5FEF',
+              borderWidth: 1,
+              position: 'absolute',
+              borderRadius: '8px',
+              top: 250, 
+              left: 1000,
+              width: '400px', 
+              height: '120px'}}>
+                
+              </textarea>
+              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="5" style={{
+              borderColor: '#5D5FEF',
+              borderWidth: 1,
+              position: 'absolute',
+              borderRadius: '8px',
+              top: 400, 
+              left: 500,
+              width: '400px', 
+              height: '120px'}}>
+                
+              </textarea>
+            </label>
+            <MainButton style={{position: 'absolute', top: 15 , left: 1000}}>Edit Fields</MainButton>
             <MainButton style={{position: 'absolute', top: 15 , left: 1200}}>Clear Fields</MainButton>
             <Title style={{position: 'absolute', top: 530 , left: 695}}>Location</Title>
             <Sidebar/>
