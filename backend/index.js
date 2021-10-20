@@ -9,6 +9,8 @@ import * as dotenv from 'dotenv'
 import { customerRouter } from './routes/customerRoutes.js'
 import { userRouter } from './routes/userRoutes.js'
 import { meetingRouter } from './routes/meetingRouter.js'
+import { Meeting } from './models/meetingModel.js'
+import { Customer } from './models/customerModel.js'
 
 // Saves the variables in .env file to process.env.
 dotenv.config()

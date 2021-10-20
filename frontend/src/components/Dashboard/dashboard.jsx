@@ -68,7 +68,7 @@ const DashboardCard = () => {
     // }, [data, filterQuery])
 
     return (
-        <>
+        <div style={{ display: 'block' }}>
             <div className={'bg-gray-100 ml-96 -mt-96'}>
                 <section>
                     <form>
@@ -93,7 +93,7 @@ const DashboardCard = () => {
                     )}
                 </section>
             </div>
-        </>
+        </div >
     )
 }
 

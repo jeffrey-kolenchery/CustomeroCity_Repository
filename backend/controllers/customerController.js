@@ -6,6 +6,14 @@ import mongoose from 'mongoose'
 
 import { Customer } from '../models/customerModel.js'
 
+const searchCustomer = async (req,res) => {
+  try {
+    const customer = await Customer.find({user: req.params.userId })
+    res.send(customer)
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 const registerCustomer = (req, res, next) => {
     const customer = new Customer({
@@ -81,7 +89,7 @@ const searchCustomers = async (req,res) => {
         else res.status(404).send('No customers found')
     }
     catch (err) {
-        res.error(400)
+        res.status(400)
     }
 }
 
@@ -168,7 +176,8 @@ export {
     registerCustomer, 
     deleteCustomer,
     returnCustomer, 
-    searchCustomers, 
+    searchCustomers,
+    searchCustomer, 
     editCustomer,
     customerData
 }

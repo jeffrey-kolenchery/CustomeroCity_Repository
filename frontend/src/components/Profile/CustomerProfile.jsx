@@ -24,7 +24,7 @@ const CustomerProfile = () => {
                     left: 500,
                     width: '400px', 
                     height: '120px'}}></textarea>
-                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder={currentCustomer} style={{
+                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Unique Identifiers" style={{
                     borderColor: '#5D5FEF',
                     borderWidth: 1,
                     position: 'absolute',
