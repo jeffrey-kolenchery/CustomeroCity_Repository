@@ -4,6 +4,7 @@ import './UserProfile.css'
 import styled from 'styled-components'
 import { deviceSize } from '../responsive'
 import Sidebar from './Sidebar'
+import Map from '../Map'
 
 import { customerReturn, userView } from '../../api'
 
@@ -70,6 +71,7 @@ const CustomerProfile = () => {
             <MainButton style={{position: 'absolute', top: 15 , left: 1000}}>Edit Fields</MainButton>
             <MainButton style={{position: 'absolute', top: 15 , left: 1200}}>Clear Fields</MainButton>
             <Title style={{position: 'absolute', top: 530 , left: 695}}>Location</Title>
+            <Map/>
             <Sidebar/>
         </>
     )

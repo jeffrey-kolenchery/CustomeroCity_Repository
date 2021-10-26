@@ -11,6 +11,7 @@ import Contacts from './components/Contacts'
 import Addcustomer from './components/Profile/Addcustomer'
 import { Dashboard } from './components/Dashboard'
 import ResetPassword from './components/Profile/ResetPassword'
+import Map from './components/Map'
 
 function App() {
     return (
