@@ -1,25 +1,8 @@
 /* eslint-disable quotes */
 import React from 'react'
 import { Navbar } from "../navbar"
-import {
-    PageContainer,
-} from '../pageContainer'
 import { userLogin } from '../../api'
 import { useForm } from 'react-hook-form'
-import {
-    Container,
-    FormContainer,
-    Input,
-    BoxContainer,
-    InnerContainer,
-    StyledInnerContainer,
-    TopContainer,
-    BackDrop,
-    HeaderContainer,
-    HeaderText,
-    SmallText,
-
-} from './common'
 
 class Login extends React.Component {
     state = {

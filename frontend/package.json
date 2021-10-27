@@ -18,6 +18,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "framer-motion": "^4.1.17",
+    "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "nodemailer": "^6.7.0",
     "nodemailer-sendgrid-transport": "^0.2.0",

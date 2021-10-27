@@ -9,7 +9,7 @@ import axios from 'axios'
 import {customerData } from '../../api'
 import { Link } from 'react-router-dom'
 
-const CustomerProfile = () => {
+const CustomerProfileOpen = () => {
     var BASE_URL = 'https://customerocity.herokuapp.com/api'
 
     const [user, setUser] = useState('')
@@ -137,19 +137,19 @@ const CustomerProfile = () => {
     
             <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Input 1</label>
-                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Credentials" id = "Credentials" rows="4" readOnly></textarea>
+                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Credentials" id = "Credentials" rows="4"></textarea>
             </section>
             <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Unique Identifiers" id = "UniqueIdentifiers" rows="4" readOnly></textarea>
+                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Unique Identifiers" id = "UniqueIdentifiers" rows="4"></textarea>
             </section>
             <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="3" id = "3" rows="4" readOnly></textarea>
+                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="3" id = "3" rows="4"></textarea>
             </section>
             <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="4" id = "4" rows="4" readOnly></textarea>
+                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="4" id = "4" rows="4"></textarea>
             </section>
             <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="5" id = "5" rows="4" readOnly></textarea>
+                <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="5" id = "5" rows="4"></textarea>
             </section>
           </div>
           <div className="flex justify-start px-6 mb-2 text-purple-700 font-mono">
@@ -166,4 +166,4 @@ const CustomerProfile = () => {
     )
 }
 
-export default CustomerProfile
+export default CustomerProfileOpen
