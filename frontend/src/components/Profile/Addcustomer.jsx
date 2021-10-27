@@ -155,39 +155,42 @@ class Addcustomer extends React.Component {
           <div className="grid bg-white border-2 border-purple-200 shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
             <div className="flex justify-center">
               <div className="flex">
-                <h1 className="text-gray-600 font-bold md:text-2xl text-xl mt-6">Add Customer</h1>
+                <h1 className="text-gray-600 font-bold md:text-xl text-xl mt-6">Add Customer</h1>
               </div>
             </div>
-
+            <form onSubmit = {handleSubmit((data) => {
+                    this.dataForming(data)
+                    this.onSubmit()
+                })} >
             <div className="grid grid-cols-1 mt-4 mx-7">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Full Name</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Full Name" />
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Full Name" {...register("givenName", { required: true })} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Designation</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Designation" />
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Designation" {...register("designation", { required: true })} />
               </div>
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Company</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Company" />
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Company" {...register("company", { required: true })}/>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Email</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Email" />
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Email" {...register("email", { required: true })} />
               </div>
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Phone Number</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Phone Number" />
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Phone Number" {...register("phone", { required: true })}/>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
               <div className="grid grid-cols-1">
                   <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Date Of Birth</label>
-                  <input type="date" id="date" name="date" placeholder="name" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
+                  <input type="dateofbirth" id="dateofbirth" name="dateofbirth" placeholder="dateofbirth" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
               </div>
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interests</label>
@@ -225,10 +228,11 @@ class Addcustomer extends React.Component {
 
             <div className='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
               <button className='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Cancel</button>
-              <button className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
+              <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
             </div>
-
+          </form>
           </div>
+          
         </div>
             
         </div>
