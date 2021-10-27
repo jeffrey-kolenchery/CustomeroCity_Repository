@@ -151,7 +151,7 @@ class Addcustomer extends React.Component {
           </div>
         </div>
         <div className="h-full ml-14 mt-44 mb-10 md:ml-96">
-        <div className="flex font-mono h-full bg-white items-center justify-center -mt-16">
+        <div className="flex font-mono h-full bg-white items-center justify-center -mt-20">
           <div className="grid bg-white border-2 border-purple-200 shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
             <div className="flex justify-center">
               <div className="flex">
@@ -183,21 +183,21 @@ class Addcustomer extends React.Component {
                 <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Phone Number" />
               </div>
             </div>
-          
-            <div className="grid grid-cols-1 mt-5 mx-7">
-              <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Date Of Birth</label>
-              <input type="date" id="date" name="date" placeholder="name" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
-            </div>
-            
-            <div className="grid grid-cols-1 mt-5 mx-7">
-              <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interests</label>
-              <select className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-              </select>
-            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+              <div className="grid grid-cols-1">
+                  <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Date Of Birth</label>
+                  <input type="date" id="date" name="date" placeholder="name" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
+              </div>
+              <div className="grid grid-cols-1">
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interests</label>
+                <select className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                </select>
+              </div>
+            </div>
             <div className="grid grid-cols-1 mt-5 mx-7">
               <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Upload Photo</label>
                 <div className='flex items-center justify-center w-full'>
@@ -205,6 +205,18 @@ class Addcustomer extends React.Component {
                         <div className='flex flex-col items-center justify-center pt-2'>
                           <svg className="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                           <p className='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Select a photo</p>
+                        </div>
+                      <input type='file' className="hidden" />
+                    </label>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 mt-5 mx-7">
+              <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Scan a Business Card</label>
+                <div className='flex items-center justify-center w-full'>
+                    <label className='flex flex-col border-4 border-dashed w-full h-20 hover:bg-gray-100 hover:border-purple-300 group'>
+                        <div className='flex flex-col items-center justify-center pt-2'>
+                          <svg className="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                          <p className='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Upload a business Card</p>
                         </div>
                       <input type='file' className="hidden" />
                     </label>
