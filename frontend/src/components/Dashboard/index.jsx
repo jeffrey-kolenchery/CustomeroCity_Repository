@@ -6,6 +6,7 @@ import Calendar from '../Test.jsx'
 import useFetch from 'react-fetch-hook'
 import ContactCards from '../Contacts/Cards'
 import { useEffect, useState } from 'react'
+import Weather from './Crypto'
 // import data from './data.json'
 import styled from 'styled-components'
 import { deviceSize } from '../responsive'
@@ -132,8 +133,11 @@ export function Dashboard() {
         </div>
       </div>
       <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
-        <Calendar/>
+        <h3 className="text-3xl font-semibold tracking-wide text-gray-800 mb-6 mt-6 text-left ml-4 dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">Welcome Back, <span className ="text-purple-500">{user.givenName}</span> </h3>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+          <Calendar/>
+          <Weather/>
           <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
             <div className="rounded-t mb-0 px-0 border-0">
               <div className="flex flex-wrap items-center px-4 py-3">

@@ -9,7 +9,7 @@ const Cards = ({ contactList }) => {
     <>
       {contactList.length != 0 && contactList.map((contact, index) => (
 
-        <figure className="bg-white text-white h-80 rounded-lg shadow-md" key={index}>
+        <figure className="bg-gray-50 text-white h-80 rounded-lg shadow-md" key={index}>
           <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
           <figcaption className="text-center mt-5">
             <Link key={index} to='#'
