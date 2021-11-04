@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 
-class Addcustomer extends React.Component {
+class ScheduleMeeting extends React.Component {
       state = {
           givenName : "",
           designation: "",
@@ -46,7 +46,7 @@ class Addcustomer extends React.Component {
         }
     }
 
-  addCustomer = () => {
+  addMeeting = () => {
       const { register, handleSubmit, formState: {errors} } = useForm()
       var BASE_URL = 'https://customerocity.herokuapp.com/api'
       const [user, setUser] = useState('')
@@ -157,7 +157,7 @@ class Addcustomer extends React.Component {
           <div className="grid bg-white border-2 border-purple-200 shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
             <div className="flex justify-center">
               <div className="flex">
-                <h1 className="text-gray-600 font-bold md:text-xl text-xl mt-6">Add Customer</h1>
+                <h1 className="text-gray-600 font-bold md:text-xl text-xl mt-6">Schedule Meeting</h1>
               </div>
             </div>
             <form onSubmit = {handleSubmit((data) => {
@@ -165,72 +165,43 @@ class Addcustomer extends React.Component {
                     this.onSubmit()
                 })} >
             <div className="grid grid-cols-1 mt-4 mx-7">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Full Name</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Full Name" {...register("givenName", { required: true })} />
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Subject</label>
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Subject" {...register("Subject", { required: true })} />
+            </div>
+            <div className="grid grid-cols-1 mt-4 mx-7">
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Location</label>
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Location" {...register("Location", { required: true })} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
               <div className="grid grid-cols-1">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Designation</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Designation" {...register("designation", { required: true })} />
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">StartTime</label>
+                <input type="datetime-local" id="datetime-local" name="datetime-local" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Company" {...register("StartTime", { required: true })}/>
               </div>
               <div className="grid grid-cols-1">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Company</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Company" {...register("company", { required: true })}/>
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">EndTime</label>
+                <input type="datetime-local" id="datetime-local" name="datetime-local" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Company" {...register("EndTime", { required: true })}/>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
-              <div className="grid grid-cols-1">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Email</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Email" {...register("email", { required: true })} />
+            <div className="grid grid-cols-1 mt-4 mx-7">
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Description</label>
+                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Description" {...register("Description", { required: true })}/>
               </div>
-              <div className="grid grid-cols-1">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Phone Number</label>
-                <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Phone Number" {...register("phone", { required: true })}/>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
-              <div className="grid grid-cols-1">
-                  <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Date Of Birth</label>
-                  <input type="date" id="date" name="date" placeholder="dateofbirth" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
-              </div>
-              <div className="grid grid-cols-1">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interests</label>
-                <select className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                  <option>Option 3</option>
-                </select>
-              </div>
-            </div>
             <div className="grid grid-cols-1 mt-5 mx-7">
-              <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Upload Photo</label>
-                <div className='flex items-center justify-center w-full'>
-                    <label className='flex flex-col border-4 border-dashed w-full h-20 hover:bg-gray-100 hover:border-purple-300 group'>
-                        <div className='flex flex-col items-center justify-center pt-2'>
-                          <svg className="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                          <p className='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Select a photo</p>
-                        </div>
-                      <input type='file' className="hidden" />
+                <div className="flex w-full items-center justify-center bg-grey-lighter">
+                    <label className="w-72 flex flex-col items-center px-4 py-6 bg-white text-black rounded-lg shadow-lg tracking-wide uppercase border border-purple-500 cursor-pointer">
+                        <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                        </svg>
+                        <span className="mt-2 text-base leading-normal">Upload Meeting Recording</span>
+                        <input type='file' className="hidden" />
                     </label>
                 </div>
             </div>
-            <div className="grid grid-cols-1 mt-5 mx-7">
-              <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Scan a Business Card</label>
-                <div className='flex items-center justify-center w-full'>
-                    <label className='flex flex-col border-4 border-dashed w-full h-20 hover:bg-gray-100 hover:border-purple-300 group'>
-                        <div className='flex flex-col items-center justify-center pt-2'>
-                          <svg className="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                          <p className='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Upload a business Card</p>
-                        </div>
-                      <input type='file' className="hidden" />
-                    </label>
-                </div>
-            </div>
+            
 
             <div className='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
               <button className='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Cancel</button>
-              <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
+              <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Confirm Meeting</button>
             </div>
           </form>
           </div>
@@ -246,7 +217,7 @@ class Addcustomer extends React.Component {
   render() {
       return (
           <>
-            <this.addCustomer/>
+            <this.addMeeting/>
           </>
       ) 
   }
@@ -254,4 +225,4 @@ class Addcustomer extends React.Component {
 }
 
 
-export default Addcustomer
+export default ScheduleMeeting

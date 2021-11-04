@@ -14,6 +14,7 @@ import { Dashboard } from './components/Dashboard'
 import ResetPassword from './components/Profile/ResetPassword'
 import Map from './components/Map'
 import DashboardCard from './components/Dashboard/dashboard'
+import ScheduleMeeting from './components/Profile/ScheduleMeeting'
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                     <Route exact path = "/Contacts" component={Contacts} />
                     <Route exact path = "/ResetPassword" component={ResetPassword} />
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
+                    <Route exact path = "/ScheduleMeeting" component={ScheduleMeeting} />
                     <Route exact path = "/Test" component={DashboardCard} />
                 </Switch>
             </Router> 
