@@ -62,7 +62,7 @@ class Login extends React.Component {
                     
                               <div className="flex items-center mb-10 -mt-4">
                                   <div className="flex ml-auto">
-                                      <a href="#" className="font-mono inline-flex text-xs text-pink-500 hover:text-pink-600">Forgot Your Password?</a>
+                                      <a href="#" className="font-mono inline-flex text-xs text-purple-600 hover:text-black">Forgot Your Password?</a>
                                   </div>
                               </div>
                     

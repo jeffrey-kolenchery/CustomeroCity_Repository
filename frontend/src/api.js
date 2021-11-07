@@ -35,6 +35,7 @@ async function userSignUp(data) {
         (response) => {
             console.log('user signed up')
             console.log(response)
+            window.location.assign('/Dashboard')
         },
         (error) => {
             console.log(error)

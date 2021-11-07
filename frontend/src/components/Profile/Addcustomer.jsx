@@ -152,8 +152,8 @@ class Addcustomer extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="h-full ml-14 mt-44 mb-10 md:ml-96">
-        <div className="flex font-mono h-full bg-white items-center justify-center -mt-20">
+        <div className="h-full ml-14 mt-40 mb-10 md:ml-96">
+        <div className="flex font-mono h-full bg-white items-center justify-center -mt-24">
           <div className="grid bg-white border-2 border-purple-200 shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
             <div className="flex justify-center">
               <div className="flex">
@@ -164,11 +164,11 @@ class Addcustomer extends React.Component {
                     this.dataForming(data)
                     this.onSubmit()
                 })} >
-            <div className="grid grid-cols-1 mt-4 mx-7">
+            <div className="grid grid-cols-1 mt-2 mx-7">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Full Name</label>
                 <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Full Name" {...register("givenName", { required: true })} />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-3 mx-7">
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Designation</label>
                 <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Designation" {...register("designation", { required: true })} />
@@ -178,7 +178,7 @@ class Addcustomer extends React.Component {
                 <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Company" {...register("company", { required: true })}/>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-3 mx-7">
               <div className="grid grid-cols-1">
                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Email</label>
                 <input className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Email" {...register("email", { required: true })} />
@@ -189,21 +189,61 @@ class Addcustomer extends React.Component {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+            <div className="grid grid-cols-1 mt-2 mx-7">
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Date Of Birth</label>
+                <input type="date" id="date" name="date" placeholder="dateofbirth" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 mt-3 mx-7">
               <div className="grid grid-cols-1">
-                  <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Date Of Birth</label>
-                  <input type="date" id="date" name="date" placeholder="dateofbirth" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"/>
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interest 1</label>
+                <select className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                  <option>Option</option>
+                  <option>Sports</option>
+                  <option>Technology</option>
+                  <option>Social Media</option>
+                  <option>Health and Fitness</option>
+                  <option>Photography</option>
+                  <option>Stock Trading</option>
+                  <option>Business and Finance</option>
+                  <option>Writing</option>
+                  <option>Reading</option>
+                  <option>Cooking</option>
+                </select>
               </div>
               <div className="grid grid-cols-1">
-                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interests</label>
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interest 2</label>
                 <select className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                  <option>Option 3</option>
+                  <option>Option</option>
+                  <option>Sports</option>
+                  <option>Technology</option>
+                  <option>Social Media</option>
+                  <option>Health and Fitness</option>
+                  <option>Photography</option>
+                  <option>Stock Trading</option>
+                  <option>Business and Finance</option>
+                  <option>Writing</option>
+                  <option>Reading</option>
+                  <option>Cooking</option>
+                </select>
+              </div>
+              <div className="grid grid-cols-1">
+                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interest 3</label>
+                <select className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                  <option>Option</option>
+                  <option>Sports</option>
+                  <option>Technology</option>
+                  <option>Social Media</option>
+                  <option>Health and Fitness</option>
+                  <option>Photography</option>
+                  <option>Stock Trading</option>
+                  <option>Business and Finance</option>
+                  <option>Writing</option>
+                  <option>Reading</option>
+                  <option>Cooking</option>
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-1 mt-5 mx-7">
+            <div className="grid grid-cols-1 mt-3 mx-7">
               <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Upload Photo</label>
                 <div className='flex items-center justify-center w-full'>
                     <label className='flex flex-col border-4 border-dashed w-full h-20 hover:bg-gray-100 hover:border-purple-300 group'>
@@ -215,7 +255,7 @@ class Addcustomer extends React.Component {
                     </label>
                 </div>
             </div>
-            <div className="grid grid-cols-1 mt-5 mx-7">
+            <div className="grid grid-cols-1 mt-3 mx-7">
               <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Scan a Business Card</label>
                 <div className='flex items-center justify-center w-full'>
                     <label className='flex flex-col border-4 border-dashed w-full h-20 hover:bg-gray-100 hover:border-purple-300 group'>
