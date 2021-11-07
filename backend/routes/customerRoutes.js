@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import * as express from 'express'
+import fs from 'fs'
+import path from 'path' 
+import multer from 'multer'
+
 import * as CustomerController from '../controllers/customerController.js'
-import {scanBusinessCard} from '../AzureFormRecognizer/businessCardScanner.js'
 import { findUserById } from '../controllers/userController.js'
 import { isAuth, requireSignin } from '../controllers/authController.js'
-import {
-    findCalendarById,
-    createCalendar,
-} from '../controllers/calendarController.js'
-import { createMeeting } from '../controllers/meetingController.js'
+
 
 const customerRouter = express.Router()
 
@@ -57,12 +56,12 @@ customerRouter.patch(
     CustomerController.editCustomer
 )
 
-customerRouter.post(
-    '/scanbusinesscard/:userId',
-    requireSignin,
-    isAuth,
-    scanBusinessCard
-)
+// customerRouter.post(
+//     '/scanbusinesscard/:userId',
+//     requireSignin,
+//     isAuth,
+//     scanBusinessCard
+// )
 
 customerRouter.get(
     '/customerdata/:userId',
@@ -72,11 +71,42 @@ customerRouter.get(
 )
 
 customerRouter.get(
-  '/getCustomers/:userId',
-  requireSignin,
-  isAuth,
-  CustomerController.getCustomers
+    '/getCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.getCustomers
 )
+
+
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+})
+  
+var upload = multer({ storage: storage })
+
+
+
+customerRouter.get(
+    '/getBusinessCard/:userId/:customerId',
+    requireSignin,
+    isAuth,
+    CustomerController.getBusinessCard
+)
+
+customerRouter.post(
+    '/postBusinessCard/:userId/:customerId',
+    requireSignin,
+    isAuth,
+    upload.single('image'), 
+    CustomerController.postBusinessCard
+)
+
 
 // module.exports = customerRouter;
 export { customerRouter }

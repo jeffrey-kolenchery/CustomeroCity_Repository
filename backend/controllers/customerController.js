@@ -3,17 +3,21 @@
 import * as bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
+import fs from 'fs'
+import path from 'path' 
+import multer from 'multer'
+
 
 import { Customer } from '../models/customerModel.js'
 
 const getCustomers = async (req,res) => {
-  try {
-    console.log(req.params.userId)
-    const customer = await Customer.find({user: req.params.userId })
-    res.send(customer)
-  } catch (err) {
-    console.error(err)
-  }
+    try {
+        console.log(req.params.userId)
+        const customer = await Customer.find({user: req.params.userId })
+        res.send(customer)
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const registerCustomer = (req, res, next) => {
@@ -173,6 +177,42 @@ const editCustomer = (req,res,next) => {
     
 }
 
+
+const getBusinessCard = (req,res,next) => {
+    const customerId = req.params.customerId
+
+    try {
+        const customer = Customer.findById(new mongoose.Types.ObjectId(customerId))
+        if (customer.profilePicture) {
+            res.send(customer.profilePicture)
+        }
+        else {res.send('No Picture available').status(404)}
+    }
+    catch(err) {
+        res.send('No Pictures Available')
+    }
+}
+
+const postBusinessCard = async (req,res,next) => {
+    const customerId = req.params.customerId
+    
+
+    console.log('customer found')
+    await Customer.findByIdAndUpdate(new mongoose.Types.ObjectId(customerId), {
+        businessCard : {
+            data : fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    })
+    // customer.businessCard = {
+    //     data : fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
+    //     contentType: 'image/png'
+    // }
+            
+
+    res.status(200).send('Buisness Card uploaded successfully')
+}
+
 export {
     registerCustomer, 
     deleteCustomer,
@@ -180,5 +220,7 @@ export {
     searchCustomers,
     getCustomers, 
     editCustomer,
-    customerData
+    customerData,
+    getBusinessCard,
+    postBusinessCard
 }

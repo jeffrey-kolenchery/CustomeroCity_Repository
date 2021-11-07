@@ -3,14 +3,12 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import expressValidator from 'express-validator'
-import path from 'path' ////////////////////////////
-import { fileURLToPath } from 'url' ////////////////
-
+import path from 'path' 
 import * as dotenv from 'dotenv'
+
 import { customerRouter } from './routes/customerRoutes.js'
 import { userRouter } from './routes/userRoutes.js'
 import { meetingRouter } from './routes/meetingRouter.js'
-import { Meeting } from './models/meetingModel.js'
 import { Customer } from './models/customerModel.js'
 
 // Saves the variables in .env file to process.env.
@@ -61,17 +59,17 @@ app.use('/api/meeting', meetingRouter)
 // serve static folders if in production
 
 if (process.env.NODE_ENV === 'production') {
-  //set static folder
-  // const __dirname = path.dirname(fileURLToPath(import.meta.url))
+    //set static folder
+    // const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-  app.use(express.static('../frontend/build'))
-  app.get('*', (req, res) => {
-      // res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-      res.sendFile(path.resolve('../frontend', 'build', 'index.html'))
-      // res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'))
+    app.use(express.static('../frontend/build'))
+    app.get('*', (req, res) => {
+        // res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+        res.sendFile(path.resolve('../frontend', 'build', 'index.html'))
+        // res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'))
 
 
-  })
+    })
 }
 
 export { app }

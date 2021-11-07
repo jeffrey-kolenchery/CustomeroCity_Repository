@@ -42,6 +42,10 @@ const customerSchema = new Schema({
     visitCount: {
         type: Number,
         required: true
+    },
+    businessCard: {
+        data : Buffer,
+        contentType : String
     }
 })
 
