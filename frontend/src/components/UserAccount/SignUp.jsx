@@ -50,7 +50,14 @@ class SignUp extends React.Component {
                       <div className="self-start text-2xl font-semibold text-black font-mono">Welcome!</div>
                       <div className="self-start text-black font-thin font-mono mb-8">Please Sign-up to continue!</div>
                       <div className="mt-10">
-                          <form action="#">
+                          <form 
+                              onSubmit = {handleSubmit((data) => {
+                                  console.log(data)
+                                  console.log(this.state)
+                                  this.dataForming(data)
+                                  this.onSubmit()
+                              })}
+                              action="#">
                               <div className="flex flex-col mb-6">
                                   <div className="relative">
                                       <input type="fullName" placeholder="Full Name" {...register("givenName", { required: true })} className="font-mono text-sm placeholder-gray-500 pl-4 pr-4 rounded-lg border w-full py-2 focus:outline-none focus:border-blue-400" />
@@ -81,10 +88,7 @@ class SignUp extends React.Component {
                     
                               <div className="flex w-full mb-4">
                                   <button type="submit" className="flex items-center justify-center focus:outline-none text-white font-mono text-sm sm:text-base bg-purple-600 hover:bg-pink-600 rounded py-2 w-full transition duration-150 ease-in">
-                                      <span className="mr-2" onSubmit = {handleSubmit((data) => {
-                                          this.dataForming(data)
-                                          this.onSubmit()
-                                      })}>SignUp</span>
+                                      <span className="mr-2" >SignUp</span>
                                       <span>
                                           <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                               <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
