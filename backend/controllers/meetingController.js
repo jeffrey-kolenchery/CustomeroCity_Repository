@@ -27,7 +27,10 @@ const createMeeting = async (req, res, next) => {
 
 const getAllMeetings = async (req, res) => {
     try {
+      
         const meetings = await Meeting.find({ user: req.profile._id })
+        console.log("meeingsa")
+        console.log(meetings)
         res.send(meetings)
     } catch (err) {
         console.error(err)
