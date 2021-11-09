@@ -15,7 +15,7 @@ const CustomerProfile = () => {
         <>
             <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet"/>
             <label className="block text-left">
-              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Credentials" style={{
+                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Credentials" style={{
                     borderColor: '#5D5FEF',
                     borderWidth: 1,
                     position: 'absolute',
@@ -24,48 +24,48 @@ const CustomerProfile = () => {
                     left: 500,
                     width: '400px', 
                     height: '120px'}}></textarea>
-              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Unique Identifiers" style={{
-                borderColor: '#5D5FEF',
-                borderWidth: 1,
-                position: 'absolute',
-                borderRadius: '8px',
-                top: 100, 
-                left: 1000,
-                width: '400px', 
-                height: '120px'}}></textarea>
-              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="3" style={{
-              borderColor: '#5D5FEF',
-              borderWidth: 1,
-              position: 'absolute',
-              borderRadius: '8px',
-              top: 250, 
-              left: 500,
-              width: '400px', 
-              height: '120px'}}>
+                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder={currentCustomer} style={{
+                    borderColor: '#5D5FEF',
+                    borderWidth: 1,
+                    position: 'absolute',
+                    borderRadius: '8px',
+                    top: 100, 
+                    left: 1000,
+                    width: '400px', 
+                    height: '120px'}}></textarea>
+                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="3" style={{
+                    borderColor: '#5D5FEF',
+                    borderWidth: 1,
+                    position: 'absolute',
+                    borderRadius: '8px',
+                    top: 250, 
+                    left: 500,
+                    width: '400px', 
+                    height: '120px'}}>
 
-              </textarea>
-              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="4" style={{
-              borderColor: '#5D5FEF',
-              borderWidth: 1,
-              position: 'absolute',
-              borderRadius: '8px',
-              top: 250, 
-              left: 1000,
-              width: '400px', 
-              height: '120px'}}>
+                </textarea>
+                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="4" style={{
+                    borderColor: '#5D5FEF',
+                    borderWidth: 1,
+                    position: 'absolute',
+                    borderRadius: '8px',
+                    top: 250, 
+                    left: 1000,
+                    width: '400px', 
+                    height: '120px'}}>
                 
-              </textarea>
-              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="5" style={{
-              borderColor: '#5D5FEF',
-              borderWidth: 1,
-              position: 'absolute',
-              borderRadius: '8px',
-              top: 400, 
-              left: 500,
-              width: '400px', 
-              height: '120px'}}>
+                </textarea>
+                <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="5" style={{
+                    borderColor: '#5D5FEF',
+                    borderWidth: 1,
+                    position: 'absolute',
+                    borderRadius: '8px',
+                    top: 400, 
+                    left: 500,
+                    width: '400px', 
+                    height: '120px'}}>
                 
-              </textarea>
+                </textarea>
             </label>
             <MainButton style={{position: 'absolute', top: 15 , left: 1000}}>Edit Fields</MainButton>
             <MainButton style={{position: 'absolute', top: 15 , left: 1200}}>Clear Fields</MainButton>

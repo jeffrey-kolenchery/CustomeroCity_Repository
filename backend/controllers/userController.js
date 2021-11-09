@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
             user
                 .save()
                 .then(async (user) => {
-                    res.status(200).send('User Added Successfully!')
+                    res.status(200)
                 })
                 .catch((error) => {
                     res.status(400).send(

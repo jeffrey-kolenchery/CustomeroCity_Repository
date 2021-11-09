@@ -2,7 +2,6 @@
   "name": "it-project-team-50",
   "version": "1.0.0",
   "description": "CRM Software for Everybody! (Capstone Project Team 50)",
-  "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "frontend": "cd frontend/ && npm start",
@@ -10,10 +9,11 @@
     "frontend-build": "cd frontend/ && npm run build",
     "backend-build": "cd backend/ && npm run build",
     "start-dev": "npm-run-all --parallel frontend backend",
-    "start": "npm-run-all --parallel frontend-build backend-build",
+    "start": "npm run backend-build",
     "backend-test": "cd backend/ && npm test",
     "frontend-test": "cd frontend/ && npm test",
-    "test": "backend-test"
+    "test": "backend-test",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",

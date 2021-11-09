@@ -7,11 +7,15 @@ import SignUp from './components/UserAccount/SignUp'
 import Login from './components/UserAccount/Login'
 import UserProfile from './components/Profile/UserProfile'
 import CustomerProfile from './components/Profile/CustomerProfile'
+import CustomerProfileOpen from './components/Profile/CustomerProfileOpen'
 import Contacts from './components/Contacts'
 import Addcustomer from './components/Profile/Addcustomer'
 import { Dashboard } from './components/Dashboard'
 import ResetPassword from './components/Profile/ResetPassword'
-import Test from "./components/Test"
+import Test from './components/Test'
+import Map from './components/Map'
+import DashboardCard from './components/Dashboard/dashboard'
+import ScheduleMeeting from './components/Profile/ScheduleMeeting'
 
 function App() {
     return (
@@ -23,6 +27,7 @@ function App() {
                     <Route ex act path = "/Login" component={Login} />
                     <Route exact path = "/UserProfile" component={UserProfile} />
                     <Route exact path = "/CustomerProfile" component={CustomerProfile} />
+                    <Route exact path = "/CustomerProfileEdit" component={CustomerProfileOpen} />
                     <Route exact path = "/Dashboard" component={Dashboard} />
                     <Route exact path = "/Contacts" component={Contacts} />
                     <Route exact path = "/ResetPassword" component={ResetPassword} />

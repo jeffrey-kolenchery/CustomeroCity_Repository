@@ -3,6 +3,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import expressValidator from 'express-validator'
+import path from 'path' ////////////////////////////
+import { fileURLToPath } from 'url' ////////////////
 
 import * as dotenv from 'dotenv'
 import { customerRouter } from './routes/customerRoutes.js'
@@ -24,7 +26,9 @@ app.use(cors())
 
 // connection string -> mongodb+srv://<username>:<password>@comp30022.5hadw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@comp30022.5hadw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-// const CONNECTION_URL = `mongodb://localhost:27017/testdb`;
+
+
+
 const PORT = process.env.PORT || 5000
 
 mongoose
@@ -40,10 +44,34 @@ mongoose
 
 mongoose.set('useFindAndModify', false)
 
+// /* Enable CORS */
+// app.use(cors({
+//     origin: ['http://localhost:3000', 'http://localhost:5000', 'https://customerocity.herokuapp.com'],
+//     credentials: true,
+//     optionsSuccessStatus: 200
+// }))
+
 // const userRouter = require("./routes/userRoutes");
 // const customerRouter = require("./routes/customerRoutes");
 app.use('/api/user', userRouter)
 app.use('/api/customer', customerRouter)
 app.use('/api/meeting', meetingRouter)
+
+
+// serve static folders if in production
+
+if (process.env.NODE_ENV === 'production') {
+  //set static folder
+  // const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+  app.use(express.static('../frontend/build'))
+  app.get('*', (req, res) => {
+      // res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+      res.sendFile(path.resolve('../frontend', 'build', 'index.html'))
+      // res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'))
+
+
+  })
+}
 
 export { app }

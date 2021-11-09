@@ -75,7 +75,7 @@ customerRouter.get(
   '/getCustomers/:userId',
   requireSignin,
   isAuth,
-  CustomerController.searchCustomer
+  CustomerController.getCustomers
 )
 
 // module.exports = customerRouter;

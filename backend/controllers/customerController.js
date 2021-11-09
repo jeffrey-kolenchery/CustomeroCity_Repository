@@ -6,8 +6,9 @@ import mongoose from 'mongoose'
 
 import { Customer } from '../models/customerModel.js'
 
-const searchCustomer = async (req,res) => {
+const getCustomers = async (req,res) => {
   try {
+    console.log(req.params.userId)
     const customer = await Customer.find({user: req.params.userId })
     res.send(customer)
   } catch (err) {
@@ -177,7 +178,7 @@ export {
     deleteCustomer,
     returnCustomer, 
     searchCustomers,
-    searchCustomer, 
+    getCustomers, 
     editCustomer,
     customerData
 }

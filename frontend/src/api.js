@@ -5,8 +5,8 @@ import axios from 'axios'
 import * as dotenv from 'dotenv'
 
 
-var BASE_URL = 'http://localhost:5000/api'
-//var BASE_URL = 'https://customerocity.herokuapp.com/api'
+//var BASE_URL = 'http://localhost:5000/api'
+var BASE_URL = 'https://customerocity.herokuapp.com/api'
 dotenv.config()
 
 
@@ -35,6 +35,11 @@ async function userSignUp(data) {
         (response) => {
             console.log('user signed up')
             console.log(response)
+            var loginData = {
+                username : data.email,
+                password : data.password
+            }
+            userLogin(loginData)
         },
         (error) => {
             console.log(error)
