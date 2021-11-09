@@ -11,6 +11,7 @@ import Contacts from './components/Contacts'
 import Addcustomer from './components/Profile/Addcustomer'
 import { Dashboard } from './components/Dashboard'
 import ResetPassword from './components/Profile/ResetPassword'
+import Test from "./components/Test"
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Route exact path = "/Contacts" component={Contacts} />
                     <Route exact path = "/ResetPassword" component={ResetPassword} />
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
+                    <Route exact path = "/Test" component={Test} />
                 </Switch>
             </Router> 
         </div>
