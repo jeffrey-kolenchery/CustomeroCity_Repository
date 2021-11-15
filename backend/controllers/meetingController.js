@@ -25,15 +25,6 @@ const createMeeting = async (req, res, next) => {
     }
 }
 
-const getAllMeetings = async (req, res) => {
-    try {
-        const meetings = await Meeting.find({ user: req.profile._id })
-        res.send(meetings)
-    } catch (err) {
-        console.error(err)
-    }
-}
-
 const getMeetingsByCustomer = async (req, res) => {
     try {
         const meetings = await Meeting.find({
@@ -46,9 +37,22 @@ const getMeetingsByCustomer = async (req, res) => {
     }
 }
 
+
+const getAllMeetings = async (req, res) => {
+    try {
+        const meetings = await Meeting.find({ user: req.profile._id })
+        console.log(meetings)
+        res.send(meetings)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+
 const updateMeetings =  async (req,res) => {
     let eventData = []
     let meetings = await Meeting.find()
+    console.log(meetings)
     try {
         if (req.body.action === 'insert' || (req.body.action === 'batch' && req.body.added.length > 0)) {
             (req.body.action === 'insert') ? eventData.push(req.body.value) : eventData = req.body.added

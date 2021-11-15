@@ -48,7 +48,7 @@ const Calendar = () => {
     const scheduleComponent = new ScheduleComponent({})
     const dataManager = new DataManager({
         url: `https://customerocity.herokuapp.com/api/meeting/GetData/${userId}`,
-        crudUrl: `https://customerocity.herokuapp.com/api/api/meeting/BatchData/${userId}`,
+        crudUrl: `https://customerocity.herokuapp.com/api/meeting/BatchData/${userId}`,
         adaptor: new UrlAdaptor(),
         crossDomain: true
     })

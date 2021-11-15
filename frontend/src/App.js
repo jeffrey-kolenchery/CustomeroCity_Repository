@@ -15,6 +15,7 @@ import ResetPassword from './components/Profile/ResetPassword'
 import Map from './components/Map'
 import DashboardCard from './components/Dashboard/dashboard'
 import ScheduleMeeting from './components/Profile/ScheduleMeeting'
+import Test from './components/Test'
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                     <Route exact path = "/AddCustomer" component={Addcustomer} />
                     <Route exact path = "/ScheduleMeeting" component={ScheduleMeeting} />
                     <Route exact path = "/Test" component={DashboardCard} />
+                    <Route exact path = "/Testt" component={Test} />
                 </Switch>
             </Router> 
         </div>
