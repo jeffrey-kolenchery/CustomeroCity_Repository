@@ -15,7 +15,7 @@ export function Dashboard() {
     const [user, setUser] = useState('')
     const [contactList, setContactList] = useState([])
     const [filterQuery, setFilterQuery] = useState()
-    customerData(setContactList)
+    //customerData(setContactList)
 
     async function userView() {
         let config = {
@@ -32,7 +32,6 @@ export function Dashboard() {
 
     useEffect(() => {
         userView()
-        setContactList(contactList)
     }, [])
 
     useEffect(() => {
@@ -102,151 +101,151 @@ export function Dashboard() {
                             </li>
                             <li className="px-5 hidden md:block">
                                 <div className="flex flex-row items-center mt-5 h-8">
-                                  <div className="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
+                                    <div className="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
                                 </div>
                             </li>
                           
-                          <li>
-                            <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                              <span className="inline-flex justify-center items-center ml-4">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                              </span>
-                              <span className="ml-2 text-sm tracking-wide truncate">Settings</span>
-                            </a>
-                          </li>
+                            <li>
+                                <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                    <span className="inline-flex justify-center items-center ml-4">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </span>
+                                    <span className="ml-2 text-sm tracking-wide truncate">Settings</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
-              </div>
-      <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
-        <h3 className="text-3xl font-semibold tracking-wide text-gray-800 mb-6 mt-6 text-left ml-4 dark:border-gray-700 bg-white dark:text-gray-400 dark:bg-gray-800">Welcome Back, <span className ="text-purple-500">{user.givenName}</span> </h3>
+                </div>
+                <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
+                    <h3 className="text-3xl font-semibold tracking-wide text-gray-800 mb-6 mt-6 text-left ml-4 dark:border-gray-700 bg-white dark:text-gray-400 dark:bg-gray-800">Welcome Back, <span className ="text-purple-500">{user.givenName}</span> </h3>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
-          <Calendar/>
-          <Weather/>
-          {contactList.length != 0 && (
-            <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-                <div className="w-full overflow-x-auto">
-                <table className="w-full">
-                    <thead>
-                    <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                        <th className="px-4 py-3">Recent Contacts</th>
-                    </tr>
-                    </thead>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+                        <Calendar/>
+                        <Weather/>
+                        {contactList.length != 0 && (
+                            <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+                                <div className="w-full overflow-x-auto">
+                                    <table className="w-full">
+                                        <thead>
+                                            <tr className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                                <th className="px-4 py-3">Recent Contacts</th>
+                                            </tr>
+                                        </thead>
                     
-                    <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    {contactList.filter((item, i) => i < 5).map(contact => {
-                        return (
-                            <CustomerData
-                                key={contact._id}
-                                givenName = {contact.givenName}
-                                designation = {contact.designation}
-                                company = {contact.company}
-                                email = {contact.email}
-                            />
-                        )
-                    })}
-                    </tbody>
-                </table>
+                                        <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                            {contactList.filter((item, i) => i < 5).map(contact => {
+                                                return (
+                                                    <CustomerData
+                                                        key={contact._id}
+                                                        givenName = {contact.givenName}
+                                                        designation = {contact.designation}
+                                                        company = {contact.company}
+                                                        email = {contact.email}
+                                                    />
+                                                )
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        )}
+                        <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+                            <div className="rounded-t mb-0 px-0 border-0">
+                                <div className="flex flex-wrap items-center px-4 py-3">
+                                    <div className="relative w-full max-w-full flex-grow flex-1">
+                                        <h3 className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">Social Traffic</h3>
+                                    </div>
+                                </div>
+                                <div className="block w-full overflow-x-auto">
+                                    <table className="items-center w-full bg-transparent border-collapse">
+                                        <thead>
+                                            <tr>
+                                                <th className="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Referral</th>
+                                                <th className="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Visitors</th>
+                                                <th className="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr className="text-gray-700 dark:text-gray-100">
+                                                <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Facebook</th>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">5,480</td>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    <div className="flex items-center">
+                                                        <span className="mr-2">70%</span>
+                                                        <div className="relative w-full">
+                                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr className="text-gray-700 dark:text-gray-100">
+                                                <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Twitter</th>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">3,380</td>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    <div className="flex items-center">
+                                                        <span className="mr-2">40%</span>
+                                                        <div className="relative w-full">
+                                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr className="text-gray-700 dark:text-gray-100">
+                                                <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Instagram</th>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">4,105</td>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    <div className="flex items-center">
+                                                        <span className="mr-2">45%</span>
+                                                        <div className="relative w-full">
+                                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-pink-200">
+                                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr className="text-gray-700 dark:text-gray-100">
+                                                <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Google</th>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">4,985</td>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    <div className="flex items-center">
+                                                        <span className="mr-2">60%</span>
+                                                        <div className="relative w-full">
+                                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr className="text-gray-700 dark:text-gray-100">
+                                                <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Linkedin</th>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">2,250</td>
+                                                <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                    <div className="flex items-center">
+                                                        <span className="mr-2">30%</span>
+                                                        <div className="relative w-full">
+                                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-700"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-          )}
-            <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
-            <div className="rounded-t mb-0 px-0 border-0">
-              <div className="flex flex-wrap items-center px-4 py-3">
-                <div className="relative w-full max-w-full flex-grow flex-1">
-                  <h3 className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">Social Traffic</h3>
-                </div>
-              </div>
-              <div className="block w-full overflow-x-auto">
-                <table className="items-center w-full bg-transparent border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Referral</th>
-                      <th className="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Visitors</th>
-                      <th className="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="text-gray-700 dark:text-gray-100">
-                      <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Facebook</th>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">5,480</td>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div className="flex items-center">
-                          <span className="mr-2">70%</span>
-                          <div className="relative w-full">
-                            <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
-                              <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="text-gray-700 dark:text-gray-100">
-                      <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Twitter</th>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">3,380</td>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div className="flex items-center">
-                          <span className="mr-2">40%</span>
-                          <div className="relative w-full">
-                            <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
-                              <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="text-gray-700 dark:text-gray-100">
-                      <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Instagram</th>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">4,105</td>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div className="flex items-center">
-                          <span className="mr-2">45%</span>
-                          <div className="relative w-full">
-                            <div className="overflow-hidden h-2 text-xs flex rounded bg-pink-200">
-                              <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="text-gray-700 dark:text-gray-100">
-                      <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Google</th>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">4,985</td>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div className="flex items-center">
-                          <span className="mr-2">60%</span>
-                          <div className="relative w-full">
-                            <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                              <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="text-gray-700 dark:text-gray-100">
-                      <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Linkedin</th>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">2,250</td>
-                      <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div className="flex items-center">
-                          <span className="mr-2">30%</span>
-                          <div className="relative w-full">
-                            <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
-                              <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-700"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            </div>
-            </div>
-            </div>
             </div>
         </>
     )
