@@ -72,10 +72,31 @@ customerRouter.get(
 )
 
 customerRouter.get(
-  '/getCustomers/:userId',
-  requireSignin,
-  isAuth,
-  CustomerController.getCustomers
+    '/getCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.getCustomers
+)
+
+customerRouter.get(
+    '/setProfilePicture/:userId/:customerId',
+    requireSignin,
+    isAuth,
+    CustomerController.addProfilePicture
+)
+
+customerRouter.get(
+    '/getProfilePicture/:userId/:customerId',
+    requireSignin,
+    isAuth,
+    CustomerController.getProfilePicture
+)
+
+customerRouter.get(
+    '/setBusinessCard/:userId/:customerId',
+    requireSignin,
+    isAuth,
+    CustomerController.addBusinessCard
 )
 
 // module.exports = customerRouter;

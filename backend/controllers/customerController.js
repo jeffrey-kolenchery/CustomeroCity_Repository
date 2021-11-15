@@ -7,13 +7,13 @@ import mongoose from 'mongoose'
 import { Customer } from '../models/customerModel.js'
 
 const getCustomers = async (req,res) => {
-  try {
-    console.log(req.params.userId)
-    const customer = await Customer.find({user: req.params.userId })
-    res.send(customer)
-  } catch (err) {
-    console.error(err)
-  }
+    try {
+        console.log(req.params.userId)
+        const customer = await Customer.find({user: req.params.userId })
+        res.send(customer)
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const registerCustomer = (req, res, next) => {
@@ -31,7 +31,7 @@ const registerCustomer = (req, res, next) => {
     customer
         .save()
         .then((customer) => {
-            res.status(200).send('Customer Added Successfully!')
+            res.status(200).json(customer._id)
         })
         .catch((error) => {
             res.status(400).send('An error occured!')
@@ -125,14 +125,8 @@ const customerData = async (req, res) => {
 }
 
 const deleteCustomer = (req, res, next) => {
-    const customerName = req.body.givenName
-    const { email } = req.body
-
     try {
-        Customer.remove({
-            givenName: customerName,
-            email,
-        })
+        Customer.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.customerId))
         res.status(200).send('customer deleted successfully')
     } catch (error) {
         res.status(404).send('customer does not exist in database')
@@ -173,6 +167,43 @@ const editCustomer = (req,res,next) => {
     
 }
 
+const addProfilePicture = (req,res,next) => {
+    try {
+        Customer.findByIdAndUpdate(new mongoose.Types.ObjectId(req.params.customerId), {
+            profilePicture : req.body.profilePicture
+        })
+    }
+    catch(e) {
+        res.status(404).send('Customer doesnt exist on server')
+    }
+}
+
+const getProfilePicture = (req,res,next) => {
+    var picture = ''
+    try {
+        const customer = Customer.findById(new mongoose.Types.ObjectId(req.params.customerId))
+        picture = customer.profilePicture
+    }
+    catch(e) {
+        res.status(404).send('Customer doesnt exist on server')
+    }
+}
+
+const addBusinessCard = (req,res,next) => {
+    try {
+        Customer.findByIdAndUpdate(new mongoose.Types.ObjectId(req.params.customerId), {
+            profilePicture : req.body.profilePicture
+        })
+    }
+    catch(e) {
+        res.status(404).send('Customer doesnt exist on server')
+    }
+}
+
+//const scan business card
+//const send back profile pic
+
+
 export {
     registerCustomer, 
     deleteCustomer,
@@ -180,5 +211,8 @@ export {
     searchCustomers,
     getCustomers, 
     editCustomer,
-    customerData
+    customerData,
+    addProfilePicture,
+    getProfilePicture,
+    addBusinessCard
 }

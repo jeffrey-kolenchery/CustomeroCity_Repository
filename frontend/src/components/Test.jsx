@@ -8,6 +8,9 @@ import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import './Test.css'
 import axios from 'axios'
 
+var BASE_URL = 'http://localhost:5000/api'
+// var BASE_URL = `https://customerocity.herokuapp.com/api'
+
 const Calendar = () => {
 
     const [customers, setCustomers] = useState([])
@@ -20,7 +23,8 @@ const Calendar = () => {
             }
         }
         console.log(userId)
-        const customers = await axios.get(`https://customerocity.herokuapp.com/api/customer/getCustomers/${userId}`, config)
+
+        const customers = await axios.get(`${BASE_URL}/customer/getCustomers/${userId}`, config)
         if (customers.data.length > 0) {
             let array = customers.data
             console.log(array)
@@ -47,8 +51,8 @@ const Calendar = () => {
 
     const scheduleComponent = new ScheduleComponent({})
     const dataManager = new DataManager({
-        url: `https://customerocity.herokuapp.com/api/meeting/GetData/${userId}`,
-        crudUrl: `https://customerocity.herokuapp.com/api/api/meeting/BatchData/${userId}`,
+        url: `${BASE_URL}/meeting/GetData/${userId}`,
+        crudUrl: `${BASE_URL}/meeting/BatchData/${userId}`,
         adaptor: new UrlAdaptor(),
         crossDomain: true
     })

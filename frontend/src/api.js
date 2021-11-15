@@ -5,8 +5,8 @@ import axios from 'axios'
 import * as dotenv from 'dotenv'
 
 
-//var BASE_URL = 'http://localhost:5000/api'
-var BASE_URL = 'https://customerocity.herokuapp.com/api'
+var BASE_URL = 'http://localhost:5000/api'
+// var BASE_URL = 'https://customerocity.herokuapp.com/api'
 dotenv.config()
 
 
@@ -102,6 +102,7 @@ async function customerCreate(data) {
         const customers = await axios.post(endpoint,data, config)
         console.log(customers)
         console.log('Customer successfully created')
+        window.sessionStorage.setItem('currentCustomer',customers.data._id)
     } catch (err) {
         console.error(err)
         alert('Enter all required fields with valid data')
@@ -109,9 +110,9 @@ async function customerCreate(data) {
 
 }
 
-async function customerDelete(data) {
-    const endpoint = `${BASE_URL}/customer/deletecustomer/${window.sessionStorage.getItem('userId')}`
-    return await axios.post(endpoint, data).then(
+async function customerDelete() {
+    const endpoint = `${BASE_URL}/customer/deletecustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+    return await axios.post(endpoint).then(
         (response) => {
             console.log('Customer successfully deleted')
             console.log(response)
@@ -184,7 +185,43 @@ async function customerData(setContactList) {
         console.error(err)
     }
 
-} 
+}
+
+async function setCustomerProfilePicture(data) {
+    try {
+        let config = {
+            body: {
+                profilePicture : data
+            },
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            }
+        }
+        const endpoint = `${BASE_URL}/customer/setProfilePicture/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+        const pictureURL = await axios.get(endpoint,config)
+        return pictureURL
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+
+async function getCustomerProfilePicture() {
+    try {
+        let config = {
+            headers: {
+                'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+            }
+        }
+        const endpoint = `${BASE_URL}/customer/getProfilePicture/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+        const pictureURL = await axios.get(endpoint,config)
+        return pictureURL
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
 
 async function customerEmail(data) {
     const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
@@ -242,6 +279,8 @@ export {
     customerSearch,
     customerReturn,
     customerData,
+    setCustomerProfilePicture,
+    getCustomerProfilePicture,
     // customerEmail,
     escapeHtml
 }

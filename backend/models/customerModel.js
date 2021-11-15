@@ -42,6 +42,12 @@ const customerSchema = new Schema({
     visitCount: {
         type: Number,
         required: true
+    },
+    profilePicture: {
+        type: String
+    },
+    businessCard: {
+        type: String
     }
 })
 

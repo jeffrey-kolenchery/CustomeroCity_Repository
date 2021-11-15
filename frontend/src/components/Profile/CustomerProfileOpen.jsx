@@ -10,7 +10,9 @@ import {customerData,userSignOut } from '../../api'
 import { Link } from 'react-router-dom'
 
 const CustomerProfileOpen = () => {
-    var BASE_URL = 'https://customerocity.herokuapp.com/api'
+    // var BASE_URL = 'https://customerocity.herokuapp.com/api'
+    var BASE_URL = 'http://localhost:5000/api'
+
 
     const [user, setUser] = useState('')
     const [contactList, setContactList] = useState([])
