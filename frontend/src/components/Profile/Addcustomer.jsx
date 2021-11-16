@@ -2,11 +2,12 @@
 //import { userSignUp } from '../api'
 import React , { useState, useEffect}from 'react'
 import { useForm } from 'react-hook-form'
-import { customerCreate, userSignOut, setCustomerProfilePicture } from '../../api'
+import { customerCreate, userSignOut, setCustomerProfilePicture, getBusinessCardDetails } from '../../api'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { storage } from '../../firebase'
 import { ref, uploadBytesResumable, getDownloadURL  } from 'firebase/storage'
+import { scanBusinessCard } from '../../AzureFormRecognizer/businessCardScanner'
 
 
 
@@ -40,10 +41,6 @@ class Addcustomer extends React.Component {
         )
     }
 
-    setBusinessCardURL = (data) => {
-        //add func in api.js which takes in url 
-    }
-
     onSubmit = () => {
         try {
             customerCreate(this.state)
@@ -63,30 +60,48 @@ class Addcustomer extends React.Component {
 
         const [user, setUser] = useState('')
         const [image, setImage] = useState(null)
-        const [url, setUrl] = useState("")
+        const [profileUrl, setProfileUrl] = useState("")
+        const [businessUrl, setBusinessUrl] = useState("")
         const [progress, setProgress] = useState(0)
 
 
-        const profileHandler = (e) => {
+        const profileHandler = async (e) => {
             e.preventDefault()
             const file = e.target[0].files[0]
-            const url = handleImageChange(file)
-            setCustomerProfilePicture(url)
-
+            const url = await handleImageChange(file)
+            setProfileUrl(url)
+            setCustomerProfilePicture(profileUrl)
+            
         }
 
         const businessHandler = (e) => {
             e.preventDefault()
             const file = e.target[0].files[0]
             const url = handleImageChange(file)
+            setBusinessUrl(url)
+            try {
+                if (url != '') {
+                    businessCardHandler(businessUrl)
+                }
+                else alert('url not read')
+            } catch (error) {
+                console.log(error)
+                alert('there was an error scanning the business card')
+            }
         }
+
+        const businessCardHandler = async (url) => {
+            const result = scanBusinessCard(url)
+            return result
+        }
+
 
 
         const handleImageChange = (file) => {
 
 
             if (!file) {return}
-            const storageRef = ref(storage, `/images/profilePicture/${file.name}`)
+            const storageRef = ref(storage, `/images/profilePicture/${window.sessionStorage.getItem('currentCustomer')}+${file.name}`)
             const uploadTask = uploadBytesResumable(storageRef, file)
 
             uploadTask.on("state_changed", 

@@ -31,7 +31,7 @@ const registerCustomer = (req, res, next) => {
     customer
         .save()
         .then((customer) => {
-            res.status(200).json(customer._id)
+            res.status(200).send(customer._id)
         })
         .catch((error) => {
             res.status(400).send('An error occured!')
@@ -172,6 +172,7 @@ const addProfilePicture = (req,res,next) => {
         Customer.findByIdAndUpdate(new mongoose.Types.ObjectId(req.params.customerId), {
             profilePicture : req.body.profilePicture
         })
+        console.log(req.body.profilePicture)
     }
     catch(e) {
         res.status(404).send('Customer doesnt exist on server')

@@ -3,6 +3,7 @@ import axios from 'axios'
 // import * as nodemailer from 'nodemailer'
 // import * as sendgridTransport from 'nodemailer-sendgrid-transport'
 import * as dotenv from 'dotenv'
+import { scanBusinessCard } from './AzureFormRecognizer/businessCardScanner'
 
 
 var BASE_URL = 'http://localhost:5000/api'
@@ -99,10 +100,13 @@ async function customerCreate(data) {
 
         const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
         window.sessionStorage.getItem('token')
-        const customers = await axios.post(endpoint,data, config)
+        const customers = await axios.post(endpoint,data, config).then(
+            (response) => {
+                window.sessionStorage.setItem('currentCustomer',response.data)
+            }
+        )
         console.log(customers)
         console.log('Customer successfully created')
-        window.sessionStorage.setItem('currentCustomer',customers.data._id)
     } catch (err) {
         console.error(err)
         alert('Enter all required fields with valid data')
@@ -191,7 +195,7 @@ async function setCustomerProfilePicture(data) {
     try {
         let config = {
             body: {
-                profilePicture : data
+                'profilePicture' : String(data)
             },
             headers: {
                 'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
@@ -199,6 +203,7 @@ async function setCustomerProfilePicture(data) {
         }
         const endpoint = `${BASE_URL}/customer/setProfilePicture/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
         const pictureURL = await axios.get(endpoint,config)
+        console.log(config.body.profilePicture)
         return pictureURL
     }
     catch(err) {
@@ -223,18 +228,33 @@ async function getCustomerProfilePicture() {
     }
 }
 
-async function customerEmail(data) {
-    const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
-    return await axios.get(endpoint, data).then(
-        (response) => {
-            console.log('Customer email returned')
-            console.log(response.email)
-        },
-        (error) => {
-            console.log(error)
-        }
-    ) 
+async function getBusinessCardDetails(url) {
+    try {
+        var details = ''
+        await scanBusinessCard(url).then(
+            (response) => {
+                details = response
+            }
+        )
+        return details
+    }
+    catch(err) {
+        console.log(err)
+    }
 }
+
+// async function customerEmail(data) {
+//     const endpoint = `${BASE_URL}/customer/returncustomers/${window.sessionStorage.getItem('userId')}`
+//     return await axios.get(endpoint, data).then(
+//         (response) => {
+//             console.log('Customer email returned')
+//             console.log(response.email)
+//         },
+//         (error) => {
+//             console.log(error)
+//         }
+//     ) 
+// }
 
 // async function customerEmail(data) {
 //     transporter.sendMail({
@@ -279,6 +299,7 @@ export {
     customerSearch,
     customerReturn,
     customerData,
+    getBusinessCardDetails,
     setCustomerProfilePicture,
     getCustomerProfilePicture,
     // customerEmail,

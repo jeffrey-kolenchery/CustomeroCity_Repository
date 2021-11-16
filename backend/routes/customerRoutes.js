@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import * as express from 'express'
 import * as CustomerController from '../controllers/customerController.js'
-import {scanBusinessCard} from '../AzureFormRecognizer/businessCardScanner.js'
 import { findUserById } from '../controllers/userController.js'
 import { isAuth, requireSignin } from '../controllers/authController.js'
-import {
-    findCalendarById,
-    createCalendar,
-} from '../controllers/calendarController.js'
-import { createMeeting } from '../controllers/meetingController.js'
+// import {
+//     findCalendarById,
+//     createCalendar,
+// } from '../controllers/calendarController.js'
+// import { createMeeting } from '../controllers/meetingController.js'
 
 const customerRouter = express.Router()
 
@@ -55,13 +54,6 @@ customerRouter.patch(
     requireSignin,
     isAuth,
     CustomerController.editCustomer
-)
-
-customerRouter.post(
-    '/scanbusinesscard/:userId',
-    requireSignin,
-    isAuth,
-    scanBusinessCard
 )
 
 customerRouter.get(

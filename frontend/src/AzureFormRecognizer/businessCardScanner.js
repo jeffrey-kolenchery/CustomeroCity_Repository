@@ -1,29 +1,18 @@
 import { FormRecognizerClient, AzureKeyCredential } from '@azure/ai-form-recognizer'
-import fs from 'fs'
 import * as dotenv from 'dotenv'
-import * as base64 from 'base-64'
 
 
 dotenv.config()
 
-const apiKey = process.env.AZURE_FORM_RECOGNIZER_APIKEY
-const endpoint = process.env.AZURE_FORM_RECOGNIZER_ENDPOINT
+const apiKey = '6853fe3b32fd482c9239acb395cf03de'
+const endpoint = 'https://businesscardscanningapi.cognitiveservices.azure.com/'
 
 const client = new FormRecognizerClient(endpoint, new AzureKeyCredential(apiKey))
 
-const scanBusinessCard = async (req, res) => {
-
-    var fileName = req.body.formData
-    fileName = base64.decode(fileName)
-
-    if (!fs.existsSync(fileName)) {
-        throw new Error(`Expected file "${fileName}" to exist.`)
-    }
-
-    const readStream = fs.createReadStream(fileName)
-
-    const poller = await client.beginRecognizeBusinessCards(readStream, {
-        contentType: 'image/png',
+async function scanBusinessCard(url) {
+    const bcUrl = url
+    console.log(url)
+    const poller = await client.beginRecognizeBusinessCardsFromUrl(bcUrl, {
         onProgress: (state) => {
             console.log(`status: ${state.status}`)
         }
@@ -43,19 +32,20 @@ const scanBusinessCard = async (req, res) => {
                 const firstName = contactName.value?.['FirstName'].value ?? '<no first name>'
                 const lastName = contactName.value?.['LastName'].value ?? '<no last name>'
                 console.log(`  - ${firstName} ${lastName} (${contactName.confidence} confidence)`)
-                res.status(200).json(firstName, lastName)
             }
         }
     }
-
-    
 
     printSimpleArrayField(businessCard, 'CompanyNames')
     printSimpleArrayField(businessCard, 'Departments')
     printSimpleArrayField(businessCard, 'JobTitles')
     printSimpleArrayField(businessCard, 'Emails')
+    printSimpleArrayField(businessCard, 'Websites')
     printSimpleArrayField(businessCard, 'Addresses')
     printSimpleArrayField(businessCard, 'MobilePhones')
+    printSimpleArrayField(businessCard, 'Faxes')
+    printSimpleArrayField(businessCard, 'WorkPhones')
+    printSimpleArrayField(businessCard, 'OtherPhones')
 }
 
 // Helper function to print array field values. 
@@ -75,10 +65,9 @@ function printSimpleArrayField(businessCard, fieldName) {
     }
 }
 
-// scanBusinessCard().catch((err) => {
-//     console.error('The sample encountered an error:', err)
-// })
-
+scanBusinessCard().catch((err) => {
+    console.error('The sample encountered an error:', err)
+})
 export {
     scanBusinessCard
 }
