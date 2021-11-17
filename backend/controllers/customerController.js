@@ -7,23 +7,26 @@ import mongoose from 'mongoose'
 import { Customer } from '../models/customerModel.js'
 
 const getCustomers = async (req,res) => {
-  try {
-    console.log(req.params.userId)
-    const customer = await Customer.find({user: req.params.userId })
-    res.send(customer)
-  } catch (err) {
-    console.error(err)
-  }
+    try {
+        console.log(req.params.userId)
+        const customer = await Customer.find({user: req.params.userId })
+        res.send(customer)
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const registerCustomer = (req, res, next) => {
+    console.log(req.body)
+    console.log('ASDFASDF')
+    console.log(req.profile)
     const customer = new Customer({
         givenName: req.body.givenName,
         designation: req.body.designation,
         company: req.body.company,
         email: req.body.email,
         age: req.body.age,
-        phoneNo: req.body.phone,
+        phoneNo: req.body.phoneNo,
         interests: req.body.interests,
         user: req.params.userId,
         visitCount : 0,
@@ -34,7 +37,8 @@ const registerCustomer = (req, res, next) => {
             res.status(200).send('Customer Added Successfully!')
         })
         .catch((error) => {
-            res.status(400).send('An error occured!')
+            console.log(error)
+            res.status(400).send(error)
         })
 }
 

@@ -16,6 +16,25 @@ export function Dashboard() {
     const [contactList, setContactList] = useState([])
     const [filterQuery, setFilterQuery] = useState()
     //customerData(setContactList)
+    async function customerData() {
+
+        try {
+            let config = {
+                headers: {
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+                }
+            }
+  
+            const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
+            window.sessionStorage.getItem('token')
+            const customers = await axios.get(endpoint, config)
+            // console.log(customers)
+            setContactList(customers.data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+  
 
     async function userView() {
         let config = {
@@ -32,11 +51,9 @@ export function Dashboard() {
 
     useEffect(() => {
         userView()
+        customerData()
     }, [])
 
-    useEffect(() => {
-        console.log(user)
-    }, [user])
     return (
         <>
             <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">

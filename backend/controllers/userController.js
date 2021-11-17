@@ -13,6 +13,8 @@ import { User } from '../models/userModel.js'
 // import { errorHandler } from '../validators/dbErrorHandler.js'
 
 const findUserById = (req, res, next) => {
+  console.log("ASDFASDFASDFASDFASDFASDFDSAF")
+  console.log(req.params.userId, "ASDF")
     User.findById(req.params.userId).exec((err, user) => {
         if (err || !user) {
             return res.status(400).json({
