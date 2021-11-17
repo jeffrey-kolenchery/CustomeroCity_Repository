@@ -2,7 +2,7 @@
 //import { userSignUp } from '../api'
 import React , { useState, useEffect}from 'react'
 import { useForm } from 'react-hook-form'
-import { customerCreate, userSignOut, setCustomerProfilePicture, getBusinessCardDetails } from '../../api'
+import { customerCreate, userSignOut, getBusinessCardDetails } from '../../api'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { storage } from '../../firebase'
@@ -59,7 +59,6 @@ class Addcustomer extends React.Component {
         var BASE_URL = 'http://localhost:5000/api'
 
         const [user, setUser] = useState('')
-        const [image, setImage] = useState(null)
         const [profileUrl, setProfileUrl] = useState("")
         const [businessUrl, setBusinessUrl] = useState("")
         const [progress, setProgress] = useState(0)
@@ -68,11 +67,56 @@ class Addcustomer extends React.Component {
         const profileHandler = async (e) => {
             e.preventDefault()
             const file = e.target[0].files[0]
-            const url = await handleImageChange(file)
-            setProfileUrl(url)
-            setCustomerProfilePicture(profileUrl)
-            
+            handleImageChange(file)
         }
+
+        const handleImageChange = (file) => {
+
+
+            if (!file) {return}
+            const storageRef = ref(storage, `/images/profilePicture/${window.sessionStorage.getItem('currentCustomer')}+${file.name}`)
+            const uploadTask = uploadBytesResumable(storageRef, file)
+
+            uploadTask.on("state_changed", 
+                (snapshot) => {
+                    const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                    setProgress(prog)
+                },
+                (err) => {
+                    console.log(err)
+                },
+                async () => {
+                    const url = await getDownloadURL(uploadTask.snapshot.ref)
+                    setProfileUrl(url)
+                }
+            )
+
+        }
+
+        async function setCustomerProfilePicture(data) {
+            try {
+                console.log(window.sessionStorage.getItem('token'))
+                let config = {
+                    body: {
+                        'profilePicture' : String(data)
+                    },
+                    headers: {
+                        'Authorization': `Bearer ${window.sessionStorage.getItem('token')}` ,
+                    }
+                }
+                const endpoint = `${BASE_URL}/customer/setProfilePicture/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+                const pictureURL = await axios.post(endpoint,config)
+                console.log(config.body.profilePicture)
+                return pictureURL
+            }
+            catch(err) {
+                console.log(err)
+            }
+        }
+
+        useEffect(()=>{
+            setCustomerProfilePicture(profileUrl)
+        },[profileUrl])
 
         const businessHandler = (e) => {
             e.preventDefault()
@@ -97,27 +141,7 @@ class Addcustomer extends React.Component {
 
 
 
-        const handleImageChange = (file) => {
-
-
-            if (!file) {return}
-            const storageRef = ref(storage, `/images/profilePicture/${window.sessionStorage.getItem('currentCustomer')}+${file.name}`)
-            const uploadTask = uploadBytesResumable(storageRef, file)
-
-            uploadTask.on("state_changed", 
-                (snapshot) => {
-                    const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-                    setProgress(prog)
-                },
-                (err) => {
-                    console.log(err)
-                },
-                () => {
-                    return(getDownloadURL(uploadTask.snapshot.ref).then(url => console.log(url)))
-                }
-            )
-
-        }
+        
     
 
 

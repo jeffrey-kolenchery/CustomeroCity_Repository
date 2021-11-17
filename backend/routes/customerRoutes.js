@@ -70,10 +70,9 @@ customerRouter.get(
     CustomerController.getCustomers
 )
 
-customerRouter.get(
+customerRouter.post(
     '/setProfilePicture/:userId/:customerId',
     requireSignin,
-    isAuth,
     CustomerController.addProfilePicture
 )
 
