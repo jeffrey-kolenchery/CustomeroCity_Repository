@@ -109,7 +109,8 @@ const customerData = async (req, res) => {
                         'givenName': 1, 
                         'email': 1, 
                         'company': 1, 
-                        'designation': 1, 
+                        'designation': 1,
+                        'phoneNo':1, 
                         '_id': 1
                     }
                 }

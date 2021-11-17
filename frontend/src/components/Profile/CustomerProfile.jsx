@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom'
 import MeetingData from './MeetingData'
 
 const CustomerProfile = () => {
-    var BASE_URL = 'https://customerocity.herokuapp.com/api'
+    // var BASE_URL = 'https://customerocity.herokuapp.com/api'
+    var BASE_URL = 'http://localhost:5000/api'
 
     const [user, setUser] = useState('')
     const [contactList, setContactList] = useState([])
@@ -50,7 +51,8 @@ const CustomerProfile = () => {
     useEffect(() => {
         console.log(user)
         console.log(contactList)
-    }, [user,meetings])
+        console.log(contact[0])
+    }, [user,contact,contactList])
     return (
         <>
             <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
@@ -138,8 +140,8 @@ const CustomerProfile = () => {
                                 <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
                                 <div className="font-bold text-xl mb-2">{contact[0].givenName}</div>
                                 <p className="text-grey-darker text-base">DOB</p>
-                                <p className="text-grey-darker text-base">{contact[0].email} • Phone Number</p>
-                                <p className="text-grey-darker text-base mb-4">{contact[0].designation} • {contact[0].company}</p>
+                                <p className="text-grey-darker text-base">E-Mail: {contact[0].email} • Phone Number: {contact[0].phoneNo}</p>
+                                <p className="text-grey-darker text-base mb-4">Designation: {contact[0].designation} • Company: {contact[0].company}</p>
                                 <div className="px-6 pt-4 pb-2">
                                     <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">Interest 1</span>
                                     <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">Interest 2</span>
