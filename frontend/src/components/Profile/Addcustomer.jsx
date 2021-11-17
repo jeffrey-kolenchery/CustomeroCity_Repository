@@ -99,7 +99,7 @@ class Addcustomer extends React.Component {
                 let config = {
                     body: {
                         'profilePicture' : String(data)
-                    },
+                    },jkolenchery
                     headers: {
                         'Authorization': `Bearer ${window.sessionStorage.getItem('token')}` ,
                     }
