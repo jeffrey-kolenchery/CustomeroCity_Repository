@@ -156,7 +156,7 @@ const editCustomer = (req,res,next) => {
                     console.log(err)
                 }
                 else {
-                    res.send('Updated customer: ', docs)
+                    res.status(200).send('updated')
                 }
             })
 

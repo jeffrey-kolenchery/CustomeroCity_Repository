@@ -51,7 +51,7 @@ customerRouter.get(
 )
 
 customerRouter.patch(
-    '/updatecustomer/:userId',
+    '/updatecustomer/:userId/:customerId',
     requireSignin,
     isAuth,
     CustomerController.editCustomer
