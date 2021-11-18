@@ -89,6 +89,13 @@ customerRouter.get(
     isAuth,
     CustomerController.addBusinessCard
 )
+customerRouter.get(
+    '/getCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.getCustomers
+)
+
 
 // module.exports = customerRouter;
 export { customerRouter }

@@ -47,7 +47,7 @@ meetingRouter.get(
     getMeetingsByCustomer
 )
 
-meetingRouter.get('/GetData/:userId', getAllMeetings)
+meetingRouter.post('/GetData/:userId', getAllMeetings)
 
 meetingRouter.post('/BatchData/:userId', updateMeetings)
 

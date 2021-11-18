@@ -17,7 +17,25 @@ const CustomerProfile = () => {
     const [contactList, setContactList] = useState([])
     const [meetings, setMeetings] = useState([])
     const [filterQuery, setFilterQuery] = useState()
-    customerData(setContactList)
+    
+    async function customerData() {
+
+        try {
+            let config = {
+                headers: {
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+                }
+            }
+            const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
+            window.sessionStorage.getItem('token')
+            const customers = await axios.get(endpoint, config)
+            // console.log(customers)
+            setContactList(customers.data)
+        } catch (err) {
+            console.error(err)
+        }
+  
+    } 
     
     async function getMeetings() {
         let config = {
@@ -31,6 +49,7 @@ const CustomerProfile = () => {
         console.log(user)
         setMeetings(user.data)
     }
+    
     async function userView() {
         let config = {
             headers: {
@@ -46,14 +65,16 @@ const CustomerProfile = () => {
 
     useEffect(() => {
         userView()
-        setContactList(contactList)
         getMeetings()
+        customerData()
     }, [])
 
     useEffect(() => {
         console.log(user)
         console.log(meetings)
-    }, [user,meetings])
+        console.log(contactList)
+    }, [user,meetings, contactList ])
+
     return (
         <>
             <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
@@ -153,8 +174,8 @@ const CustomerProfile = () => {
                         <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                             <div className="w-full overflow-x-auto">
                                 <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
-                                <div className="font-bold text-xl mb-2">Jane Doe</div>
-                                <p className="text-grey-darker text-base">DOB</p>
+                                <div className="font-bold text-xl mb-2">{user.givenName}  </div>
+                                <p className="text-grey-darker text-base">Email • Phone Number</p>
                                 <p className="text-grey-darker text-base">Email • Phone Number</p>
                                 <p className="text-grey-darker text-base mb-4">Designation • Company</p>
                                 <div className="px-6 pt-4 pb-2">

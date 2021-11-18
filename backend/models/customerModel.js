@@ -10,7 +10,6 @@ const customerSchema = new Schema({
         required: true,
     },
 
-    //
     designation: {
         type: String,
     },
@@ -29,7 +28,7 @@ const customerSchema = new Schema({
         unique: true,
     },
     age: {
-        type: Number,
+        type: String,
     },
     interests: {
         type: [String],
