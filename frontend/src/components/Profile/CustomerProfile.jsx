@@ -133,6 +133,26 @@ const CustomerProfile = () => {
                     </div>
                 </div>
                 <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
+                    <div className="flex justify-end px-6 p-2 gap-3">
+                        <Link to='#'
+                            onClick={(e) => {
+                                
+                            }}>
+                            <button type="submit" className="bg-purple-600 text-white px-8 py-1 rounded-lg">Delete Profile</button>
+                        </Link>
+                        <Link to='#'
+                            onClick={(e) => {
+                                
+                            }}>
+                            <button type="submit" className="bg-purple-600 text-white px-8 py-1 rounded-lg">Edit Profile</button>
+                        </Link>
+                        <Link to='#'
+                            onClick={(e) => {
+                               
+                            }}>
+                            <button type="submit" className="bg-purple-600 text-white px-4 py-1 rounded-lg">Submit Profile</button>
+                        </Link>
+                    </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
                         <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                             {contact.length !=0 &&
