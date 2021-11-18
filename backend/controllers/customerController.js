@@ -7,13 +7,13 @@ import mongoose from 'mongoose'
 import { Customer } from '../models/customerModel.js'
 
 const getCustomers = async (req,res) => {
-  try {
-    console.log(req.params.userId)
-    const customer = await Customer.find({user: req.params.userId })
-    res.send(customer)
-  } catch (err) {
-    console.error(err)
-  }
+    try {
+        console.log(req.params.userId)
+        const customer = await Customer.find({user: req.params.userId })
+        res.send(customer)
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const registerCustomer = (req, res, next) => {
@@ -126,13 +126,15 @@ const customerData = async (req, res) => {
 }
 
 const deleteCustomer = (req, res, next) => {
-    const customerName = req.body.givenName
-    const { email } = req.body
 
     try {
-        Customer.remove({
-            givenName: customerName,
-            email,
+        Customer.findByIdAndDelete(req.params.customerId, function (err, docs) {
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log('Deleted : ', docs)
+            }
         })
         res.status(200).send('customer deleted successfully')
     } catch (error) {
@@ -141,22 +143,13 @@ const deleteCustomer = (req, res, next) => {
 }
 
 const editCustomer = (req,res,next) => {
-    const customerId = req.body.customerId
-
-    const resultCustomer = Customer.findById(customerId)
+    const customerId = req.params.customerId
 
     try {
 
         Customer.findByIdAndUpdate(customerId,
             {
-                givenName: req.body.givenName,
-                designation: req.body.designation,
-                company: req.body.comapany,
-                email: req.body.email,
-                age: req.body.age,
-                phoneNo: req.body.phoneNo,
-                interests: req.body.interests,
-                visitCount: resultCustomer.visitCount + 1
+                $set : req.body
             },
             function (err, docs) {
                 if (err) {

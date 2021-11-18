@@ -110,15 +110,17 @@ async function customerCreate(data) {
 }
 
 async function customerDelete(data) {
-    const endpoint = `${BASE_URL}/customer/deletecustomer/${window.sessionStorage.getItem('userId')}`
-    return await axios.post(endpoint, data).then(
+    const endpoint = `${BASE_URL}/customer/deletecustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+    return await axios.get(endpoint, data).then(
         (response) => {
             console.log('Customer successfully deleted')
+            alert('Customer successfully deleted')
+            window.location.assign('/contacts')
             console.log(response)
         },
         (error) => {
             console.log(error)
-            alert('Customer does not exist in database')
+            // alert('Customer does not exist in database')
         }
     )
 }

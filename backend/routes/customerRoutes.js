@@ -32,10 +32,10 @@ customerRouter.post(
     isAuth,
     CustomerController.registerCustomer
 )
-customerRouter.post(
-    '/deletecustomer/:userId',
-    requireSignin,
-    isAuth,
+customerRouter.get(
+    '/deletecustomer/:userId/:customerId',
+    // requireSignin,
+    // isAuth,
     CustomerController.deleteCustomer
 )
 customerRouter.get(
@@ -72,10 +72,10 @@ customerRouter.get(
 )
 
 customerRouter.get(
-  '/getCustomers/:userId',
-  requireSignin,
-  isAuth,
-  CustomerController.getCustomers
+    '/getCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.getCustomers
 )
 
 // module.exports = customerRouter;

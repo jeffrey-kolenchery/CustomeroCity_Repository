@@ -4,7 +4,7 @@ import './UserProfile.css'
 import profilepicture from '../../images/profilepic.png'
 import Map from '../Map'
 import axios from 'axios'
-import {customerData, userSignOut } from '../../api'
+import {customerData, userSignOut, customerDelete } from '../../api'
 import { Link } from 'react-router-dom'
 import MeetingData from './MeetingData'
 
@@ -136,7 +136,7 @@ const CustomerProfile = () => {
                     <div className="flex justify-end px-6 p-2 gap-3">
                         <Link to='#'
                             onClick={(e) => {
-                                
+                                customerDelete()
                             }}>
                             <button type="submit" className="bg-purple-600 text-white px-8 py-1 rounded-lg">Delete Profile</button>
                         </Link>
