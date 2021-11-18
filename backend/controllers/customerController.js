@@ -136,32 +136,12 @@ const deleteCustomer = (req, res, next) => {
 }
 
 const editCustomer = (req,res,next) => {
-    const customerId = req.body.customerId
-
-    const resultCustomer = Customer.findById(customerId)
+    const customerId = req.params.customerId
 
     try {
-
-        Customer.findByIdAndUpdate(customerId,
-            {
-                givenName: req.body.givenName,
-                designation: req.body.designation,
-                company: req.body.comapany,
-                email: req.body.email,
-                age: req.body.age,
-                phoneNo: req.body.phoneNo,
-                interests: req.body.interests,
-                visitCount: resultCustomer.visitCount + 1
-            },
-            function (err, docs) {
-                if (err) {
-                    console.log(err)
-                }
-                else {
-                    res.send('Updated customer: ', docs)
-                }
-            })
-
+        Customer.updateOne({_id : new mongoose.Types.ObjectId(customerId)}, {
+            $set : req.body.selectionData
+        })
     }
     catch(e) {
         res.status(404).send('Customer doesnt exist on server')
