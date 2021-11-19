@@ -191,7 +191,7 @@ const CustomerProfile = () => {
                         <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                             <div className="w-full overflow-x-auto">
                                 
-                                <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
+                                <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={(contactList.profilePicture !== '' && contactList.profilePicture !== undefined) ? contactList.profilePicture : profilepicture} />
                                 <div className="font-bold text-xl mb-2">{contactList.givenName}  </div>
                                 <div className="font-bold text-x3">Designation:</div>
                                 <p className="text-grey-darker text-base">{contactList.designation}</p>
