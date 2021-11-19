@@ -38,22 +38,22 @@ async function scanBusinessCard(url) {
         }
     }
 
-    printSimpleArrayField(businessCard, 'CompanyNames')
-    printSimpleArrayField(businessCard, 'Departments')
-    printSimpleArrayField(businessCard, 'JobTitles')
-    printSimpleArrayField(businessCard, 'Emails')
-    printSimpleArrayField(businessCard, 'Websites')
-    printSimpleArrayField(businessCard, 'Addresses')
-    printSimpleArrayField(businessCard, 'MobilePhones')
-    printSimpleArrayField(businessCard, 'Faxes')
-    printSimpleArrayField(businessCard, 'WorkPhones')
-    printSimpleArrayField(businessCard, 'OtherPhones')
+    resultString += printSimpleArrayField(businessCard, 'CompanyNames')
+    resultString += printSimpleArrayField(businessCard, 'Departments')
+    resultString += printSimpleArrayField(businessCard, 'JobTitles')
+    resultString += printSimpleArrayField(businessCard, 'Emails')
+    resultString += printSimpleArrayField(businessCard, 'Websites')
+    resultString += printSimpleArrayField(businessCard, 'Addresses')
+    resultString += printSimpleArrayField(businessCard, 'MobilePhones')
+    resultString += printSimpleArrayField(businessCard, 'Faxes')
+    resultString += printSimpleArrayField(businessCard, 'WorkPhones')
+    resultString += printSimpleArrayField(businessCard, 'OtherPhones')
 
     return(resultString)
 }
 
 // Helper function to print array field values. 
-function printSimpleArrayField(businessCard, fieldName) {
+function printSimpleArrayField(businessCard, fieldName, resultString) {
     const fieldValues = businessCard.fields[fieldName]?.value
     if (Array.isArray(fieldValues)) {
         resultString += `- ${fieldName}:`
@@ -65,6 +65,8 @@ function printSimpleArrayField(businessCard, fieldName) {
     } else {
         resultString += `Error: expected field "${fieldName}" to be an Array, but it was a(n) ${businessCard.fields[fieldName].valueType}`
     }
+    console.log(resultString)
+    return resultString
 }
 
 scanBusinessCard().catch((err) => {

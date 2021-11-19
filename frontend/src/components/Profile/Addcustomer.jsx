@@ -32,6 +32,7 @@ const Addcustomer = () => {
     const [progress, setProgress] = useState(0)
     const [bisProgress, setBisProgress] = useState(0)
     const [customer, setCustomer] = useState("")
+    const [bizDetails, setBizDetails] = useState({})
 
     async function userView() {
         let config = {
@@ -157,16 +158,21 @@ const Addcustomer = () => {
         }
     }
   
-    const businessHandler = (e) => {
+    const businessHandler = async (e) => {
         e.preventDefault()
         const file = e.target[0].files[0]
-        const url = handleBusinessChange(file)
+        const url = await handleBusinessChange(file)
         console.log(url)
         setBusinessUrl(url)
         try {
             if (url != '') {
-                var result = businessCardHandler(businessUrl)
-                window.sessionStorage.setItem('biz_card',result)
+                try {
+                    var result = await businessCardHandler(businessUrl)
+                    window.sessionStorage.setItem('biz_card',result)
+                } catch (error) {
+                    console.log(error)
+                }
+                
             }
             else alert('url not read')
         } catch (error) {
@@ -175,8 +181,9 @@ const Addcustomer = () => {
         }
     }
   
-    const businessCardHandler = (url) => {
-        const result = scanBusinessCard(url)
+    const businessCardHandler = async (url) => {
+        const result = await scanBusinessCard(url)
+        setBizDetails(result)
         console.log(result)
         return result
     }
@@ -385,11 +392,11 @@ const Addcustomer = () => {
                                 <h3>uploaded: {bisProgress}%</h3>
                             </form>
 
-                            <h2 className = 'flex items-center justify-center align-center text-center md:text-sm text-xs text-gray-500 text-light font-semibold'>Create a new Customer and then set a profile picture. You can also fill some fields by scanning customer&#39;s business card instead of typing it out yourself.</h2>
-                            <h2>{window.sessionStorage.getItem('biz_card')}</h2>
+                            <h2 className = 'flex items-center justify-center align-center text-center md:text-sm text-xs text-gray-500 text-light font-semibold'>Create a new Customer and then set a profile picture. You can also fill some fields by scanning customer&#39;s business card instead of typing it out yourself. Note: As this feature is still in development it may be buggy, sometimes you may need to click the upload businessCard button 2-3 times before it appears and that may appear to be inaccurate as well.</h2>
+                            
                             <section className="mt-4 border rounded-xl bg-gray-50 mb-2">
                                 <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Business Card Info</label>
-                                <textarea value={formData.givenName} name="givenName" className="w-full bg-gray-50 p-2 rounded-xl" id = "Credentials" rows="4"></textarea>
+                                <textarea name="bizcard" className="w-full bg-gray-50 p-2 rounded-xl" id = "Credentials" rows="6">{bizDetails}</textarea>
                             </section>
                         </div>
       
