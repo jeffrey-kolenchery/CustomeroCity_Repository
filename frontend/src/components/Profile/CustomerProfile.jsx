@@ -28,6 +28,7 @@ const CustomerProfile = () => {
             const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
             window.sessionStorage.getItem('token')
             const customers = await axios.get(endpoint, config)
+            console.log(customers)
             // console.log(customers)
             setContactList(customers.data)
         } catch (err) {

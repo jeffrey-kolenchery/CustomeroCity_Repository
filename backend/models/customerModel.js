@@ -44,10 +44,11 @@ const customerSchema = new Schema({
         required: true
     },
     profilePicture: {
-        type: String
+        type: String,
+        default: ''
     },
     businessCard: {
-        type: String
+        type: String,
     }
 })
 

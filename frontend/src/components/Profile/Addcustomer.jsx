@@ -30,6 +30,7 @@ const Addcustomer = () => {
     const [profileUrl, setProfileUrl] = useState("")
     const [businessUrl, setBusinessUrl] = useState("")
     const [progress, setProgress] = useState(0)
+    const [customer, setCustomer] = useState("")
 
     async function userView() {
         let config = {
@@ -40,7 +41,6 @@ const Addcustomer = () => {
         const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
         const user = await axios.get(endpoint)
         console.log('USER DATA>>>>>>>>>>')
-        console.log('herehere' + user.data)
         setUser(user.data[0])
     }
   
@@ -60,6 +60,7 @@ const Addcustomer = () => {
             window.sessionStorage.getItem('token')
             const customers = await axios.post(endpoint,copy, config)
             console.log(customers)
+            setCustomer(customers.data)
             alert('Customer successfully created')
         } catch (err) {
             alert(err)
@@ -87,6 +88,7 @@ const Addcustomer = () => {
 
     const profileHandler = async (e) => {
         e.preventDefault()
+        if(customer == "") alert('please create customer first!')
         const file = e.target[0].files[0]
         handleImageChange(file)
     }
@@ -94,7 +96,7 @@ const Addcustomer = () => {
     const handleImageChange = (file) => {
   
         if (!file) {return}
-        const storageRef = ref(storage, `/images/profilePicture/${window.sessionStorage.getItem('currentCustomer')}+${file.name}`)
+        const storageRef = ref(storage, `/images/profilePicture/${customer}+${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
   
         uploadTask.on("state_changed", 
@@ -118,16 +120,16 @@ const Addcustomer = () => {
         try {
             console.log(window.sessionStorage.getItem('token'))
             let config = {
-                body: {
-                    'profilePicture' : String(data)
-                },
                 headers: {
-                    'Authorization': `Bearer ${window.sessionStorage.getItem('token')}` ,
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
                 }
             }
-            const endpoint = `${BASE_URL}/customer/setProfilePicture/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
-            const pictureURL = await axios.post(endpoint,config)
-            console.log(config.body.profilePicture)
+            let body = {
+                profilePicture : String(data)
+            }
+            const endpoint = `${BASE_URL}/customer/setProfilePicture/${window.sessionStorage.getItem('userId')}/${customer}`
+            const pictureURL = await axios.post(endpoint, body,config)
+            console.log(body)
             return pictureURL
         }
         catch(err) {
@@ -139,6 +141,7 @@ const Addcustomer = () => {
         e.preventDefault()
         const file = e.target[0].files[0]
         const url = handleImageChange(file)
+        console.log(url)
         setBusinessUrl(url)
         try {
             if (url != '') {
@@ -153,6 +156,7 @@ const Addcustomer = () => {
   
     const businessCardHandler = async (url) => {
         const result = scanBusinessCard(url)
+        console.log(result)
         return result
     }
 
@@ -165,8 +169,15 @@ const Addcustomer = () => {
         console.log(user)
         console.log(formData)
         console.log(profileUrl)
-        setCustomerProfilePicture(profileUrl)
+        
     }, [user,formData, profileUrl])
+
+    useEffect(()=>{
+        if(profileUrl != "") {
+            setCustomerProfilePicture(profileUrl)
+            alert('Picture Uploaded Successfully')
+        }
+    },[profileUrl])
 
     return (
         <>

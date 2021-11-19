@@ -113,6 +113,7 @@ const customerData = async (req, res) => {
                         'company': 1, 
                         'designation': 1,
                         'phoneNo':1, 
+                        'profilePicture':1,
                         '_id': 1
                     }
                 }
@@ -177,12 +178,11 @@ const editCustomer = (req,res,next) => {
     
 }
 
-const addProfilePicture = (req,res,next) => {
+const addProfilePicture = async (req,res,next) => {
     try {
-        Customer.findByIdAndUpdate(new mongoose.Types.ObjectId(req.params.customerId), {
+        const customer = await Customer.findByIdAndUpdate(new mongoose.Types.ObjectId(req.params.customerId), {
             profilePicture : req.body.profilePicture
         })
-        console.log(req.body.profilePicture)
     }
     catch(e) {
         res.status(404).send('Customer doesnt exist on server')

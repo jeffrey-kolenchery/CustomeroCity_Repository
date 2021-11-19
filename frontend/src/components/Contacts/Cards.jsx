@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import profilepicture from '../../images/profilepic.png'
 const Cards = ({ contactList }) => {
 
-
+    useEffect(()=>{
+console.log(contactList)
+    },[])
     return (
         <>
             {contactList.length != 0 && contactList.map((contact, index) => (
 
                 <figure className="bg-gray-50 text-white h-80 rounded-lg shadow-md" key={index}>
-                    <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
+                    <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={(contact.profilePicture !== '' && contact.profilePicture !== undefined) ? contact.profilePicture : profilepicture} />
                     <figcaption className="text-center mt-5">
                         <Link key={index} to='#'
                             onClick={(e) => {

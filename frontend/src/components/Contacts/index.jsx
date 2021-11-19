@@ -33,8 +33,7 @@ const Contacts = () => {
 
     useEffect(() => {
         userView()
-        console.log(user)
-    }, [user])
+    }, [])
 
     useEffect(() => {
         if (!filterQuery) {
