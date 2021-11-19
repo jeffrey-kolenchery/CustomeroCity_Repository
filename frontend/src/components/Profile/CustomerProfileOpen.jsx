@@ -15,9 +15,53 @@ const CustomerProfileOpen = () => {
 
 
     const [user, setUser] = useState('')
-    const [contactList, setContactList] = useState([])
+    const [customer, setCustomer] = useState([])
     const [filterQuery, setFilterQuery] = useState()
-    customerData(setContactList)
+    const [formData, setFormData] = useState({
+        givenName: '',
+        designation: '',
+        company: '',
+        email: '',
+        phoneNo: 0,
+        age: '',
+        interests: [],
+        visitCount: 0,
+    })
+
+    const SubmitFields = (e) => {
+        e.preventDefault()
+        console.log("asdf")
+        
+    }
+
+    
+    async function customerReturn() {
+        try {
+            let config = {
+                headers: {
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
+                }
+            }
+
+            const endpoint = `${BASE_URL}/customer/returncustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+            const data = await axios.get(endpoint, config)
+            console.log(data.data[0])
+            setFormData(data.data[0])
+        } catch (err) {
+            console.log(err)
+        }
+    }
+      
+    const OnChange = (e) => {
+        if(e.target.name == 'interests1' || e.target.name == 'interests2' || e.target.name == 'interests3'){
+            const copy = {...formData}
+            copy.interests.push(e.target.value) 
+            setFormData(copy)
+        }
+        else{
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+        }
+    }
 
     async function userView() {
         let config = {
@@ -34,12 +78,14 @@ const CustomerProfileOpen = () => {
 
     useEffect(() => {
         userView()
-        setContactList(contactList)
+        customerReturn()
     }, [])
 
     useEffect(() => {
         console.log(user)
-    }, [user])
+        console.log(formData)
+        console.log(customer)
+    }, [user,formData,customer])
     return (
         <>
             <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
@@ -131,39 +177,88 @@ const CustomerProfileOpen = () => {
                     <div className="flex justify-end px-6 p-2 gap-3">
                         <Link to='#'
                             onClick={(e) => {
-                                window.location = 'CustomerProfileEdit'
-                            }}>
-                            <button type="submit" className="bg-purple-600 text-white px-8 py-1 rounded-lg">Edit Fields</button>
-                        </Link>
-                        <Link to='#'
-                            onClick={(e) => {
                                 window.location = 'CustomerProfile'
                             }}>
-                            <button type="submit" className="bg-purple-600 text-white px-4 py-1 rounded-lg">Submit Fields</button>
+                            <button type="submit" onClick={SubmitFields} className="bg-purple-600 text-white px-4 py-1 rounded-lg">Submit Fields</button>
                         </Link>
                     </div>
          
                     <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
-    
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Input 1</label>
-                            <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Credentials" id = "Credentials" rows="4"></textarea>
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Given Name</label>
+                            <textarea stylevalue={formData.givenName} name="givenName" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Credentials" id = "Credentials" rows="4"></textarea>
                         </section>
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                            <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Unique Identifiers" id = "UniqueIdentifiers" rows="4"></textarea>
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Designation</label>
+                            <textarea value={formData.designation} name="designation" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Unique Identifiers" id = "UniqueIdentifiers" rows="4"></textarea>
                         </section>
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                            <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="3" id = "3" rows="4"></textarea>
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Email</label>
+                            <textarea value={formData.email} name="email" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="3" id = "3" rows="4"></textarea>
                         </section>
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                            <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="4" id = "4" rows="4"></textarea>
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Company</label>
+                            <textarea value={formData.company} name="company" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="3" id = "3" rows="4"></textarea>
                         </section>
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
-                            <textarea className="w-full bg-gray-50 p-2 rounded-xl" placeholder="5" id = "5" rows="4"></textarea>
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Phone Number</label>
+                            <textarea value={formData.phoneNo} name="phoneNo" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="4" id = "4" rows="4"></textarea>
                         </section>
+                        
+                       
+                    </div>
+                    <div style={{display: 'flex', justifyContent: 'center' }}>
+                        <div  className="grid grid-cols-1">
+                            <label name="interests" className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interest 1</label>
+                            <select value={(formData.interests != undefined && formData.interests.length > 0) ? formData.interests[0] : 'interest1' } name="interests1" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" onChange={OnChange}>
+                                <option>Option</option>
+                                <option>Sports</option>
+                                <option>Technology</option>
+                                <option>Social Media</option>
+                                <option>Health and Fitness</option>
+                                <option>Photography</option>
+                                <option>Stock Trading</option>
+                                <option>Business and Finance</option>
+                                <option>Writing</option>
+                                <option>Reading</option>
+                                <option>Cooking</option>
+                            </select>
+                        </div>
+                        <div className="grid grid-cols-1">
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interest 2</label>
+                            <select value={(formData.interests != undefined && formData.interests.length > 0) ? formData.interests[1] : 'interest1' } name="interests2" className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  onChange={OnChange}>
+                                <option>Option</option>
+                                <option>Sports</option>
+                                <option>Technology</option>
+                                <option>Social Media</option>
+                                <option>Health and Fitness</option>
+                                <option>Photography</option>  
+                                <option>Stock Trading</option>
+                                <option>Business and Finance</option>
+                                <option>Writing</option>
+                                <option>Reading</option>
+                                <option>Cooking</option>
+                            </select>
+                        </div>
+                        <div className="grid grid-cols-1">
+                            <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Interest 3</label>
+                            <select value={(formData.interests != undefined && formData.interests.length > 0) ? formData.interests[2] : 'interest1' } name="interests3"className="py-1 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  onChange={OnChange}>
+                                <option>Option</option>
+                                <option>Sports</option>
+                                <option>Technology</option>
+                                <option>Social Media</option>
+                                <option>Health and Fitness</option>
+                                <option>Photography</option>
+                                <option>Stock Trading</option>
+                                <option>Business and Finance</option>
+                                <option>Writing</option>
+                                <option>Reading</option>
+                                <option>Cooking</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="flex justify-start px-6 mb-2 text-purple-700 font-mono">
-            Location
+                      Location
                     </div>
                     <div className="flex justify-start px-6 w-full">
                         <Map/>

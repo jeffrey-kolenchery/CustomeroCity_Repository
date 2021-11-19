@@ -13,7 +13,6 @@ import { scanBusinessCard } from '../../AzureFormRecognizer/businessCardScanner'
 
 
 const Addcustomer = () => {
-    const { register, handleSubmit, formState: {errors} } = useForm()
     //var BASE_URL = 'https://customerocity.herokuapp.com/api'
     var BASE_URL = 'http://localhost:5000/api'
 
@@ -79,8 +78,6 @@ const Addcustomer = () => {
         else{
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
-        
-
     }
         
     const onSubmit = (e) => {        
@@ -158,7 +155,7 @@ const Addcustomer = () => {
         const result = scanBusinessCard(url)
         return result
     }
-  
+
 
     useEffect(() => {
         userView()

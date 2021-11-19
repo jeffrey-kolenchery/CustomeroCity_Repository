@@ -32,6 +32,7 @@ const customerSchema = new Schema({
     },
     interests: {
         type: [String],
+        default: []
     },
     user: {
         type: mongoose.SchemaTypes.ObjectId,

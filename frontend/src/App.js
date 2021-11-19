@@ -27,7 +27,7 @@ function App() {
                     <Route ex act path = "/Login" component={Login} />
                     <Route exact path = "/UserProfile" component={UserProfile} />
                     <Route exact path = "/CustomerProfile" component={CustomerProfile} />
-                    <Route exact path = "/CustomerProfileEdit" component={CustomerProfileOpen} />
+                    <Route exact path = "/CustomerProfileEdit" component={CustomerProfileOpen}/>
                     <Route exact path = "/Dashboard" component={Dashboard} />
                     <Route exact path = "/Contacts" component={Contacts} />
                     <Route exact path = "/ResetPassword" component={ResetPassword} />

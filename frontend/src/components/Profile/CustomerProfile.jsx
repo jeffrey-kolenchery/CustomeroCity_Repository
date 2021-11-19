@@ -63,10 +63,27 @@ const CustomerProfile = () => {
         setUser(user.data[0])
     }
 
+    async function customerReturn() {
+        try {
+            let config = {
+                headers: {
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
+                }
+            }
+
+            const endpoint = `${BASE_URL}/customer/returncustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
+            const data = await axios.get(endpoint, config)
+            console.log(data.data[0])
+            setContactList(data.data[0])
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
         userView()
         getMeetings()
-        customerData()
+        customerReturn()
     }, [])
 
     useEffect(() => {
@@ -174,14 +191,15 @@ const CustomerProfile = () => {
                         <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                             <div className="w-full overflow-x-auto">
                                 <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
-                                <div className="font-bold text-xl mb-2">{user.givenName}  </div>
-                                <p className="text-grey-darker text-base">Email • Phone Number</p>
-                                <p className="text-grey-darker text-base">Email • Phone Number</p>
-                                <p className="text-grey-darker text-base mb-4">Designation • Company</p>
+                                <div className="font-bold text-xl mb-2">{contactList.givenName}  </div>
+                                <p className="text-grey-darker text-base">{'Designation: ' + contactList.designation}</p>
+                                <p className="text-grey-darker text-base">{'Company: ' + contactList.company}</p>
+                                <p className="text-grey-darker text-base">{'Phone: ' + contactList.phoneNo}</p>
+                                <p className="text-grey-darker text-base">{'Email: ' + contactList.email}</p>
                                 <div className="px-6 pt-4 pb-2">
-                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">Interest 1</span>
-                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">Interest 2</span>
-                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">Interest 3</span>
+                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 0) ? contactList.interests[0] : 'interest1' }</span>
+                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined &&  contactList.interests.length   > 1) ? contactList.interests[1] : 'interest2'}</span>
+                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined &&  contactList.interests.length  > 2) ? contactList.interests[2] : 'interest3'}</span>
                                 </div>
                                 <Link to='/ScheduleMeeting'>
                                     <button className="bg-purple-500 hover:bg-blue text-white rounded-xl font-semibold hover:text-white py-1 px-3 border border-blue hover:border-transparent mb-4">Schedule Meeting</button>
