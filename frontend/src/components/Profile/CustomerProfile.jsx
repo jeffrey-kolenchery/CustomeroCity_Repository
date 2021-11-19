@@ -1,10 +1,10 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { SidebarData } from './SidebarData'
 import './UserProfile.css'
 import profilepicture from '../../images/profilepic.png'
 import Map from '../Map'
 import axios from 'axios'
-import {customerData, userSignOut, customerDelete } from '../../api'
+import { customerData, userSignOut, customerDelete } from '../../api'
 import { Link } from 'react-router-dom'
 import MeetingData from './MeetingData'
 
@@ -16,13 +16,13 @@ const CustomerProfile = () => {
     const [contactList, setContactList] = useState([])
     const [meetings, setMeetings] = useState([])
     const [filterQuery, setFilterQuery] = useState()
-    
+
     async function customerData() {
 
         try {
             let config = {
                 headers: {
-                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}` ,
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}`,
                 }
             }
             const endpoint = `${BASE_URL}/customer/customerdata/${window.sessionStorage.getItem('userId')}`
@@ -33,10 +33,10 @@ const CustomerProfile = () => {
         } catch (err) {
             console.error(err)
         }
-  
-    } 
-    
-    
+
+    }
+
+
     async function getMeetings() {
         let config = {
             headers: {
@@ -47,9 +47,10 @@ const CustomerProfile = () => {
         const user = await axios.get(endpoint, config)
         console.log('USER DATA')
         console.log(user)
-        setMeetings(user.data)
+        const filteredMeetings = user.data.filter(meeting => meeting.customer == window.sessionStorage.getItem('currentCustomer'))
+        setMeetings(filteredMeetings)
     }
-    
+
     async function userView() {
         let config = {
             headers: {
@@ -90,7 +91,7 @@ const CustomerProfile = () => {
         console.log(user)
         console.log(meetings)
         console.log(contactList)
-    }, [user,meetings, contactList ])
+    }, [user, meetings, contactList])
 
     return (
         <>
@@ -125,7 +126,7 @@ const CustomerProfile = () => {
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
                                     </span>
                                     <span className="ml-2 text-sm tracking-wide truncate">Contacts</span>
-                  
+
                                 </a>
                             </li>
                             <li>
@@ -141,14 +142,14 @@ const CustomerProfile = () => {
                                     userSignOut()
                                     window.sessionStorage.clear()
                                 }}>
-                                    <a href = "/" onClick={(e) => {
+                                    <a href="/" onClick={(e) => {
                                         userSignOut()
                                         window.sessionStorage.clear()
                                     }} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                         <span className="nline-flex justify-center items-center ml-4">
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                                         </span>
-                                        <span className="ml-2 text-sm tracking-wide truncate">Logout</span> 
+                                        <span className="ml-2 text-sm tracking-wide truncate">Logout</span>
                                     </a>
                                 </Link>
                             </li>
@@ -181,50 +182,62 @@ const CustomerProfile = () => {
                         </Link>
                         <Link to='#'
                             onClick={(e) => {
-                                window.location = 'CustomerProfile'
-                            }}>
-                            <button type="submit" className="bg-purple-500 hover:bg-blue text-white rounded-xl font-semibold hover:text-white py-1 px-4 border border-blue hover:border-transparent">Submit Fields</button>
-                        </Link>
-                        <Link to='#'
-                            onClick={(e) => {
                                 customerDelete()
                             }}>
                             <button type="submit" className="bg-purple-600 text-white px-8 py-1 rounded-lg">Delete Profile</button>
                         </Link>
                     </div>
-         
-                    <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+
+                    <div style={{ display: 'flex', flexDirection: 'column' }} className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
                         <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                             <div className="w-full overflow-x-auto">
                                 <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
                                 <div className="font-bold text-xl mb-2">{contactList.givenName}  </div>
-                                <p className="text-grey-darker text-base">{'Designation: ' + contactList.designation}</p>
-                                <p className="text-grey-darker text-base">{'Company: ' + contactList.company}</p>
-                                <p className="text-grey-darker text-base">{'Phone: ' + contactList.phoneNo}</p>
-                                <p className="text-grey-darker text-base">{'Email: ' + contactList.email}</p>
+                                <div className="font-bold text-x3">Designation:</div>
+                                <p className="text-grey-darker text-base">{contactList.designation}</p>
+                                <div className="font-bold text-x3">Company:</div>
+                                <p className="text-grey-darker text-base">{contactList.company}</p>
+                                <div className="font-bold text-x3">Phone Number:</div>
+                                <p className="text-grey-darker text-base">{contactList.phoneNo}</p>
+                                <div className="font-bold text-x3">Email:</div>
+                                <p className="text-grey-darker text-base">{contactList.email}</p>
                                 <div className="px-6 pt-4 pb-2">
-                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 0) ? contactList.interests[0] : 'interest1' }</span>
-                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined &&  contactList.interests.length   > 1) ? contactList.interests[1] : 'interest2'}</span>
-                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined &&  contactList.interests.length  > 2) ? contactList.interests[2] : 'interest3'}</span>
+                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 0) ? contactList.interests[0] : 'interest1'}</span>
+                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 1) ? contactList.interests[1] : 'interest2'}</span>
+                                    <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 2) ? contactList.interests[2] : 'interest3'}</span>
                                 </div>
                                 <Link to='/ScheduleMeeting'>
                                     <button className="bg-purple-500 hover:bg-blue text-white rounded-xl font-semibold hover:text-white py-1 px-3 border border-blue hover:border-transparent mb-4">Schedule Meeting</button>
                                 </Link>
-                
                             </div>
-                        </div>
-            
-            
-                            
 
-                
+                        </div>
+                        <div className="font-bold text-xl mb-2">Past and Upcoming Meetings:</div>
+                        <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+                            {meetings.map((element, i) => {
+                                return (
+                                    <div key={i}
+                                        className="w-full overflow-x-auto">
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }} className="px-6 pt-4 pb-2">
+                                            <div style={{ width: '33%' }}><div className="font-bold text-xl mb-2">Location:</div>
+                                                <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{element.loc}</span></div>
+                                            <div style={{ width: '33%' }}> <div className="font-bold text-xl mb-2">Description: </div>
+                                                <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{element.Description}</span></div>
+                                            <div style={{ width: '33%' }}>
+                                                <div className="font-bold text-xl mb-2">Date:</div>
+                                                <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{element.StartTime}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
-                    
-                    
-          
 
                 </div>
+
             </div>
+
         </>
     )
 }

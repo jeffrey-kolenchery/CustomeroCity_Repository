@@ -78,7 +78,9 @@ const CustomerProfileOpen = () => {
     const OnChange = (e) => {
         if(e.target.name == 'interests1' || e.target.name == 'interests2' || e.target.name == 'interests3'){
             const copy = {...formData}
-            copy.interests.push(e.target.value) 
+            if(e.target.name == 'interests1') copy.interests[0] = e.target.value
+            if(e.target.name == 'interests2') copy.interests[1] = e.target.value
+            if(e.target.name == 'interests3') copy.interests[2] = e.target.value
             setFormData(copy)
         }
         else{
