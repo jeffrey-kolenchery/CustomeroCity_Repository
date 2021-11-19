@@ -373,20 +373,24 @@ const Addcustomer = () => {
                                     <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
                                 </div>
                             </form>
-                            <form onSubmit={profileHandler}>
+                            <form className = 'mb-4' onSubmit={profileHandler}>
                                 <input type='file'/>
-                                <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Upload Profile Picture</button>
+                                <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-2 py-1 mb-4'>Upload Profile Picture</button>
                                 <h3>uploaded: {progress}%</h3>
                             </form>
 
-                            <form onSubmit={businessHandler}>
+                            <form className = 'mb-4 'onSubmit={businessHandler}>
                                 <input type='file'/>
-                                <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Upload Business Card</button>
+                                <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-1 mb-4'>Upload Business Card</button>
                                 <h3>uploaded: {bisProgress}%</h3>
                             </form>
 
-                            <h2>Create a new Customer and then set a profile picture. You can also fill some fields by scanning customer&#39;s business card instead of typing it out yourself.</h2>
+                            <h2 className = 'flex items-center justify-center align-center text-center md:text-sm text-xs text-gray-500 text-light font-semibold'>Create a new Customer and then set a profile picture. You can also fill some fields by scanning customer&#39;s business card instead of typing it out yourself.</h2>
                             <h2>{window.sessionStorage.getItem('biz_card')}</h2>
+                            <section className="mt-4 border rounded-xl bg-gray-50 mb-2">
+                                <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Business Card Info</label>
+                                <textarea value={formData.givenName} name="givenName" className="w-full bg-gray-50 p-2 rounded-xl" id = "Credentials" rows="4"></textarea>
+                            </section>
                         </div>
       
                     </div>

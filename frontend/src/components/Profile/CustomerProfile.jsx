@@ -129,7 +129,7 @@ const CustomerProfile = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="/ResetPassword" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                     <span className="inline-flex justify-center items-center ml-4">
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
                                     </span>
@@ -200,7 +200,11 @@ const CustomerProfile = () => {
                                 <div className="font-bold text-x3">Phone Number:</div>
                                 <p className="text-grey-darker text-base">{contactList.phoneNo}</p>
                                 <div className="font-bold text-x3">Email:</div>
-                                <p className="text-grey-darker text-base">{contactList.email}</p>
+                                <p className="text-grey-darker text-base"><Link to='#'
+                                    onClick={(e) => {
+                                        window.location = `${`mailto:${contactList.email}?subject=${''}&body=${''}`}`
+                                    }}>{contactList.email}
+                                </Link></p>
                                 <div className="px-6 pt-4 pb-2">
                                     <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 0) ? contactList.interests[0] : 'interest1'}</span>
                                     <span className="inline-block bg-blue-100 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">{(contactList.interests != undefined && contactList.interests.length > 1) ? contactList.interests[1] : 'interest2'}</span>
