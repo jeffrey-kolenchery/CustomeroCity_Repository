@@ -8,15 +8,17 @@ import Map from '../Map'
 import axios from 'axios'
 import {customerData,userSignOut } from '../../api'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const CustomerProfileOpen = () => {
+    const history = useHistory()
     // var BASE_URL = 'https://customerocity.herokuapp.com/api'
     var BASE_URL = 'http://localhost:5000/api'
 
 
     const [user, setUser] = useState('')
     const [customer, setCustomer] = useState([])
-    const [filterQuery, setFilterQuery] = useState()
+    const [submitted, setSubmitted] = useState(false)
     const [formData, setFormData] = useState({
         givenName: '',
         designation: '',
@@ -30,7 +32,8 @@ const CustomerProfileOpen = () => {
 
     const SubmitFields = (e) => {
         e.preventDefault()
-        console.log("asdf")
+        submitButton()
+        console.log('asdf')
         
     }
 
@@ -47,6 +50,26 @@ const CustomerProfileOpen = () => {
             const data = await axios.get(endpoint, config)
             console.log(data.data[0])
             setFormData(data.data[0])
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    
+    async function submitButton() {
+        try {
+            let config = {
+                headers: {
+                    'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
+                }
+            }
+            console.log(formData)
+            const endpoint = `${BASE_URL}/customer/updatecustomer/${window.sessionStorage.getItem('userId')}`
+            console.log(endpoint)
+            const data = await axios.patch(endpoint, formData, config)
+            setSubmitted(true)
+            console.log(endpoint)
+            console.log(data)
         } catch (err) {
             console.log(err)
         }
@@ -86,6 +109,10 @@ const CustomerProfileOpen = () => {
         console.log(formData)
         console.log(customer)
     }, [user,formData,customer])
+
+    useEffect(()=>{
+        if(submitted) history.push('/CustomerProfile')
+    },[submitted])
     return (
         <>
             <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
@@ -175,22 +202,23 @@ const CustomerProfileOpen = () => {
                 </div>
                 <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
                     <div className="flex justify-end px-6 p-2 gap-3">
-                        <Link to='#'
+                        {/* <Link to='#'
                             onClick={(e) => {
                                 window.location = 'CustomerProfile'
                             }}>
                             <button type="submit" onClick={SubmitFields} className="bg-purple-600 text-white px-4 py-1 rounded-lg">Submit Fields</button>
-                        </Link>
+                        </Link> */}
+                        <button type="submit" onClick={SubmitFields} className="bg-purple-600 text-white px-4 py-1 rounded-lg">Submit Fields</button>
                     </div>
          
                     <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
                             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Given Name</label>
-                            <textarea stylevalue={formData.givenName} name="givenName" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Credentials" id = "Credentials" rows="4"></textarea>
+                            <textarea value={formData.givenName} name="givenName" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Name" id = "Credentials" rows="4"></textarea>
                         </section>
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
                             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Designation</label>
-                            <textarea value={formData.designation} name="designation" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Unique Identifiers" id = "UniqueIdentifiers" rows="4"></textarea>
+                            <textarea value={formData.designation} name="designation" onChange={OnChange} className="w-full bg-gray-50 p-2 rounded-xl" placeholder="Designation" id = "UniqueIdentifiers" rows="4"></textarea>
                         </section>
                         <section className="mt-4 w-full border rounded-xl bg-gray-50 mb-2 ml-2">
                             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Email</label>

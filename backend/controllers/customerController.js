@@ -136,29 +136,28 @@ const deleteCustomer = (req, res, next) => {
 }
 
 const editCustomer = (req,res,next) => {
-    const customerId = req.body.customerId
-
-    const resultCustomer = Customer.findById(customerId)
-
+    console.log('asdfasdfasdfasdf')
+    const customerId = req.body._id
+    console.log('asdfasdfasdfasdf')
     try {
 
         Customer.findByIdAndUpdate(customerId,
             {
                 givenName: req.body.givenName,
                 designation: req.body.designation,
-                company: req.body.comapany,
+                company: req.body.company,
                 email: req.body.email,
                 age: req.body.age,
                 phoneNo: req.body.phoneNo,
                 interests: req.body.interests,
-                visitCount: resultCustomer.visitCount + 1
             },
             function (err, docs) {
                 if (err) {
+                    console.log('ASDFASDF')
                     console.log(err)
                 }
                 else {
-                    res.send('Updated customer: ', docs)
+                    res.send(docs)
                 }
             })
 
