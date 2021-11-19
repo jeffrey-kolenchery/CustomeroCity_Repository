@@ -6,8 +6,8 @@ import * as dotenv from 'dotenv'
 import { scanBusinessCard } from './AzureFormRecognizer/businessCardScanner'
 
 
-var BASE_URL = 'http://localhost:5000/api'
-// var BASE_URL = 'https://customerocity.herokuapp.com/api'
+// var BASE_URL = 'http://localhost:5000/api'
+var BASE_URL = 'https://customerocity.herokuapp.com/api'
 dotenv.config()
 
 

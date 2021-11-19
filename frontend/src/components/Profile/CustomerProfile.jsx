@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom'
 import MeetingData from './MeetingData'
 
 const CustomerProfile = () => {
-    // var BASE_URL = 'https://customerocity.herokuapp.com/api'
-    var BASE_URL = 'http://localhost:5000/api'
+    var BASE_URL = 'https://customerocity.herokuapp.com/api'
+    // var BASE_URL = 'http://localhost:5000/api'
 
     const [user, setUser] = useState('')
     const [contactList, setContactList] = useState([])
@@ -60,8 +60,6 @@ const CustomerProfile = () => {
         }
         const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
         const user = await axios.get(endpoint)
-        console.log('USER DATA>>>>>>>>>>')
-        console.log('herehere' + user.data)
         setUser(user.data[0])
     }
 
@@ -89,9 +87,9 @@ const CustomerProfile = () => {
     }, [])
 
     useEffect(() => {
-        console.log(user)
-        console.log(meetings)
-        console.log(contactList)
+        // console.log(user)
+        // console.log(meetings)
+        // console.log(contactList)
     }, [user, meetings, contactList])
 
     return (
@@ -192,6 +190,7 @@ const CustomerProfile = () => {
                     <div style={{ display: 'flex', flexDirection: 'column' }} className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
                         <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                             <div className="w-full overflow-x-auto">
+                                
                                 <img alt="user" className="w-32 h-32 rounded-full mx-auto mt-7" src={profilepicture} />
                                 <div className="font-bold text-xl mb-2">{contactList.givenName}  </div>
                                 <div className="font-bold text-x3">Designation:</div>

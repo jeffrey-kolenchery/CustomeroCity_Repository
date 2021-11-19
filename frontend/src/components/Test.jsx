@@ -8,8 +8,8 @@ import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import './Test.css'
 import axios from 'axios'
 
-var BASE_URL = 'http://localhost:5000/api'
-// var BASE_URL = `https://customerocity.herokuapp.com/api'
+// var BASE_URL = 'http://localhost:5000/api'
+var BASE_URL = 'https://customerocity.herokuapp.com/api'
 
 const Calendar = () => {
 
