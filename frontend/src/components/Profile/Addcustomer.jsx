@@ -165,7 +165,8 @@ const Addcustomer = () => {
         setBusinessUrl(url)
         try {
             if (url != '') {
-                businessCardHandler(businessUrl)
+                var result = businessCardHandler(businessUrl)
+                window.sessionStorage.setItem('biz_card',result)
             }
             else alert('url not read')
         } catch (error) {
@@ -384,8 +385,8 @@ const Addcustomer = () => {
                                 <h3>uploaded: {bisProgress}%</h3>
                             </form>
 
-                            <h2>Create a new Customer and then set a profile picture. You can also auto fill some fields by scanning customer&#39;s business card instead of typing it out yourself.</h2>
-
+                            <h2>Create a new Customer and then set a profile picture. You can also fill some fields by scanning customer&#39;s business card instead of typing it out yourself.</h2>
+                            <h2>{window.sessionStorage.getItem('biz_card')}</h2>
                         </div>
       
                     </div>
