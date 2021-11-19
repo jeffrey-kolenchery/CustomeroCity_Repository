@@ -64,7 +64,7 @@ const CustomerProfileOpen = () => {
                 }
             }
             console.log(formData)
-            const endpoint = `${BASE_URL}/customer/updatecustomer/${window.sessionStorage.getItem('userId')}`
+            const endpoint = `${BASE_URL}/customer/updatecustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
             console.log(endpoint)
             const data = await axios.patch(endpoint, formData, config)
             setSubmitted(true)
