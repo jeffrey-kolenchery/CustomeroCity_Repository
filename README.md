@@ -1,11 +1,11 @@
-[![GitHub Super-Linter](https://github.com/jeffrey-kolenchery/IT-PROJECT-TEAM-50/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 # IT-PROJECT-TEAM-50
-Initiation Process:
+Initiation Process for localhost:
 1) Ensure you have NPM installed
 2) in CLI run "npm run start-dev"
-3) bon appetit!
 
-EDIT-->
-probably better to "npm start" both ends seperately for now.
-the leading website is broken rn because frontend/src/App.js is blank.
+Initiation Process for Deployment:
+1) Navigate to https://customerocity.herokuapp.com/
+2) test user login:
+   username: t14@t14.com
+   password: 123456789

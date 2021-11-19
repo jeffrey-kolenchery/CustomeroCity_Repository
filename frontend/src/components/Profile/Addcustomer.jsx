@@ -30,6 +30,7 @@ const Addcustomer = () => {
     const [profileUrl, setProfileUrl] = useState("")
     const [businessUrl, setBusinessUrl] = useState("")
     const [progress, setProgress] = useState(0)
+    const [bisProgress, setBisProgress] = useState(0)
     const [customer, setCustomer] = useState("")
 
     async function userView() {
@@ -54,16 +55,12 @@ const Addcustomer = () => {
             }
             const copy = {...formData}
             copy.phoneNo = Number(copy.phoneNo)
-            console.log(copy)
             const endpoint = `${BASE_URL}/customer/registercustomer/${window.sessionStorage.getItem('userId')}`
-            console.log(endpoint)
-            window.sessionStorage.getItem('token')
             const customers = await axios.post(endpoint,copy, config)
-            console.log(customers)
             setCustomer(customers.data)
             alert('Customer successfully created')
         } catch (err) {
-            alert(err)
+            alert('there was an error :(')
             console.error(err)
         }
     
@@ -115,6 +112,29 @@ const Addcustomer = () => {
         )
   
     }
+
+    const handleBusinessChange = (file) => {
+  
+        if (!file) {return}
+        const storageRef = ref(storage, `/images/businessCard/${customer}+${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+  
+        uploadTask.on("state_changed", 
+            (snapshot) => {
+                const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                setBisProgress(prog)
+            },
+            (err) => {
+                console.log(err)
+            },
+            async () => {
+                const url = await getDownloadURL(uploadTask.snapshot.ref)
+                console.log(url)
+                setBusinessUrl(url)
+            }
+        )
+  
+    }
   
     async function setCustomerProfilePicture(data) {
         try {
@@ -140,7 +160,7 @@ const Addcustomer = () => {
     const businessHandler = (e) => {
         e.preventDefault()
         const file = e.target[0].files[0]
-        const url = handleImageChange(file)
+        const url = handleBusinessChange(file)
         console.log(url)
         setBusinessUrl(url)
         try {
@@ -154,7 +174,7 @@ const Addcustomer = () => {
         }
     }
   
-    const businessCardHandler = async (url) => {
+    const businessCardHandler = (url) => {
         const result = scanBusinessCard(url)
         console.log(result)
         return result
@@ -361,7 +381,7 @@ const Addcustomer = () => {
                             <form onSubmit={businessHandler}>
                                 <input type='file'/>
                                 <button type="submit" className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Upload Business Card</button>
-                                <h3>uploaded: {progress}%</h3>
+                                <h3>uploaded: {bisProgress}%</h3>
                             </form>
 
                             <h2>Create a new Customer and then set a profile picture. You can also auto fill some fields by scanning customer&#39;s business card instead of typing it out yourself.</h2>

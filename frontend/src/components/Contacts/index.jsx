@@ -26,8 +26,6 @@ const Contacts = () => {
         }
         const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
         const user = await axios.get(endpoint)
-        console.log('USER DATA>>>>>>>>>>')
-        console.log('herehere' + user.data)
         setUser(user.data[0])
     }
 

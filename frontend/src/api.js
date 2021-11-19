@@ -15,16 +15,12 @@ async function userLogin(data) {
     const endpoint = `${BASE_URL}/user/login`
     return await axios.patch(endpoint, data).then(
         (response) => {
-            console.log('user logged in')
-            console.log(response)
             window.sessionStorage.setItem('userId',response.data.userId)
             window.sessionStorage.setItem('token',response.data.token)
-            console.log(response.data.token)
             
             window.location.assign('/Dashboard')
         },
         (error) => {
-            console.log(error)
             alert('enter valid username and password')
         }
     )
@@ -34,8 +30,6 @@ async function userSignUp(data) {
     const endpoint = `${BASE_URL}/user/register`
     return await axios.post(endpoint, data).then(
         (response) => {
-            console.log('user signed up')
-            console.log(response)
             var loginData = {
                 username : data.email,
                 password : data.password
@@ -43,7 +37,6 @@ async function userSignUp(data) {
             userLogin(loginData)
         },
         (error) => {
-            console.log(error)
             alert('enter valid data in fields')
         }
     )
@@ -53,8 +46,7 @@ async function userSignOut() {
     const endpoint = `${BASE_URL}/user/signout`
     return await axios.get(endpoint).then(
         (response) => {
-            console.log('user signed out')
-            console.log(response)
+            alert('user signed out')
         },
         (error) => {
             console.log(error)
@@ -105,8 +97,6 @@ async function customerCreate(data) {
                 window.sessionStorage.setItem('currentCustomer',response.data)
             }
         )
-        console.log(customers)
-        console.log('Customer successfully created')
     } catch (err) {
         console.error(err)
         alert('Enter all required fields with valid data')
@@ -115,15 +105,11 @@ async function customerCreate(data) {
 }
 
 async function customerDelete(data) {
-    console.log('ASDFASDF')
     const endpoint = `${BASE_URL}/customer/deletecustomer/${window.sessionStorage.getItem('userId')}/${window.sessionStorage.getItem('currentCustomer')}`
-    console.log(endpoint)
     return await axios.delete(endpoint, data).then(
         (response) => {
-            console.log('Customer successfully deleted')
             alert('Customer successfully deleted')
             window.location.assign('/contacts')
-            console.log(response)
         },
         (error) => {
             console.log(error)
@@ -138,7 +124,6 @@ async function customerSearch(data) {
     return await axios.get(endpoint, data).then(
         (response) => {
             console.log('Customer search returned')
-            console.log(response)
         },
         (error) => {
             console.log(error)
@@ -146,17 +131,17 @@ async function customerSearch(data) {
     )
 }
 
-async function userView() {
-    let config = {
-        headers: {
-            'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
-        }
-    }
-    const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
-    const user = await axios.get(endpoint)
-    console.log('USER DATA>>>>>>>>>>')
-    console.log(user.data)
-}
+// async function userView() {
+//     let config = {
+//         headers: {
+//             'Authorization': `bearer ${window.sessionStorage.getItem('token')}`
+//         }
+//     }
+//     const endpoint = `${BASE_URL}/user/viewuser/${window.sessionStorage.getItem('userId')}`
+//     const user = await axios.get(endpoint)
+//     console.log('USER DATA>>>>>>>>>>')
+//     console.log(user.data)
+// }
 
 async function customerReturn() {
     try {
@@ -297,7 +282,7 @@ export {
     userSignOut,
     userResetPassword,
     userNewPassword,
-    userView,
+    // userView,
     customerCreate,
     customerDelete,
     customerSearch,
