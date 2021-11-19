@@ -5,7 +5,7 @@ import profilepicture from '../../images/profilepic.png'
 const Cards = ({ contactList }) => {
 
     useEffect(()=>{
-console.log(contactList)
+        console.log(contactList)
     },[])
     return (
         <>

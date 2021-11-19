@@ -157,7 +157,7 @@ export function Dashboard() {
                                             {contactList.filter((item, i) => i < 5).map(contact => {
                                                 return (
                                                     <CustomerData
-                                                    profilePicture={contact.profilePicture}
+                                                        profilePicture={contact.profilePicture}
                                                         key={contact._id}
                                                         givenName = {contact.givenName}
                                                         designation = {contact.designation}
