@@ -111,7 +111,8 @@ const customerData = async (req, res) => {
                         'givenName': 1, 
                         'email': 1, 
                         'company': 1, 
-                        'designation': 1, 
+                        'designation': 1,
+                        'phoneNo':1, 
                         '_id': 1
                     }
                 }
@@ -127,8 +128,16 @@ const customerData = async (req, res) => {
 }
 
 const deleteCustomer = (req, res, next) => {
+
     try {
-        Customer.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.customerId))
+        Customer.findByIdAndDelete(req.params.customerId, function (err, docs) {
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log('Deleted : ', docs)
+            }
+        })
         res.status(200).send('customer deleted successfully')
     } catch (error) {
         res.status(404).send('customer does not exist in database')

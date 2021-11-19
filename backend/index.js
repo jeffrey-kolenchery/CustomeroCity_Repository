@@ -61,17 +61,17 @@ app.use('/api/meeting', meetingRouter)
 // serve static folders if in production
 
 if (process.env.NODE_ENV === 'production') {
-  //set static folder
-  // const __dirname = path.dirname(fileURLToPath(import.meta.url))
+    //set static folder
+    // const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-  app.use(express.static('../frontend/build'))
-  app.get('*', (req, res) => {
-      // res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-      res.sendFile(path.resolve('../frontend', 'build', 'index.html'))
-      // res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'))
+    app.use(express.static('../frontend/build'))
+    app.get('*', (req, res) => {
+        // res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+        res.sendFile(path.resolve('../frontend', 'build', 'index.html'))
+        // res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'))
 
 
-  })
+    })
 }
 
 export { app }

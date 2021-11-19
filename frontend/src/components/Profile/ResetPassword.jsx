@@ -41,7 +41,6 @@ class ResetPassword extends React.Component {
       const { register, handleSubmit, formState: {errors} } = useForm()
       // var BASE_URL = 'https://customerocity.herokuapp.com/api'
       var BASE_URL = 'http://localhost:5000/api'
-
       const [user, setUser] = useState('')
 
       async function userView() {

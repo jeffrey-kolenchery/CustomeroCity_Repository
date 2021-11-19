@@ -4,14 +4,13 @@ import './UserProfile.css'
 import profilepicture from '../../images/profilepic.png'
 import Map from '../Map'
 import axios from 'axios'
-import {customerData, userSignOut } from '../../api'
+import {customerData, userSignOut, customerDelete } from '../../api'
 import { Link } from 'react-router-dom'
 import MeetingData from './MeetingData'
 
 const CustomerProfile = () => {
     // var BASE_URL = 'https://customerocity.herokuapp.com/api'
     var BASE_URL = 'http://localhost:5000/api'
-
 
     const [user, setUser] = useState('')
     const [contactList, setContactList] = useState([])
@@ -36,6 +35,7 @@ const CustomerProfile = () => {
         }
   
     } 
+    
     
     async function getMeetings() {
         let config = {
@@ -185,6 +185,12 @@ const CustomerProfile = () => {
                             }}>
                             <button type="submit" className="bg-purple-500 hover:bg-blue text-white rounded-xl font-semibold hover:text-white py-1 px-4 border border-blue hover:border-transparent">Submit Fields</button>
                         </Link>
+                        <Link to='#'
+                            onClick={(e) => {
+                                customerDelete()
+                            }}>
+                            <button type="submit" className="bg-purple-600 text-white px-8 py-1 rounded-lg">Delete Profile</button>
+                        </Link>
                     </div>
          
                     <div className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
@@ -209,15 +215,12 @@ const CustomerProfile = () => {
                         </div>
             
             
+                            
 
                 
                     </div>
-                    <div className="flex justify-start px-6 mb-2 text-purple-700 font-mono">
-            Location
-                    </div>
-                    <div className="flex justify-start px-6 w-full">
-                        <Map/>
-                    </div>
+                    
+                    
           
 
                 </div>

@@ -31,10 +31,10 @@ customerRouter.post(
     isAuth,
     CustomerController.registerCustomer
 )
-customerRouter.post(
-    '/deletecustomer/:userId',
-    requireSignin,
-    isAuth,
+customerRouter.delete(
+    '/deletecustomer/:userId/:customerId',
+    // requireSignin,
+    // isAuth,
     CustomerController.deleteCustomer
 )
 customerRouter.get(
@@ -50,7 +50,7 @@ customerRouter.get(
 )
 
 customerRouter.patch(
-    '/updatecustomer/:userId',
+    '/updatecustomer/:userId/:customerId',
     requireSignin,
     isAuth,
     CustomerController.editCustomer
@@ -88,6 +88,12 @@ customerRouter.get(
     requireSignin,
     isAuth,
     CustomerController.addBusinessCard
+)
+customerRouter.get(
+    '/getCustomers/:userId',
+    requireSignin,
+    isAuth,
+    CustomerController.getCustomers
 )
 customerRouter.get(
     '/getCustomers/:userId',
